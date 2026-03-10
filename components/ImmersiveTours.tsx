@@ -77,7 +77,7 @@ const ProjectSpecsCTA: React.FC<{ onOpenQuote: (service?: string) => void }> = (
 
     return (
         <section className="py-24 px-6 lg:px-12 bg-neutral-900/30 border-t border-white/5">
-            <div className="max-w-7xl mx-auto">
+            <div className="">
                 <div className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 rounded-3xl p-8 lg:p-16 relative overflow-hidden">
                     {/* Background Deco */}
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -288,7 +288,7 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/80 to-transparent"></div>
                 </div>
                 
-                <div className="relative z-10 max-w-7xl mx-auto">
+                <div className="relative z-10 ">
                     <button 
                         onClick={() => onNavigate('home')}
                         className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase cursor-hover"
@@ -332,7 +332,7 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
 
              {/* Versatile Interactive Solutions (Matching ExteriorRendering Style) */}
              <section className="py-24 px-6 lg:px-12 bg-neutral-900/50">
-                <div className="max-w-7xl mx-auto">
+                <div className="">
                     <div className="mb-16">
                          <h2 className="font-display text-4xl md:text-6xl mb-6 leading-tight">Versatile <span className="text-stroke">Solutions</span></h2>
                          <p className="text-neutral-500 max-w-xl">Whether for expansive developments or intimate interiors, we have the interactive solution to match.</p>
@@ -381,7 +381,7 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
 
             {/* Flexible Presentation Methods */}
             <section className="py-24 px-6 lg:px-12 bg-neutral-950 z-20 relative">
-                <div className="max-w-7xl mx-auto">
+                <div className="">
                     <div className="mb-12">
                          <h2 className="font-display text-4xl mb-4">Deployment <span className="text-stroke">Options</span></h2>
                          <p className="text-neutral-500">Deliver your experience exactly where your audience is.</p>
@@ -419,7 +419,7 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
 
              {/* Interactive Pipeline (Process Section) */}
              <section className="py-24 px-6 lg:px-12 bg-neutral-900 border-y border-white/5 z-20 relative">
-                <div className="max-w-7xl mx-auto">
+                <div className="">
                     <h2 className="font-display text-4xl md:text-6xl mb-16 text-center">Interactive <span className="text-stroke">Pipeline</span></h2>
                     
                     <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -447,7 +447,7 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
 
              {/* Briefing/Requirements Section */}
              <section className="py-24 px-6 lg:px-12 bg-neutral-900/30 border-t border-white/5 z-20 relative">
-                <div className="max-w-7xl mx-auto">
+                <div className="">
                     <div className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 rounded-3xl p-8 lg:p-16 relative overflow-hidden">
                         {/* Background Deco */}
                         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>

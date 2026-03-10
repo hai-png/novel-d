@@ -210,7 +210,7 @@ const ProjectSpecsCTA: React.FC<{ onOpenQuote: (service?: string) => void }> = (
 
     return (
         <section className="py-24 px-6 lg:px-12 bg-neutral-900/30 border-t border-white/5">
-            <div className="max-w-7xl mx-auto">
+            <div className="">
                 <div className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 rounded-3xl p-8 lg:p-16 relative overflow-hidden">
                     {/* Background Deco */}
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -395,7 +395,7 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent" />
                 </div>
 
-                <div className="relative z-10 max-w-7xl mx-auto">
+                <div className="relative z-10 ">
                     <button
                         onClick={() => onNavigate('home')}
                         className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase"
@@ -425,7 +425,7 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                 SHOWREEL SECTION
             ════════════════════════════════════════════════════════ */}
             <section className="py-20 px-6 lg:px-12 bg-neutral-900 border-y border-white/5">
-                <div className="max-w-7xl mx-auto">
+                <div className="">
                     <div className="relative aspect-video rounded-3xl overflow-hidden bg-neutral-900">
                         {showreelGallery.length > 0 ? (
                             <video
@@ -469,7 +469,7 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                 WALKTHROUGH & FLYTHROUGH GRID
             ════════════════════════════════════════════════════════ */}
             <section className="py-24 px-6 lg:px-12 bg-neutral-900/50 border-t border-white/5">
-                <div className="max-w-7xl mx-auto">
+                <div className="">
                     <div className="mb-16 text-center">
                         <h2 className="font-display text-4xl md:text-6xl mb-6 leading-tight">
                             Walkthrough & <span className="text-stroke">Flythrough</span>
@@ -519,7 +519,7 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
             ════════════════════════════════════════════════════════ */}
             <section className="bg-neutral-900/50">
                 {/* Section header — scrolls away normally */}
-                <div className="px-6 lg:px-12 pt-24 pb-16 max-w-7xl mx-auto">
+                <div className="px-6 lg:px-12 pt-24 pb-16 ">
                     <div className="flex items-center gap-4 mb-6">
                         <Film className="w-8 h-8 text-white/60" />
                         <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest">Technical Visualizations</span>

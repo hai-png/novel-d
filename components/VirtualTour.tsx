@@ -265,7 +265,7 @@ const ProjectSpecsCTA: React.FC<{ onOpenQuote: (service?: string) => void }> = (
 
     return (
         <section className="py-24 px-6 lg:px-12 bg-neutral-900/30 border-t border-white/5">
-            <div className="max-w-7xl mx-auto">
+            <div className="">
                 <div className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 rounded-3xl p-8 lg:p-16 relative overflow-hidden">
                     {/* Background Deco */}
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -514,7 +514,7 @@ const VirtualTour: React.FC<{ onNavigate: (page: Page) => void }> = ({
           <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 ">
           <button
             onClick={() => onNavigate('home')}
             className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase"
@@ -582,7 +582,7 @@ const VirtualTour: React.FC<{ onNavigate: (page: Page) => void }> = ({
 
       {/* ═══ Interaction Features Grid ═══ */}
       <section className="py-24 px-6 lg:px-12 bg-neutral-900/50 border-y border-white/5">
-        <div className="max-w-7xl mx-auto">
+        <div className="">
           <div className="mb-16">
             <h2 className="font-display text-4xl md:text-6xl mb-6 leading-tight">
               Interaction{' '}
@@ -641,7 +641,7 @@ const VirtualTour: React.FC<{ onNavigate: (page: Page) => void }> = ({
           <div className="mt-24">
             <div className="bg-neutral-900/50">
               {/* Section header — scrolls away normally */}
-              <div className="px-6 lg:px-12 pt-24 pb-16 max-w-7xl mx-auto">
+              <div className="px-6 lg:px-12 pt-24 pb-16 ">
                 <div className="flex items-center gap-4 mb-6">
                   <Layers className="w-8 h-8 text-white/60" />
                   <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest">Advanced Features</span>
@@ -759,7 +759,7 @@ const VirtualTour: React.FC<{ onNavigate: (page: Page) => void }> = ({
 
       {/* ═══ Virtual Tour ═══ */}
       <section className="py-24 px-6 lg:px-12">
-        <div className="max-w-7xl mx-auto">
+        <div className="">
           <div className="text-center mb-12">
             <h2 className="font-display text-4xl md:text-5xl mb-6">
               Virtual <span className="text-stroke">Tour</span>
@@ -807,7 +807,7 @@ const VirtualTour: React.FC<{ onNavigate: (page: Page) => void }> = ({
 
       {/* ═══ Industry Sectors ═══ */}
       <section className="py-24 px-6 lg:px-12 bg-neutral-950">
-        <div className="max-w-7xl mx-auto">
+        <div className="">
           <div className="mb-12">
             <h2 className="font-display text-4xl mb-4">
               Tailored For{' '}
