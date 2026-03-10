@@ -178,7 +178,7 @@ const ProjectSpecsCTA: React.FC = () => {
 
     return (
         <section className="py-24 px-6 lg:px-12 bg-neutral-900/30 border-t border-white/5">
-            <div className="max-w-7xl mx-auto">
+            <div className="">
                 <div className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 rounded-3xl p-8 lg:p-16 relative overflow-hidden">
                     {/* Background Deco */}
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -269,7 +269,7 @@ const SpatialVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({ 
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent"></div>
                 </div>
                 
-                <div className="relative z-10 max-w-7xl mx-auto">
+                <div className="relative z-10 ">
                     <button 
                         onClick={() => onNavigate('home')}
                         className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase cursor-hover"

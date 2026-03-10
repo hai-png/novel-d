@@ -147,7 +147,7 @@ const Projects: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavigate }
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent" />
                 </div>
 
-                <div className="relative z-10 max-w-7xl mx-auto">
+                <div className="relative z-10 ">
                     <button
                         onClick={() => onNavigate('home')}
                         className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase"
@@ -168,7 +168,7 @@ const Projects: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavigate }
 
             {/* ═══ Filter Section ═══ */}
             <section className="py-12 px-6 lg:px-12 border-t border-white/5 sticky top-20 z-30 bg-neutral-950/95 backdrop-blur-xl">
-                <div className="max-w-7xl mx-auto">
+                <div className="">
                     <div className="flex flex-wrap gap-3 justify-center">
                         {filterOptions.map((filter) => (
                             <button

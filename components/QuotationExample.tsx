@@ -75,7 +75,7 @@ const QuotationExample: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-neutral-950 text-white p-8">
-            <div className="max-w-7xl mx-auto">
+            <div className="">
                 {/* Header */}
                 <div className="flex justify-between items-center mb-8">
                     <div>
