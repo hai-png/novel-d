@@ -140,7 +140,7 @@ const RealEstateAgentSolutions: React.FC<{ onNavigate: (page: Page) => void }> =
                     <img src="https://archicgi.com/wp-content/uploads/2023/07/3d-rendering-for-real-estate-agents-residence.jpg" alt="Real Estate Visualization" className="w-full h-full object-cover opacity-20 grayscale" />
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent" />
                 </div>
-                <div className="relative z-10 max-w-7xl mx-auto text-center lg:text-left">
+                <div className="relative z-10 px-6 lg:px-12 text-center lg:text-left">
                     <button onClick={() => onNavigate('home')} className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-8 transition-colors text-sm tracking-wide uppercase">
                         <ArrowLeft size={16} /> Back to Home
                     </button>
@@ -159,7 +159,7 @@ const RealEstateAgentSolutions: React.FC<{ onNavigate: (page: Page) => void }> =
 
             {/* Value Props */}
             <section className="py-24 px-6 lg:px-12 bg-neutral-950 border-y border-white/5">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center lg:text-left">
+                <div className="px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center lg:text-left">
                     {[
                         { title: 'List Faster', desc: 'Don\'t wait for renovations or staging furniture. Virtually stage vacant properties and list unbuilt developments today.', icon: Zap },
                         { title: 'Sell Remotely', desc: 'Virtual tours and interactive experiences give out-of-state and international buyers a 24/7 open house on any device.', icon: Globe },
@@ -177,7 +177,7 @@ const RealEstateAgentSolutions: React.FC<{ onNavigate: (page: Page) => void }> =
 
             {/* Platform Bar */}
             <section className="py-20 px-6 lg:px-12 bg-neutral-900">
-                <div className="max-w-7xl mx-auto text-center">
+                <div className="px-6 lg:px-12 text-center">
                     <p className="text-neutral-500 uppercase tracking-widest text-xs mb-8">Optimized For</p>
                     <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 hover:opacity-100 transition-opacity duration-500">
                         {['MLS', 'Zillow', 'Redfin', 'Instagram', 'TikTok', 'Print'].map((s, i) => (
@@ -189,7 +189,7 @@ const RealEstateAgentSolutions: React.FC<{ onNavigate: (page: Page) => void }> =
 
             {/* Sticky Scroll */}
             <section className="relative bg-neutral-950 border-t border-white/5">
-                <div className="max-w-7xl mx-auto px-6 lg:px-12">
+                <div className="px-6 lg:px-12">
                     <div className="text-center py-20">
                         <h2 className="font-display text-4xl md:text-5xl mb-8 tracking-tighter uppercase italic">The Listing Suite</h2>
                         <p className="text-neutral-400 text-lg max-w-3xl mx-auto">Marketing packages built to sell properties faster.</p>
@@ -231,7 +231,7 @@ const RealEstateAgentSolutions: React.FC<{ onNavigate: (page: Page) => void }> =
 
             {/* Workflow */}
             <section className="py-32 px-6 lg:px-12 bg-neutral-900 border-y border-white/5">
-                <div className="max-w-7xl mx-auto">
+                <div className="px-6 lg:px-12">
                     <h2 className="font-display text-4xl md:text-5xl uppercase tracking-tighter leading-tight italic mb-16 text-center">
                         How It <span className="not-italic text-neutral-400">Works</span>
                     </h2>

@@ -40,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-neutral-950/90 backdrop-blur-xl border-b border-white/5 py-4' : 'py-6'}`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <div className="px-6 lg:px-12 flex items-center justify-between">
         <a
           href="#"
           onClick={(e) => handleNavClick(e, '#')}

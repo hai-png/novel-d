@@ -452,7 +452,7 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                 IMPACT GRID
             ════════════════════════════════════════════════════════ */}
             <section className="py-20 px-6 lg:px-12">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {impactStats.map((item, i) => (
                         <div key={i} className="group cursor-default">
                             <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-6 text-white border border-white/10 group-hover:bg-white group-hover:text-black transition-all duration-300">
@@ -547,7 +547,7 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                             <div className="absolute inset-0 bg-neutral-900/95 backdrop-blur-sm" />
 
                             {/* Card content */}
-                            <div className="relative z-10 w-full px-6 lg:px-12 py-16 max-w-7xl mx-auto group">
+                            <div className="relative z-10 w-full px-6 lg:px-12 py-16 group">
                                 {/* Step counter */}
                                 <p className="text-xs text-neutral-600 tracking-widest uppercase mb-6 font-medium">
                                     {String(i + 1).padStart(2, '0')} / {String(specializedAnimationsData.length).padStart(2, '0')}

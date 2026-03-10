@@ -73,7 +73,7 @@ const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
                 <div className="absolute bottom-1/4 left-0 w-[400px] h-[400px] bg-white/[0.01] rounded-full blur-3xl"></div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div className="px-6 lg:px-12 relative z-10">
                 <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-20">
                     <div>
                         <p className="text-neutral-500 text-sm tracking-[0.3em] uppercase mb-4">What We Do</p>

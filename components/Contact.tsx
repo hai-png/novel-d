@@ -9,7 +9,7 @@ const Contact: React.FC = () => {
           <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-white/[0.01] rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div className="px-6 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           
           {/* Left: Contact Info */}

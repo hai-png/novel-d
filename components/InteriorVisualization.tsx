@@ -405,7 +405,7 @@ const ProjectSpecsCTA: React.FC<{ onOpenQuote: (service?: string) => void }> = (
 
     return (
         <section className="py-24 px-6 lg:px-12 bg-neutral-900/30 border-t border-white/5">
-            <div className="max-w-7xl mx-auto">
+            <div className="px-6 lg:px-12">
                 <div className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 rounded-3xl p-8 lg:p-16 relative overflow-hidden">
                     {/* Background Deco */}
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -568,7 +568,7 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent" />
                 </div>
 
-                <div className="relative z-10 max-w-7xl mx-auto">
+                <div className="relative z-10 px-6 lg:px-12">
                     <button
                         onClick={() => onNavigate('home')}
                         className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase"
@@ -589,8 +589,8 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
             </section>
 
             {/* ── Why Choose Us ────────────────────────────────────── */}
-            <section className="py-20 px-6 lg:px-12 border-t border-white/5">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            <section className="py-20 border-t border-white/5">
+                <div className="px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-12">
                     {[
                         { title: 'Photorealistic Quality', desc: "You will receive imagery that's indistinguishable from reality. Your clients, stakeholders, and subscribers will be impressed by the level of detail and lighting accuracy." },
                         { title: 'Customization',          desc: 'We can provide you with any 3D interior design solution you require. Be it static imagery, a cinematic 3D walkthrough, or a virtual 3D Tour for immersive experiences.' },
@@ -605,8 +605,8 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
             </section>
 
             {/* ── Versatile Interior Assets ─────────────────────────── */}
-            <section className="py-24 px-6 lg:px-12 bg-neutral-900/50">
-                <div className="max-w-7xl mx-auto">
+            <section className="py-24 bg-neutral-900/50">
+                <div className="px-6 lg:px-12">
                     <div className="mb-16">
                         <h2 className="font-display text-4xl md:text-6xl mb-6 leading-tight">
                             Versatile <span className="text-stroke">Interior Assets</span>
@@ -648,7 +648,7 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
             {/* ── Immersive Experiences — sticky scroll ─────────────── */}
             <section className="bg-neutral-900/50">
                 {/* Section header — scrolls away normally */}
-                <div className="px-6 lg:px-12 pt-24 pb-16 max-w-7xl mx-auto">
+                <div className="px-6 lg:px-12 pt-24 pb-16">
                     <div className="flex items-center gap-4 mb-6">
                         <Rotate3D className="w-8 h-8 text-white/60" />
                         <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest">Interactive Assets</span>
@@ -680,7 +680,7 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
                             <div className="absolute inset-0 bg-neutral-900/95 backdrop-blur-sm" />
 
                             {/* Card content */}
-                            <div className="relative z-10 w-full px-6 lg:px-12 py-16 max-w-7xl mx-auto group">
+                            <div className="relative z-10 w-full px-6 lg:px-12 py-16 group">
                                 {/* Step counter */}
                                 <p className="text-xs text-neutral-600 tracking-widest uppercase mb-6 font-medium">
                                     {String(i + 1).padStart(2, '0')} / {String(immersiveItems.length).padStart(2, '0')}
@@ -719,8 +719,8 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
             {/* ════════════════════════════════════════════════════════
                 GALLERY SECTION
             ════════════════════════════════════════════════════════ */}
-            <section className="py-24 px-6 lg:px-12 bg-neutral-950">
-                <div className="max-w-7xl mx-auto">
+            <section className="py-24 bg-neutral-950">
+                <div className="px-6 lg:px-12">
                     <div className="mb-12">
                         <h2 className="font-display text-4xl mb-4">
                             Visual <span className="text-stroke">Excellence</span>

@@ -206,14 +206,14 @@ const features = [
 const FeatureScrollSection: React.FC = () => {
     return (
         <section className="relative bg-neutral-950 pt-24 pb-48 px-6 lg:px-12 border-t border-white/5">
-            <div className="max-w-7xl mx-auto mb-24 text-center">
+            <div className="mb-24 text-center">
                  <h2 className="font-display text-4xl md:text-6xl mb-6 leading-tight">Interactive <span className="text-stroke">Features</span></h2>
                  <p className="text-neutral-500 max-w-2xl mx-auto text-lg">
                     Discover the powerful tools embedded within our immersive tours designed to convert interest into action.
                  </p>
             </div>
 
-            <div className="max-w-7xl mx-auto relative">
+            <div className="relative">
                 {features.map((feature, idx) => (
                     <div 
                         key={idx}
@@ -315,7 +315,7 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
 
              {/* Impact Grid (Value Propositions) */}
             <section className="py-20 px-6 lg:px-12 border-t border-white/5">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {[
                         { title: "Unmatched Engagement", desc: "Interactive tours keep users engaged 300% longer than static images. Transform passive viewers into active explorers." },
                         { title: "Global Accessibility", desc: "Break geographical barriers. With Pixel Streaming, clients anywhere in the world can experience high-fidelity tours on any device." },

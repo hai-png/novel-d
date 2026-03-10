@@ -140,7 +140,7 @@ const InteriorDesignersSolutions: React.FC<{ onNavigate: (page: Page) => void }>
                     <img src="https://archicgi.com/wp-content/uploads/2023/08/3d-rendering-for-interior-designers.jpg" alt="Interior Design Visualization" className="w-full h-full object-cover opacity-20 grayscale" />
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent" />
                 </div>
-                <div className="relative z-10 max-w-7xl mx-auto text-center lg:text-left">
+                <div className="relative z-10 px-6 lg:px-12 text-center lg:text-left">
                     <button onClick={() => onNavigate('home')} className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-8 transition-colors text-sm tracking-wide uppercase">
                         <ArrowLeft size={16} /> Back to Home
                     </button>
@@ -159,7 +159,7 @@ const InteriorDesignersSolutions: React.FC<{ onNavigate: (page: Page) => void }>
 
             {/* Value Props */}
             <section className="py-24 px-6 lg:px-12 bg-neutral-950 border-y border-white/5">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center lg:text-left">
+                <div className="px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center lg:text-left">
                     {[
                         { title: 'Material Truth', desc: 'Physically simulated fabrics, stone, metal, and timber. Your specification rendered with texture and light accuracy that matches reality.', icon: Palette },
                         { title: 'Faster Approval', desc: 'Clients see exactly what they\'re getting. Stills, tours, and live configurators eliminate revision cycles and miscommunication.', icon: UserCheck },
@@ -177,7 +177,7 @@ const InteriorDesignersSolutions: React.FC<{ onNavigate: (page: Page) => void }>
 
             {/* Materials Bar */}
             <section className="py-20 px-6 lg:px-12 bg-neutral-900">
-                <div className="max-w-7xl mx-auto text-center">
+                <div className="px-6 lg:px-12 text-center">
                     <p className="text-neutral-500 uppercase tracking-widest text-xs mb-8">Materials We Simulate</p>
                     <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 hover:opacity-100 transition-opacity duration-500">
                         {['Velvet', 'Marble', 'Brass', 'Bouclé', 'Limestone', 'Walnut', 'Linen'].map((s, i) => (
@@ -189,7 +189,7 @@ const InteriorDesignersSolutions: React.FC<{ onNavigate: (page: Page) => void }>
 
             {/* Sticky Scroll */}
             <section className="relative bg-neutral-950 border-t border-white/5">
-                <div className="max-w-7xl mx-auto px-6 lg:px-12">
+                <div className="px-6 lg:px-12">
                     <div className="text-center py-20">
                         <h2 className="font-display text-4xl md:text-5xl mb-8 tracking-tighter uppercase italic">Design Workflows</h2>
                         <p className="text-neutral-400 text-lg max-w-3xl mx-auto">Visual solutions for every stage of the interior design process.</p>
@@ -231,7 +231,7 @@ const InteriorDesignersSolutions: React.FC<{ onNavigate: (page: Page) => void }>
 
             {/* Workflow */}
             <section className="py-32 px-6 lg:px-12 bg-neutral-900 border-y border-white/5">
-                <div className="max-w-7xl mx-auto">
+                <div className="px-6 lg:px-12">
                     <h2 className="font-display text-4xl md:text-5xl uppercase tracking-tighter leading-tight italic mb-16 text-center">The Design <span className="not-italic text-neutral-400">Loop</span></h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {[

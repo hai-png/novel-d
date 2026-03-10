@@ -137,7 +137,7 @@ const ArchitectSolutions: React.FC<{ onNavigate: (page: Page) => void }> = ({ on
                     <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1200&q=80" alt="Architecture Visualization" className="w-full h-full object-cover opacity-20 grayscale" />
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent" />
                 </div>
-                <div className="relative z-10 max-w-7xl mx-auto text-center lg:text-left">
+                <div className="relative z-10 px-6 lg:px-12 text-center lg:text-left">
                     <button onClick={() => onNavigate('home')} className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-8 transition-colors text-sm tracking-wide uppercase">
                         <ArrowLeft size={16} /> Back to Home
                     </button>
@@ -156,7 +156,7 @@ const ArchitectSolutions: React.FC<{ onNavigate: (page: Page) => void }> = ({ on
 
             {/* Value Props */}
             <section className="py-24 px-6 lg:px-12 bg-neutral-950 border-y border-white/5">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center lg:text-left">
+                <div className="px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center lg:text-left">
                     {[
                         { title: 'Competition Ready', desc: 'Complete visual packages delivered under deadline pressure — hero shots, context aerials, and teaser films in 5–7 days.', icon: Trophy },
                         { title: 'Planning Proof', desc: 'Verified views, shadow studies, and drone photomontage engineered to satisfy planning authority requirements.', icon: Target },
@@ -174,7 +174,7 @@ const ArchitectSolutions: React.FC<{ onNavigate: (page: Page) => void }> = ({ on
 
             {/* What We Deploy */}
             <section className="py-20 px-6 lg:px-12 bg-neutral-900">
-                <div className="max-w-7xl mx-auto text-center">
+                <div className="px-6 lg:px-12 text-center">
                     <p className="text-neutral-500 uppercase tracking-widest text-xs mb-8">Services We Combine For You</p>
                     <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
                         {['Exterior Renders', 'Aerial Views', 'Animation', 'Interior Viz', 'Virtual Tours', 'Immersive 3D'].map((s, i) => (
@@ -186,7 +186,7 @@ const ArchitectSolutions: React.FC<{ onNavigate: (page: Page) => void }> = ({ on
 
             {/* Sticky Scroll */}
             <section className="relative bg-neutral-950 border-t border-white/5">
-                <div className="max-w-7xl mx-auto px-6 lg:px-12">
+                <div className="px-6 lg:px-12">
                     <div className="text-center py-20">
                         <h2 className="font-display text-4xl md:text-5xl mb-8 tracking-tighter uppercase italic">Tailored Workflows</h2>
                         <p className="text-neutral-400 text-lg max-w-3xl mx-auto">Purpose-built visual strategies for every stage of the architectural process.</p>
@@ -228,7 +228,7 @@ const ArchitectSolutions: React.FC<{ onNavigate: (page: Page) => void }> = ({ on
 
             {/* Workflow */}
             <section className="py-32 px-6 lg:px-12 bg-neutral-900 border-y border-white/5">
-                <div className="max-w-7xl mx-auto">
+                <div className="px-6 lg:px-12">
                     <h2 className="font-display text-4xl md:text-5xl uppercase tracking-tighter leading-tight italic mb-16 text-center">
                         How We <span className="not-italic text-neutral-400">Work</span>
                     </h2>

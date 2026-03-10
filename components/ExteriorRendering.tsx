@@ -444,7 +444,7 @@ const ProjectSpecsCTA: React.FC<{ onOpenQuote: (service?: string) => void }> = (
 
     return (
         <section className="py-24 px-6 lg:px-12 bg-neutral-900/30 border-t border-white/5">
-            <div className="max-w-7xl mx-auto">
+            <div className="px-6 lg:px-12">
                 <div className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 rounded-3xl p-8 lg:p-16 relative overflow-hidden">
                     {/* Background Deco */}
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -599,7 +599,7 @@ const ExteriorRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
         <div className="bg-neutral-950 min-h-screen pt-20">
 
             {/* ── Hero ─────────────────────────────────────────────── */}
-            <section ref={heroRef} className="relative py-24 lg:py-32 px-6 lg:px-12 overflow-hidden">
+            <section ref={heroRef} className="relative py-24 lg:py-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
                         src="https://archicgi.com/wp-content/uploads/2023/08/3d-exterior-rendering-urban-redevelopment.jpg"
@@ -610,7 +610,7 @@ const ExteriorRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent" />
                 </div>
 
-                <div className="relative z-10 max-w-7xl mx-auto">
+                <div className="relative z-10 px-6 lg:px-12">
                     <button
                         onClick={() => onNavigate('home')}
                         className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase"
@@ -633,8 +633,8 @@ const ExteriorRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
             {/* ════════════════════════════════════════════════════════
                 IMPACT GRID
             ════════════════════════════════════════════════════════ */}
-            <section className="py-20 px-6 lg:px-12">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            <section className="py-20">
+                <div className="px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-12">
                     {[
                         { title: 'Project Development', desc: 'Show all design options — with finishes, materials, doors, windows, etc. With 3D exterior rendering, analyzing variations becomes effortless.', icon: Box },
                         { title: 'Architectural Presentation', desc: 'Impress clients with CG artwork showing your exterior design in detail — in a photoreal environment, with beautiful lighting scenarios.', icon: Grid3X3 },
@@ -654,8 +654,8 @@ const ExteriorRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
             {/* ════════════════════════════════════════════════════════
                 VERSATILE CGI ASSETS
             ════════════════════════════════════════════════════════ */}
-            <section className="py-24 px-6 lg:px-12 bg-neutral-900/50 border-t border-white/5">
-                <div className="max-w-7xl mx-auto">
+            <section className="py-24 bg-neutral-900/50 border-t border-white/5">
+                <div className="px-6 lg:px-12">
                     <div className="mb-16 text-center">
                         <h2 className="font-display text-4xl md:text-6xl mb-6 leading-tight">
                             Versatile <span className="text-stroke">CGI Assets</span>
@@ -724,7 +724,7 @@ const ExteriorRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
             ════════════════════════════════════════════════════════ */}
             <section className="bg-neutral-900/50">
                 {/* Section header — scrolls away normally */}
-                <div className="px-6 lg:px-12 pt-24 pb-16 max-w-7xl mx-auto">
+                <div className="px-6 lg:px-12 pt-24 pb-16">
                     <h2 className="font-display text-4xl md:text-6xl mb-6 leading-tight">
                         Lighting & <span className="text-stroke">Perspectives</span>
                     </h2>
@@ -748,7 +748,7 @@ const ExteriorRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                             <div className="absolute inset-0 bg-neutral-900/95 backdrop-blur-sm" />
 
                             {/* Card content */}
-                            <div className="relative z-10 w-full px-6 lg:px-12 py-16 max-w-7xl mx-auto group">
+                            <div className="relative z-10 w-full px-6 lg:px-12 py-16 group">
                                 {/* Step counter */}
                                 <p className="text-xs text-neutral-600 tracking-widest uppercase mb-6 font-medium">
                                     {String(i + 1).padStart(2, '0')} / {String(immersiveItems.length).padStart(2, '0')}
@@ -802,8 +802,8 @@ const ExteriorRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
             {/* ════════════════════════════════════════════════════════
                 GALLERY SECTION
             ════════════════════════════════════════════════════════ */}
-            <section className="py-24 px-6 lg:px-12 bg-neutral-950">
-                <div className="max-w-7xl mx-auto">
+            <section className="py-24 bg-neutral-950">
+                <div className="px-6 lg:px-12">
                     <div className="mb-12">
                         <h2 className="font-display text-4xl mb-4">
                             Featured <span className="text-stroke">Exteriors</span>

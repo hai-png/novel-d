@@ -29,7 +29,7 @@ const About: React.FC = () => {
     <section id="about" className="relative bg-neutral-950">
       <div className="grid grid-cols-1 lg:grid-cols-2">
         {/* Sticky Text Side */}
-        <div className="lg:h-screen lg:sticky lg:top-0 flex items-center bg-neutral-900 px-6 lg:px-16 py-20 lg:py-0 border-r border-white/5">
+        <div className="lg:h-screen lg:sticky lg:top-0 flex items-center bg-neutral-900 px-6 lg:px-12 py-20 lg:py-0 border-r border-white/5">
             <div>
                 <p className="text-neutral-500 text-sm tracking-[0.3em] uppercase mb-4">About Us</p>
                 <h2 className="font-display text-4xl md:text-6xl font-medium mb-8 leading-tight">
@@ -77,7 +77,7 @@ const About: React.FC = () => {
         </div>
 
         {/* Scrolling Images Side */}
-        <div className="bg-neutral-950 py-32 px-6 lg:px-16 space-y-24">
+        <div className="bg-neutral-950 py-32 px-6 lg:px-12 space-y-24">
             {[
                 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
                 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80',

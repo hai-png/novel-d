@@ -106,7 +106,7 @@ const ServiceDetailItem: React.FC<{ feature: typeof detailedServicesData[0]; idx
 
     return (
         <div className="py-24 border-t border-white/5">
-            <div className="max-w-7xl mx-auto px-6 lg:px-12">
+            <div className="px-6 lg:px-12">
                 <div className={`flex flex-col lg:flex-row gap-16 items-center mb-16 ${idx % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                     
                     {/* Visual Side */}
@@ -296,7 +296,7 @@ const SpatialVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({ 
 
              {/* Impact Grid (Value Propositions) */}
             <section className="py-20 px-6 lg:px-12 border-t border-white/5">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {[
                         { title: "Spatial Clarity", desc: "Communicate complex layouts instantly with intuitive 3D floor plans and dollhouse views that remove ambiguity for buyers." },
                         { title: "Investor Confidence", desc: "Professional pitch decks, site plans, and masterplans that validate development potential and secure necessary funding." },
@@ -313,7 +313,7 @@ const SpatialVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({ 
 
             {/* Core Solutions Intro */}
             <section className="pt-24 px-6 lg:px-12 bg-neutral-900/50 border-t border-white/5">
-                <div className="max-w-7xl mx-auto text-center">
+                <div className="text-center">
                     <h2 className="font-display text-4xl md:text-6xl mb-6 leading-tight">Core <span className="text-stroke">Solutions</span></h2>
                     <p className="text-neutral-500 max-w-xl mx-auto">Four specialized services to bring your architectural vision to life.</p>
                 </div>

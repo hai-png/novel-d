@@ -31,7 +31,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
   return (
     <footer className="bg-neutral-900 border-t border-white/5 pt-20 pb-10">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="px-6 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
           <div className="md:col-span-2">
             <a href="#" onClick={(e) => handleNavClick(e, '#')} className="text-3xl font-display font-medium tracking-wide block mb-8">

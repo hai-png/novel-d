@@ -33,7 +33,7 @@ const Process: React.FC<ProcessProps> = ({ onNavigate }) => {
 
   return (
     <section id="process" className="py-32 bg-neutral-900 overflow-hidden relative" ref={ref}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+        <div className="px-6 lg:px-12 relative z-10">
             <div className="text-center mb-24">
                 <p className="text-neutral-500 text-sm tracking-[0.3em] uppercase mb-4">Workflow</p>
                 <h2 className="font-display text-4xl md:text-6xl font-medium mb-6">

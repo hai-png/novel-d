@@ -549,7 +549,7 @@ const VirtualTour: React.FC<{ onNavigate: (page: Page) => void }> = ({
 
       {/* ═══ Impact Grid ═══ */}
       <section className="py-20 px-6 lg:px-12 border-t border-white/5">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {[
             {
               title: 'Online Showings',
@@ -662,7 +662,7 @@ const VirtualTour: React.FC<{ onNavigate: (page: Page) => void }> = ({
                 {/* 3 — Interactive VR Fusion (Full Width) */}
                 <div className="sticky top-0 h-screen flex items-center overflow-hidden" style={{ zIndex: 10 }}>
                   <div className="absolute inset-0 bg-neutral-900/95 backdrop-blur-sm" />
-                  <div className="relative z-10 w-full px-6 lg:px-12 py-16 max-w-7xl mx-auto group">
+                  <div className="relative z-10 w-full px-6 lg:px-12 py-16 group">
                     <p className="text-xs text-neutral-600 tracking-widest uppercase mb-6 font-medium">01 / 02</p>
 
                     {/* Title, Description and Features - Top */}
@@ -708,7 +708,7 @@ const VirtualTour: React.FC<{ onNavigate: (page: Page) => void }> = ({
                 {/* 4 — Contextual Maps (Full Width) */}
                 <div ref={contextualSectionRef} className="sticky top-0 h-screen flex items-center overflow-hidden" style={{ zIndex: 11 }}>
                   <div className="absolute inset-0 bg-neutral-900/95 backdrop-blur-sm" />
-                  <div className="relative z-10 w-full px-6 lg:px-12 py-16 max-w-7xl mx-auto group">
+                  <div className="relative z-10 w-full px-6 lg:px-12 py-16 group">
                     <p className="text-xs text-neutral-600 tracking-widest uppercase mb-6 font-medium">02 / 02</p>
 
                     {/* Title, Description and Features - Top */}

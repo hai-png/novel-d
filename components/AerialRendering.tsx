@@ -322,7 +322,7 @@ const AerialRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNav
 
              {/* Impact Grid (Value Propositions) */}
             <section className="py-20 px-6 lg:px-12 border-t border-white/5">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {[
                         { title: "Unparalleled Photorealism", desc: "Drone footage makes up to 70% of the visual assets, ensuring an authentic and grounded feel for every render." },
                         { title: "100% Accuracy", desc: "Surroundings come from actual site photography—accurate down to the smallest detail of the neighboring landscape." },
