@@ -189,6 +189,45 @@ const MediaCompareSlider: React.FC<{
     const [isDragging, setIsDragging] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const [width, setWidth] = useState(0);
+    const videoBeforeRef = useRef<HTMLVideoElement>(null);
+    const videoAfterRef = useRef<HTMLVideoElement>(null);
+
+    // Sync video playback
+    useEffect(() => {
+        if (type !== 'video') return;
+        
+        const videoBefore = videoBeforeRef.current;
+        const videoAfter = videoAfterRef.current;
+        
+        if (!videoBefore || !videoAfter) return;
+
+        const syncVideos = () => {
+            if (Math.abs(videoBefore.currentTime - videoAfter.currentTime) > 0.3) {
+                videoAfter.currentTime = videoBefore.currentTime;
+            }
+            if (videoBefore.paused !== videoAfter.paused) {
+                videoAfter.paused ? videoAfter.play() : videoAfter.pause();
+            }
+            requestAnimationFrame(syncVideos);
+        };
+
+        const handleSync = () => {
+            videoAfter.currentTime = videoBefore.currentTime;
+            videoAfter.playbackRate = videoBefore.playbackRate;
+        };
+
+        videoBefore.addEventListener('timeupdate', handleSync);
+        videoBefore.addEventListener('play', () => videoAfter.play());
+        videoBefore.addEventListener('pause', () => videoAfter.pause());
+        videoBefore.addEventListener('seeked', handleSync);
+
+        return () => {
+            videoBefore.removeEventListener('timeupdate', handleSync);
+            videoBefore.removeEventListener('play', () => videoAfter.play());
+            videoBefore.removeEventListener('pause', () => videoAfter.pause());
+            videoBefore.removeEventListener('seeked', handleSync);
+        };
+    }, [type]);
 
     useEffect(() => {
         if (containerRef.current) {
@@ -240,7 +279,15 @@ const MediaCompareSlider: React.FC<{
             {type === 'image' ? (
                  <img src={after} alt={labelAfter} className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
             ) : (
-                <video src={after} className="absolute inset-0 w-full h-full object-cover pointer-events-none" autoPlay muted loop playsInline />
+                <video 
+                    ref={videoAfterRef}
+                    src={after} 
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline 
+                />
             )}
 
             {/* Foreground Layer (Left Side / Before) - Clipped */}
@@ -257,10 +304,14 @@ const MediaCompareSlider: React.FC<{
                     />
                 ) : (
                     <video
+                        ref={videoBeforeRef}
                         src={before}
                         className="absolute inset-0 max-w-none h-full object-cover pointer-events-none"
                         style={{ width: width || '100%' }}
-                        autoPlay muted loop playsInline
+                        autoPlay 
+                        muted 
+                        loop 
+                        playsInline
                     />
                 )}
             </div>

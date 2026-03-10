@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MapPin, Instagram, Send, Music2 } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import QuoteForm from './QuoteForm';
 
 const Contact: React.FC = () => {
@@ -42,18 +42,6 @@ const Contact: React.FC = () => {
                   <span className="text-white">Addis Ababa, Ethiopia</span>
                 </div>
               </div>
-            </div>
-
-            <div className="flex gap-3">
-              <a href="https://instagram.com/noveld" target="_blank" rel="noopener noreferrer" className="w-11 h-11 border border-white/10 flex items-center justify-center hover:border-white/30 hover:bg-white/5 transition-all duration-300 rounded-full group cursor-hover">
-                <Instagram className="w-5 h-5 text-neutral-400 group-hover:text-white" />
-              </a>
-              <a href="https://t.me/noveld" target="_blank" rel="noopener noreferrer" className="w-11 h-11 border border-white/10 flex items-center justify-center hover:border-white/30 hover:bg-white/5 transition-all duration-300 rounded-full group cursor-hover">
-                <Send className="w-5 h-5 text-neutral-400 group-hover:text-white" />
-              </a>
-              <a href="https://tiktok.com/@noveld" target="_blank" rel="noopener noreferrer" className="w-11 h-11 border border-white/10 flex items-center justify-center hover:border-white/30 hover:bg-white/5 transition-all duration-300 rounded-full group cursor-hover">
-                <Music2 className="w-5 h-5 text-neutral-400 group-hover:text-white" />
-              </a>
             </div>
           </div>
 

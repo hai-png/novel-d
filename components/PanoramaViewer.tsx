@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { Layers, Plus, Minus, Sun, Camera, Move } from 'lucide-react';
+import { Layers, Plus, Minus, Sun, Camera, Move, Maximize, Minimize2 } from 'lucide-react';
 
 export type PanoramaMode = 'normal' | 'split' | 'interactive';
 
@@ -77,6 +77,7 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
     { id: number; x: number; y: number; visible: boolean }[]
   >([]);
   const [isControlsActive, setIsControlsActive] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // ── Three.js object refs ──
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
@@ -400,6 +401,28 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
     }
   };
 
+  // ── Fullscreen ──
+  const toggleFullscreen = () => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    if (!document.fullscreenElement) {
+      container.requestFullscreen().then(() => setIsFullscreen(true)).catch(err => {
+        console.error('Error attempting to enable fullscreen:', err);
+      });
+    } else {
+      document.exitFullscreen().then(() => setIsFullscreen(false));
+    }
+  };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
   // ═══════════════════════════════════════
   // JSX
   // ═══════════════════════════════════════
@@ -496,6 +519,12 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
 
           {/* Zoom Controls */}
           <div className="absolute bottom-8 right-6 flex flex-col gap-2 z-30">
+            <button
+              onClick={toggleFullscreen}
+              className="w-10 h-10 bg-black/60 backdrop-blur border border-white/10 text-white rounded-full flex items-center justify-center hover:bg-black/80 transition-colors"
+            >
+              {isFullscreen ? <Minimize2 size={18} /> : <Maximize size={18} />}
+            </button>
             <button
               onClick={() => handleZoom(-5)}
               className="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center shadow-lg hover:bg-neutral-200 transition-colors"
@@ -612,14 +641,36 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
 
       {/* ═══════ NORMAL VIEW UI ═══════ */}
       {mode === 'normal' && (
-        <div className="absolute top-6 left-6 z-20">
-          <div className="bg-black/50 backdrop-blur px-3 py-1.5 rounded-lg border border-white/10 flex items-center gap-2">
-            <Layers size={14} className="text-white/60" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white">
-              3D Context
-            </span>
+        <>
+          <div className="absolute top-6 left-6 z-20">
+            <div className="bg-black/50 backdrop-blur px-3 py-1.5 rounded-lg border border-white/10 flex items-center gap-2">
+              <Layers size={14} className="text-white/60" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-white">
+                3D Context
+              </span>
+            </div>
           </div>
-        </div>
+          <div className="absolute bottom-8 right-6 flex flex-col gap-2 z-20">
+            <button
+              onClick={toggleFullscreen}
+              className="w-10 h-10 bg-black/60 backdrop-blur border border-white/10 text-white rounded-full flex items-center justify-center hover:bg-black/80 transition-colors"
+            >
+              {isFullscreen ? <Minimize2 size={18} /> : <Maximize size={18} />}
+            </button>
+            <button
+              onClick={() => handleZoom(-5)}
+              className="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center shadow-lg hover:bg-neutral-200 transition-colors"
+            >
+              <Plus size={18} />
+            </button>
+            <button
+              onClick={() => handleZoom(5)}
+              className="w-10 h-10 bg-black/60 backdrop-blur border border-white/10 text-white rounded-full flex items-center justify-center hover:bg-black/80 transition-colors"
+            >
+              <Minus size={18} />
+            </button>
+          </div>
+        </>
       )}
 
       {/* ── Drag hint (fades when user starts dragging) ── */}
