@@ -215,14 +215,14 @@ const FeatureScrollSection: React.FC = () => {
 
             <div className="relative">
                 {features.map((feature, idx) => (
-                    <div 
+                    <div
                         key={idx}
-                        className="sticky top-24 lg:top-32 min-h-[600px] py-12"
+                        className="sticky top-24 lg:top-32 min-h-[80vh] lg:min-h-[700px] py-12"
                     >
                          <div className="bg-neutral-900/90 backdrop-blur-xl border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl hover:border-white/20 transition-colors duration-500">
-                            <div className="grid grid-cols-1 lg:grid-cols-2 h-full min-h-[500px]">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 h-full min-h-[600px] lg:min-h-[700px]">
                                 {/* Media Side */}
-                                <div className={`relative h-[300px] lg:h-auto ${idx % 2 === 1 ? 'lg:order-2' : 'lg:order-1'}`}>
+                                <div className={`relative h-[400px] lg:h-auto ${idx % 2 === 1 ? 'lg:order-2' : 'lg:order-1'}`}>
                                      <video 
                                         src={feature.video} 
                                         autoPlay 

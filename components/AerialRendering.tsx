@@ -345,9 +345,9 @@ const AerialRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNav
                          <p className="text-neutral-500 max-w-xl">From static photomontages to cinematic flythroughs, we provide the tools to sell your vision.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-16 max-w-5xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {/* Still Rendering Comparison */}
-                        <div className="w-full">
+                        <div className="group cursor-hover">
                             <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-neutral-800 mb-8 shadow-2xl border border-white/5">
                                 <MediaCompareSlider
                                     type="image"
@@ -362,7 +362,7 @@ const AerialRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNav
                         </div>
 
                          {/* Animation Comparison */}
-                        <div className="w-full">
+                        <div className="group cursor-hover">
                             <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-neutral-800 mb-8 shadow-2xl border border-white/5">
                                 <MediaCompareSlider
                                     type="video"
