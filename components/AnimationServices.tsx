@@ -594,7 +594,7 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                                         />
                                     </div>
                                 ) : item.title === "Social Media Content" && socialMediaGallery.length > 0 ? (
-                                    <div className="aspect-video w-full overflow-hidden rounded-2xl bg-neutral-900 relative">
+                                    <div className="aspect-[9/16] max-h-[600px] w-full overflow-hidden rounded-2xl bg-neutral-900 relative">
                                         <video
                                             src={socialMediaGallery[0]}
                                             className="w-full h-full object-cover"
