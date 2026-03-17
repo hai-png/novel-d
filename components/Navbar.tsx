@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
 import { Page } from '../types';
+import { useNavigation } from '../hooks/useNavigation';
 
 interface NavbarProps {
   onNavigate: (page: Page) => void;
@@ -9,6 +10,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { navigateToServices, navigateToContact } = useNavigation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -26,16 +28,26 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
         } else if (href.startsWith('#')) {
             const element = document.querySelector(href);
             if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
-    }, 100);
+    }, 50);
     setIsOpen(false);
+  };
+
+  const handleServicesClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsOpen(false);
+    navigateToServices(onNavigate);
   };
 
   const handleSolutionClick = (page: Page) => {
       onNavigate(page);
       setIsOpen(false);
+      // Scroll to top when navigating to solution pages
+      setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 50);
   };
 
   return (
@@ -60,14 +72,13 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>
           </button>
 
-          <a
-            href="#services"
-            onClick={(e) => handleNavClick(e, '#services')}
+          <button
+            onClick={handleServicesClick}
             className="text-sm text-neutral-300 hover:text-white transition-colors relative group cursor-hover"
           >
             Services
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>
-          </a>
+          </button>
 
           {/* Solutions Dropdown */}
           <div className="relative group">
@@ -100,14 +111,13 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        <a
-            href="#contact"
-            onClick={(e) => handleNavClick(e, '#contact')}
+        <button
+            onClick={() => navigateToContact(onNavigate)}
             className="hidden md:flex items-center gap-2 text-sm border border-white/20 px-6 py-2.5 hover:bg-white hover:text-neutral-950 transition-all duration-300 group cursor-hover"
         >
           Start Project
           <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-        </a>
+        </button>
 
         {/* Mobile Toggle */}
         <button 
@@ -127,13 +137,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
           >
             Work
           </button>
-          <a
-            href="#services"
+          <button
+            onClick={handleServicesClick}
             className="text-4xl font-display text-neutral-300 hover:text-white transition-colors"
-            onClick={(e) => handleNavClick(e, '#services')}
           >
             Services
-          </a>
+          </button>
           
           <div className="flex flex-col items-center gap-4 w-full border-y border-white/5 py-8">
               <span className="text-sm text-neutral-500 uppercase tracking-widest">Solutions</span>
@@ -157,13 +166,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
               </button>
           </div>
 
-          <a
-            href="#contact"
-            onClick={(e) => handleNavClick(e, '#contact')}
+          <button
+            onClick={() => navigateToContact(onNavigate)}
             className="text-xl text-white border border-white/20 px-8 py-3 mt-4"
           >
             Start Project
-          </a>
+          </button>
         </div>
       </div>
     </nav>

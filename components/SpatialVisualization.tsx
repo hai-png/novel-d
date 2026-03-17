@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useNavigation } from '../hooks/useNavigation';
 import { ArrowLeft, ArrowRight, Layers, Monitor, Map, PenTool, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, MousePointer2, Box, Eye, Scan, Play, FileText, Download, Briefcase, Users, Plus, Minus } from 'lucide-react';
 import { Page } from '../types';
 
@@ -258,7 +259,8 @@ const ProjectSpecsCTA: React.FC = () => {
 
 const SpatialVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavigate }) => {
     const [heroRef, heroVisible] = useIntersectionObserver<HTMLElement>();
-    
+    const { navigateToServices } = useNavigation();
+
     return (
         <div className="bg-neutral-950 min-h-screen pt-20">
             {/* Hero */}
@@ -270,8 +272,8 @@ const SpatialVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({ 
                 </div>
                 
                 <div className="relative z-10 ">
-                    <button 
-                        onClick={() => onNavigate('home')}
+                    <button
+                        onClick={() => navigateToServices(onNavigate)}
                         className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase cursor-hover"
                     >
                         <ArrowLeft size={16} /> Back to Services

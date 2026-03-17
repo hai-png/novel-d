@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useNavigation } from '../hooks/useNavigation';
 import { ArrowLeft, ChevronDown, Plus, Minus, Palette, UserCheck, Image as ImageIcon, Lightbulb, Eye, Layers, PenTool, CheckCircle2, Box, Camera } from 'lucide-react';
 import { Page } from '../types';
 import QuoteForm from './QuoteForm';
@@ -46,67 +47,85 @@ const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, ans
 };
 
 const solutionsData = [
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "Clients can't visualize the finished space from samples"
+    // VALUE: Visceral emotional preview that drives approval
+    // ═══════════════════════════════════════════════════════════════
     {
-        id: 'client-presentation',
-        title: 'Client Presentation Package',
-        description: 'The complete approval toolkit. Atmospheric 4K stills of every key room, a cinematic walkthrough animation revealing spatial flow and material transitions, and a 360° virtual tour the client can explore independently after the meeting. Three deliverables from one model — designed to eliminate "I can\'t visualize it" and secure sign-off in a single session.',
+        id: 'see-before-you-build',
+        title: 'See It Before It\'s Built',
+        description: 'Turn your mood board into a photorealistic 4K environment your client can feel. We focus on the intangibles that swatches can\'t convey — soft linen draping over an armchair, warm pools of light falling across a stone floor, the way morning sun hits a marble backsplash. Every key room rendered with the exact emotional atmosphere you intended, so clients experience the finished space viscerally — not intellectually. Approvals happen in the room, not three revisions later.',
         mediaType: 'image' as const,
         src: 'https://archicgi.com/wp-content/uploads/2023/08/3d-visualization-interior-living-room.jpeg',
     },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "Material and finish decisions take too many rounds"
+    // VALUE: Objective side-by-side comparisons that end debates
+    // ═══════════════════════════════════════════════════════════════
+    {
+        id: 'eliminate-guesswork',
+        title: 'Eliminate Material Guesswork',
+        description: 'End "I didn\'t think it would look like that" forever. We render the same view with different material options side by side — oak vs walnut flooring, warm vs cool marble veining, matte vs gloss cabinetry — plus day-to-night lighting studies that prove your lighting scheme works at every hour, comparing Kelvin temperatures in context. A systematic visual decision-making tool that protects against expensive on-site changes, reassures hesitant clients, and turns subjective taste debates into confident, documented choices.',
+        mediaType: 'slider' as const,
+        before: 'https://archicgi.com/wp-content/uploads/2025/09/living-room-interior-3d-rendering-MU5SFJXV-4000x2250.jpg',
+        after: 'https://archicgi.com/wp-content/uploads/2025/09/interior-render-drawing-room.webp',
+        labelBefore: 'Option A',
+        labelAfter: 'Option B',
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "Lighting design is hard to validate before install"
+    // VALUE: Test every fixture and condition in advance
+    // ═══════════════════════════════════════════════════════════════
     {
         id: 'lighting-validation',
-        title: 'Lighting Design Validation',
-        description: 'See your lighting plan working before a single wire is run. We render the same room in morning daylight, warm evening ambiance, and full task lighting — showing how your pendants, cove LEDs, and accent spots transform the atmosphere at different hours. Test 3000K warm white against 4000K neutral and choose with confidence.',
+        title: 'Validate Lighting Before Installation',
+        description: 'Test your entire lighting plan before a single fixture is ordered. We render the same space across natural daylight, warm evening ambiance, and full artificial illumination — showing precisely how your downlights, pendants, sconces, and accent strips interact with surfaces and transform the atmosphere through the day. Compare warm vs cool Kelvin temperatures, adjust fixture placement, and lock in the perfect mood with photographic evidence — not guesswork.',
         mediaType: 'slider' as const,
         before: 'https://archicgi.com/wp-content/uploads/2024/09/3d-visualization-large-hotel-malta-befor.jpg',
         after: 'https://archicgi.com/wp-content/uploads/2024/09/exterior-render-commercial-real-estate-malta-after.jpg',
-        labelBefore: 'Daylight',
-        labelAfter: 'Evening',
+        labelBefore: 'Natural Light',
+        labelAfter: 'Evening Ambiance',
     },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "Client meetings end without decisions"
+    // VALUE: Real-time co-design that locks in choices on the spot
+    // ═══════════════════════════════════════════════════════════════
     {
-        id: 'material-testing',
-        title: 'Material & Finish Testing',
-        description: 'Validate bold decisions before ordering. We render identical views with different material combinations — dark joinery vs. light, patterned tile vs. plain, warm timber vs. cool stone — so you and the client can compare side by side. Prevents costly change orders and protects your design intent through value engineering.',
+        id: 'decide-in-the-room',
+        title: 'Decide in the Room',
+        description: 'Stop losing weeks to post-meeting revision cycles. Our real-time interactive environment lets you and your client co-design during the meeting: swap kitchen cabinets, toggle between two sofa options, change wall colors, switch flooring materials — every combination updates instantly on screen. Clients see the impact of their choices in context, gain confidence immediately, and sign off before they leave the room. The most powerful design approval tool available.',
         mediaType: 'slider' as const,
-        before: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1200&q=80',
+        before: 'https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80',
         after: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80',
         labelBefore: 'Scheme A',
         labelAfter: 'Scheme B',
     },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "High-value clients are overseas and can't visit"
+    // VALUE: Full design experience delivered remotely
+    // ═══════════════════════════════════════════════════════════════
     {
-        id: 'realtime-configurator',
-        title: 'Live Design Configurator',
-        description: 'A real-time 3D environment where you swap materials during the client meeting. Change the kitchen island stone, toggle between two sofa fabrics, adjust wall color — every option updates instantly on screen. Powered by Unreal Engine, deployed via browser link. Decisions that used to take three revision rounds now happen in one session.',
-        mediaType: 'image' as const,
-        src: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1200&q=80',
-    },
-    {
-        id: 'kitchen-bath',
-        title: 'Kitchen & Bath Focus',
-        description: 'The rooms that define your reputation. Dedicated high-detail renders where every tile joint, tap finish, countertop edge, and grout line is visible. We pair overview compositions with macro close-ups of hardware and surface texture — proving specification quality to clients and giving contractors zero room for misinterpretation.',
-        mediaType: 'image' as const,
-        src: 'https://archicgi.com/wp-content/uploads/2023/09/3d-rendering-interior-dining-room.jpg',
-    },
-    {
-        id: 'contractor-visuals',
-        title: 'Contractor Communication',
-        description: 'A visual brief your builder can\'t misread. 3D close-ups of complex joinery junctions, ceiling detail transitions, and custom millwork profiles — overlaid alongside your technical drawings. Reduces RFIs on site, eliminates "I interpreted it differently," and ensures the finished space matches the render.',
-        mediaType: 'image' as const,
-        src: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
-    },
-    {
-        id: 'portfolio-content',
-        title: 'Portfolio & Social Content',
-        description: 'Publish before the photographer arrives. Magazine-quality stills for your website portfolio, vertical slow-pan video loops for Instagram Reels, and square crops for Pinterest — all produced from the project\'s 3D model. Build your visual brand with projects that are still under construction or were never built at all.',
+        id: 'present-anywhere',
+        title: 'Present to Clients Anywhere',
+        description: 'Your best clients are in Dubai, London, or New York. We deliver the complete design experience remotely: every room rendered in 4K with consistent material accuracy, connected by a full 8K 360° virtual tour with intuitive room-to-room navigation, real-time material customization controls they can interact with themselves, and a cinematic walkthrough film for the initial "wow" moment. All accessible via a single shareable link on any device or VR headset. Your design presentation becomes an immersive experience, not a PDF attachment.',
         mediaType: 'video' as const,
         src: 'https://archicgi.com/wp-content/uploads/2023/08/future-interior-animation-web-min.mp4',
     },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "I have no time or budget for content creation"
+    // VALUE: Portfolio and social content from project models
+    // ═══════════════════════════════════════════════════════════════
     {
-        id: 'full-home',
-        title: 'Full Home Visualization',
-        description: 'Every room, one unified model. Atmospheric stills of living areas, kitchen, bedrooms, and bathrooms. 3D floor plans with furniture showing spatial flow. A dollhouse cutaway revealing how rooms connect. And an interactive virtual tour linking every space with hotspot navigation. A complete visual record of your design — from concept to delivery.',
+        id: 'grow-your-brand',
+        title: 'Grow Your Practice\'s Brand',
+        description: 'Build a compelling public presence without a separate production budget. From every project\'s 3D model, we extract a full content pipeline: vertical slow-pan video loops (9:16) for Instagram Reels and TikTok, square crops for feed posts, cinematic landscape clips for YouTube, and high-resolution portfolio stills for your website and publications. One project delivers weeks of scroll-stopping content that showcases your design talent and attracts the next client.',
         mediaType: 'image' as const,
-        src: 'https://archicgi.com/wp-content/uploads/2023/07/3d-floor-plan-rendering-real-estate-developers.jpg',
+        src: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&q=80',
     },
 ];
 
@@ -115,6 +134,7 @@ const InteriorDesignersSolutions: React.FC<{ onNavigate: (page: Page) => void }>
     const [activeSolutionIndex, setActiveSolutionIndex] = useState(0);
     const solutionRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
+    const { navigateToContact } = useNavigation();
 
     useEffect(() => {
         const observers = solutionRefs.current.map((ref, index) => {
@@ -130,7 +150,7 @@ const InteriorDesignersSolutions: React.FC<{ onNavigate: (page: Page) => void }>
     }, []);
 
     const activeSolution = solutionsData[activeSolutionIndex];
-    const handleContact = (e: React.MouseEvent) => { e.preventDefault(); onNavigate('home'); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 100); };
+    const handleContact = (e: React.MouseEvent) => { e.preventDefault(); navigateToContact(onNavigate); };
 
     return (
         <div className="bg-neutral-950 min-h-screen pt-20">
@@ -141,7 +161,7 @@ const InteriorDesignersSolutions: React.FC<{ onNavigate: (page: Page) => void }>
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent" />
                 </div>
                 <div className="relative z-10 px-6 lg:px-12 text-center lg:text-left">
-                    <button onClick={() => onNavigate('home')} className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-8 transition-colors text-sm tracking-wide uppercase">
+                    <button onClick={() => { onNavigate('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-8 transition-colors text-sm tracking-wide uppercase">
                         <ArrowLeft size={16} /> Back to Home
                     </button>
                     <h1 className={`font-display text-5xl md:text-8xl font-medium mb-8 leading-tight tracking-tighter uppercase transition-all duration-1000 ${heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>

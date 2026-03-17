@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useNavigation } from '../hooks/useNavigation';
 import { ArrowLeft, ArrowUpRight, Grid3X3, Building2, Home, Trees, Building } from 'lucide-react';
 import { Page } from '../types';
 
@@ -100,6 +101,11 @@ const filterOptions = [
 const Projects: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavigate }) => {
     const [heroRef, heroVisible] = useIntersectionObserver<HTMLElement>();
     const [activeFilter, setActiveFilter] = useState('all');
+    const { navigateToHomeWithScroll } = useNavigation();
+
+    const handleBackToHome = () => {
+        navigateToHomeWithScroll(onNavigate, 'work');
+    };
 
     const filteredProjects = activeFilter === 'all' 
         ? projectsData 
@@ -149,7 +155,7 @@ const Projects: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavigate }
 
                 <div className="relative z-10 ">
                     <button
-                        onClick={() => onNavigate('home')}
+                        onClick={handleBackToHome}
                         className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase"
                     >
                         <ArrowLeft size={16} />
@@ -360,13 +366,7 @@ const Projects: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavigate }
                         href="#contact"
                         onClick={(e) => {
                             e.preventDefault();
-                            onNavigate('home');
-                            setTimeout(() => {
-                                const element = document.querySelector('#contact');
-                                if (element) {
-                                    element.scrollIntoView({ behavior: 'smooth' });
-                                }
-                            }, 100);
+                            navigateToHomeWithScroll(onNavigate, 'contact');
                         }}
                         className="hidden md:inline-flex items-center gap-2 text-sm border border-white/20 px-6 py-2.5 hover:bg-white hover:text-neutral-950 transition-all duration-300 group cursor-hover"
                     >

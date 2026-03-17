@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useNavigation } from '../hooks/useNavigation';
 import { ArrowLeft, ChevronDown, Plus, Minus, Zap, Globe, DollarSign, Image as ImageIcon, Smartphone, Clock, Layout, CheckCircle2 } from 'lucide-react';
 import { Page } from '../types';
 import QuoteForm from './QuoteForm';
@@ -46,17 +47,33 @@ const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, ans
 };
 
 const solutionsData = [
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "I need to sell something that doesn't exist yet"
+    // VALUE: Revenue before construction
+    // ═══════════════════════════════════════════════════════════════
     {
-        id: 'listing-launch',
-        title: 'Listing Launch Kit',
-        description: 'Everything a new listing needs to hit the market strong — a twilight exterior hero shot, three virtually staged interior rooms, a 3D floor plan with furniture, and an embeddable 360° virtual tour. One order, one model, all assets delivered together. Formatted for MLS, Zillow, Redfin, and print.',
-        mediaType: 'image' as const,
-        src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
+        id: 'sell-the-invisible',
+        title: 'Sell Before You Build',
+        description: 'Drive deposits before ground is broken. From architectural plans alone, we build your complete pre-sales ecosystem: photorealistic exterior hero shots at golden hour, styled interior lifestyle renders for every unit type, aerial context views showing the development in its neighborhood, a cinematic launch film, furnished 3D floor plans, a multi-room interactive virtual tour with customizable finishes, and a sales center touchscreen app with unit selection and availability filtering. Everything an off-plan buyer needs to commit — delivered months before construction completes.',
+        mediaType: 'video' as const,
+        src: 'https://archicgi.com/wp-content/uploads/2023/08/future-interior-animation-web-min.mp4',
     },
     {
-        id: 'virtual-staging',
-        title: 'Virtual Staging & Restyling',
-        description: 'Fill empty rooms with aspirational furniture at a fraction of physical staging costs. Choose from curated style packages — Scandi, Mid-Century, Hampton, Industrial — or let us recommend based on your target buyer demographic. Switch styles instantly to A/B test which listing photos generate more inquiries.',
+        id: 'investor-confidence',
+        title: 'The Investor Confidence Package',
+        description: 'Visuals that speak to ROI, not just aesthetics. We deliver aerial masterplan views showing the development at scale, phasing animations illustrating the construction and delivery timeline, styled interior renders that demonstrate market positioning, construction progress timelapse frameworks, and a branded presentation deck — everything an investor needs to see the return before writing the check. Keep stakeholders engaged and confident from capital raise through handover.',
+        mediaType: 'image' as const,
+        src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "My listing isn't getting enough engagement"
+    // VALUE: More clicks, faster sales, higher prices
+    // ═══════════════════════════════════════════════════════════════
+    {
+        id: 'listing-transformation',
+        title: 'The Listing Transformation',
+        description: 'Turn an empty property into a scroll-stopping listing in 48 hours. We virtually stage every key room in a style matched to your target demographic — Scandi minimalist, Hamptons luxury, industrial chic — at 90% less than physical staging. Convert your daytime exterior into a dramatic twilight hero shot with glowing windows. Deliver a furnished 3D floor plan that communicates layout at a glance, plus dollhouse cutaway views that show the full spatial flow. The complete visual upgrade that makes buyers stop scrolling and start calling.',
         mediaType: 'slider' as const,
         before: 'https://archicgi.com/wp-content/uploads/2023/07/apartment-photo-without-virtual-staging.jpg',
         after: 'https://archicgi.com/wp-content/uploads/2023/07/real-estate-photo-with-virtual-staging.jpg',
@@ -64,49 +81,72 @@ const solutionsData = [
         labelAfter: 'Staged',
     },
     {
-        id: 'virtual-renovation',
-        title: 'Virtual Renovation',
-        description: 'Dated kitchen? Tired bathroom? We digitally strip out the old and install the new — modern cabinetry, updated tiles, contemporary fixtures. Buyers see the potential of a renovation without the mess. Pair with a realistic cost estimate to show ROI and convert hesitant investors into confident buyers.',
+        id: 'listing-rescue',
+        title: 'The Stale Listing Reset',
+        description: 'Your property has been sitting on the market too long. The algorithm has buried it, and buyers have scrolled past it. We completely reimagine the visual identity: re-stage rooms targeting a different demographic, add a twilight exterior conversion, produce fresh aerial context imagery highlighting nearby amenities, and deliver a new set of social video clips. A visual reset that makes a stale listing feel brand new — to both the algorithm and the buyer.',
         mediaType: 'slider' as const,
-        before: 'https://archicgi.com/wp-content/uploads/2022/04/virtual-renovation-for-real-estate-living-room-before.jpg',
-        after: 'https://archicgi.com/wp-content/uploads/2022/04/virtual-renovation-for-real-estate-living-room-after.jpg',
-        labelBefore: 'Current',
-        labelAfter: 'Renovated',
+        before: 'https://archicgi.com/wp-content/uploads/2023/07/apartment-photo-without-virtual-staging.jpg',
+        after: 'https://archicgi.com/wp-content/uploads/2023/07/real-estate-photo-with-virtual-staging.jpg',
+        labelBefore: 'Before',
+        labelAfter: 'After',
     },
     {
-        id: 'off-plan-sales',
-        title: 'Off-Plan Sales Package',
-        description: 'Sell buildings that don\'t exist yet. From floor plans alone, we produce exterior hero renders, furnished interior scenes, aerial context views, 3D floor plans, a cinematic flythrough animation, and an interactive virtual tour with unit selection. A complete marketing ecosystem that drives deposits before ground is broken.',
-        mediaType: 'image' as const,
-        src: 'https://images.unsplash.com/photo-1460472178825-e5240623afd5?w=1200&q=80',
+        id: 'twilight-conversion',
+        title: 'Twilight & Lighting Magic',
+        description: 'The single highest-impact visual upgrade for any listing. We convert daytime exteriors into dramatic dusk hero shots with warmly glowing windows and a cinematic sky — proven to increase click-through rates and time-on-listing across every major portal. One image that makes any property feel premium.',
+        mediaType: 'slider' as const,
+        before: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
+        after: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80',
+        labelBefore: 'Day',
+        labelAfter: 'Dusk',
     },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "Remote/international buyers can't visit in person"
+    // VALUE: 24/7 global access, no missed opportunities
+    // ═══════════════════════════════════════════════════════════════
     {
-        id: 'virtual-open-house',
-        title: '24/7 Virtual Open House',
-        description: 'An interactive 360° tour with hotspot navigation, floor plan mini-map, and embedded property details. Buyers walk through every room at their own pace from any device — phone, tablet, desktop. Share a single link via email or embed directly into your listing. No app, no download, no scheduling.',
+        id: 'always-open',
+        title: 'The 24/7 Open House',
+        description: 'Your listing never closes. We give international and out-of-state buyers a complete property experience from their couch: 8K 360° panoramas of every room with hotspot navigation, a cinematic walkthrough film that conveys spatial flow, dollhouse cutaway views showing the full layout, interactive floor plans, and information overlays — all accessible via a single shareable link on any device including VR headsets. Embed directly into your MLS listing, website, or email campaign. No app download, no scheduling, no missed opportunities.',
         mediaType: 'image' as const,
         src: 'https://images.unsplash.com/photo-1557900455-628858ed0859?w=1200&q=80',
     },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "Buyers don't understand the location value"
+    // VALUE: Sell the lifestyle, not just the unit
+    // ═══════════════════════════════════════════════════════════════
     {
-        id: 'social-content',
-        title: 'Social Media Engine',
-        description: 'Vertical video tours (9:16) for Reels and TikTok. Landscape walkthroughs (16:9) for YouTube. Square hero crops for feeds. All cut from a single cinematic animation of the property — one production, every platform covered. We deliver ready-to-post files with safe zones for your logo and listing details.',
-        mediaType: 'video' as const,
-        src: 'https://archicgi.com/wp-content/uploads/2024/01/3d-rendering-for-real-estate-agents-animation-03-web.mp4',
-    },
-    {
-        id: 'aerial-context',
-        title: 'Aerial Neighborhood Showcase',
-        description: 'Location sells the listing. Aerial renders and drone photomontage show the property in its full surroundings — walking distance to transit, proximity to parks and schools, nearby amenities highlighted. Lot boundaries overlaid on aerial shots eliminate confusion about what\'s included in the sale.',
+        id: 'sell-the-location',
+        title: 'Sell the Location',
+        description: 'Location is everything — and we make it visible. Aerial renders and drone photomontages highlighting proximity to transit, schools, parks, and amenities. An interactive neighborhood map with key points of interest pinned. Pedestrian-level exterior renders showing streetscape activity and local life. Lot boundary overlays and walking distance indicators. Contextual video content proving lifestyle value to buyers who\'ve never visited the area. Because the best unit in a bad location doesn\'t sell — and a great location poorly communicated sells slowly.',
         mediaType: 'image' as const,
         src: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=80',
     },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "I need content that performs on social media"
+    // VALUE: Weeks of platform-optimized content from one session
+    // ═══════════════════════════════════════════════════════════════
     {
-        id: 'sales-center',
-        title: 'Interactive Sales Center',
-        description: 'A touchscreen experience for your showroom. Buyers select units from an interactive building model, explore interiors with live finish customization, compare balcony views from different floors, and toggle between day and night. Your sales team guides the journey on a large-format display that closes deals.',
+        id: 'social-content-engine',
+        title: 'Social-First Content Engine',
+        description: 'Content designed for the algorithm, not the brochure. One production session delivers weeks of postable content: punchy vertical (9:16) property tours with fast cuts and music for Instagram Reels and TikTok, dramatic before-after staging reveals, aerial fly-arounds that open with scale and descend to detail, room-by-room transition reels, cinematic landscape cuts for YouTube and Facebook, and square crops for feed posts. Every asset optimized for maximum engagement on its target platform — maximizing your reach without multiplying your spend.',
+        mediaType: 'video' as const,
+        src: 'https://archicgi.com/wp-content/uploads/2024/01/3d-rendering-for-real-estate-agents-animation-03-web.mp4',
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "I need a unified brand for my development"
+    // VALUE: Premium positioning across every touchpoint
+    // ═══════════════════════════════════════════════════════════════
+    {
+        id: 'brand-ecosystem',
+        title: 'The Development Brand Ecosystem',
+        description: 'Treat your building like a luxury product. We produce a complete branded visual system: exterior hero shots, interior lifestyle renders, aerial context views, a cinematic teaser film, interactive virtual tours, print-ready 8K images for hoardings and brochures (CMYK-ready with safe zones for text and logo), and a sales center touchscreen application — all unified by your development\'s color palette, typography, and visual identity. One studio, one visual language, every touchpoint covered.',
         mediaType: 'image' as const,
-        src: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1200&q=80',
+        src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80',
     },
 ];
 
@@ -115,6 +155,7 @@ const RealEstateAgentSolutions: React.FC<{ onNavigate: (page: Page) => void }> =
     const [activeSolutionIndex, setActiveSolutionIndex] = useState(0);
     const solutionRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
+    const { navigateToContact } = useNavigation();
 
     useEffect(() => {
         const observers = solutionRefs.current.map((ref, index) => {
@@ -130,7 +171,7 @@ const RealEstateAgentSolutions: React.FC<{ onNavigate: (page: Page) => void }> =
     }, []);
 
     const activeSolution = solutionsData[activeSolutionIndex];
-    const handleContact = (e: React.MouseEvent) => { e.preventDefault(); onNavigate('home'); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 100); };
+    const handleContact = (e: React.MouseEvent) => { e.preventDefault(); navigateToContact(onNavigate); };
 
     return (
         <div className="bg-neutral-950 min-h-screen pt-20">
@@ -141,7 +182,7 @@ const RealEstateAgentSolutions: React.FC<{ onNavigate: (page: Page) => void }> =
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent" />
                 </div>
                 <div className="relative z-10 px-6 lg:px-12 text-center lg:text-left">
-                    <button onClick={() => onNavigate('home')} className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-8 transition-colors text-sm tracking-wide uppercase">
+                    <button onClick={() => { onNavigate('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-8 transition-colors text-sm tracking-wide uppercase">
                         <ArrowLeft size={16} /> Back to Home
                     </button>
                     <h1 className={`font-display text-5xl md:text-8xl font-medium mb-8 leading-tight tracking-tighter uppercase transition-all duration-1000 ${heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>

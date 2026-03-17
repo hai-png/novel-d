@@ -69,6 +69,7 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [sliderPos, setSliderPos] = useState(50);
+  const [showHint, setShowHint] = useState(true);
   // Use array to track multiple active hotspots when all should be open
   const [activeHotspots, setActiveHotspots] = useState<number[]>(
     hotspotsOpenByDefault ? hotspots.map((_, i) => i) : []
@@ -279,6 +280,49 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
 
+  // Auto-animation for split mode slider - subtle back and forth from center
+  useEffect(() => {
+    if (mode !== 'split' || showHint === false) return;
+
+    let position = 50;
+    let direction = -1; // Start moving left
+    const minPosition = 40; // Only move 10% to the left
+    const maxPosition = 50; // Back to center
+    const hintAnimationRef = { current: null as number | null };
+
+    const animate = () => {
+      position += direction * 0.2; // Slower, subtle movement
+      
+      // Move from 50% to 40% and back to 50%
+      if (position <= minPosition) {
+        direction = 1;
+      } else if (position >= maxPosition) {
+        direction = -1;
+      }
+      
+      setSliderPos(position);
+      hintAnimationRef.current = requestAnimationFrame(animate);
+    };
+    
+    hintAnimationRef.current = requestAnimationFrame(animate);
+    
+    // Stop animation after 3 seconds
+    const stopTimer = setTimeout(() => {
+      if (hintAnimationRef.current) {
+        cancelAnimationFrame(hintAnimationRef.current);
+      }
+      setSliderPos(50);
+      setShowHint(false);
+    }, 3000);
+    
+    return () => {
+      if (hintAnimationRef.current) {
+        cancelAnimationFrame(hintAnimationRef.current);
+      }
+      clearTimeout(stopTimer);
+    };
+  }, [mode, showHint]);
+
   // ════════════════════════════════════════════════════════
   // EFFECT 2 — Load texture for normal / interactive modes
   //
@@ -478,6 +522,39 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
           <div className="absolute top-6 right-6 bg-white text-neutral-950 px-3 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest border border-white z-20 shadow-lg">
             Virtual Staging
           </div>
+          
+          {/* Zoom and Fullscreen Controls */}
+          <div className="absolute bottom-8 right-6 flex flex-col gap-2 z-30">
+            <button
+              onClick={toggleFullscreen}
+              className="w-10 h-10 bg-black/60 backdrop-blur border border-white/10 text-white rounded-full flex items-center justify-center hover:bg-black/80 transition-colors"
+            >
+              {isFullscreen ? <Minimize2 size={18} /> : <Maximize size={18} />}
+            </button>
+            <button
+              onClick={() => handleZoom(-5)}
+              className="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center shadow-lg hover:bg-neutral-200 transition-colors"
+            >
+              <Plus size={18} />
+            </button>
+            <button
+              onClick={() => handleZoom(5)}
+              className="w-10 h-10 bg-black/60 backdrop-blur border border-white/10 text-white rounded-full flex items-center justify-center hover:bg-black/80 transition-colors"
+            >
+              <Minus size={18} />
+            </button>
+          </div>
+
+          {/* Hint Animation */}
+          {showHint && (
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-xs font-medium text-white border border-white/10 z-20 flex items-center gap-2 animate-pulse pointer-events-none">
+              <span>Drag to compare</span>
+              <div className="flex gap-1">
+                <div className="w-0.5 h-3 bg-white/80 rounded-full animate-[ping_1s_ease-in-out_infinite]"></div>
+                <div className="w-0.5 h-3 bg-white/80 rounded-full animate-[ping_1s_ease-in-out_infinite_0.2s]"></div>
+              </div>
+            </div>
+          )}
         </>
       )}
 

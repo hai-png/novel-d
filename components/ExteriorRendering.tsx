@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useNavigation } from '../hooks/useNavigation';
 import { ArrowLeft, CheckCircle2, Play, Plus, Minus, ArrowRight, Box, Grid3X3, Sun, Layers } from 'lucide-react';
 import { Page } from '../types';
 import QuoteForm from './QuoteForm';
@@ -43,6 +44,8 @@ const LightingCarousel: React.FC<{ pairs: { before: string; after: string }[] }>
     const [sliderPosition, setSliderPosition] = useState(50);
     const containerRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
+    const [showHint, setShowHint] = useState(true);
+    const hintAnimationRef = useRef<number | null>(null);
 
     const handleNext = () => setCurrentIndex((prev) => (prev + 1) % pairs.length);
     const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + pairs.length) % pairs.length);
@@ -66,6 +69,48 @@ const LightingCarousel: React.FC<{ pairs: { before: string; after: string }[] }>
         window.addEventListener('mouseup', handleGlobalMouseUp);
         return () => window.removeEventListener('mouseup', handleGlobalMouseUp);
     }, []);
+
+    // Auto-animation to hint users - subtle back and forth from center
+    useEffect(() => {
+        if (!isDragging && showHint) {
+            let position = 50;
+            let direction = -1; // Start moving left
+            const minPosition = 40; // Only move 10% to the left
+            const maxPosition = 50; // Back to center
+            
+            const animate = () => {
+                position += direction * 0.2; // Slower, subtle movement
+                
+                // Move from 50% to 40% and back to 50%
+                if (position <= minPosition) {
+                    direction = 1;
+                } else if (position >= maxPosition) {
+                    direction = -1;
+                }
+                
+                setSliderPosition(position);
+                hintAnimationRef.current = requestAnimationFrame(animate);
+            };
+            
+            hintAnimationRef.current = requestAnimationFrame(animate);
+            
+            // Stop animation after 3 seconds
+            const stopTimer = setTimeout(() => {
+                if (hintAnimationRef.current) {
+                    cancelAnimationFrame(hintAnimationRef.current);
+                }
+                setSliderPosition(50);
+                setShowHint(false);
+            }, 3000);
+            
+            return () => {
+                if (hintAnimationRef.current) {
+                    cancelAnimationFrame(hintAnimationRef.current);
+                }
+                clearTimeout(stopTimer);
+            };
+        }
+    }, [showHint, isDragging]);
 
     if (pairs.length === 0) {
         return (
@@ -185,6 +230,17 @@ const LightingCarousel: React.FC<{ pairs: { before: string; after: string }[] }>
                     </button>
                 ))}
             </div>
+
+            {/* Hint Animation */}
+            {showHint && (
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-xs font-medium text-white border border-white/10 z-20 flex items-center gap-2 animate-pulse pointer-events-none">
+                    <span>Drag to compare lighting</span>
+                    <div className="flex gap-1">
+                        <div className="w-0.5 h-3 bg-white/80 rounded-full animate-[ping_1s_ease-in-out_infinite]"></div>
+                        <div className="w-0.5 h-3 bg-white/80 rounded-full animate-[ping_1s_ease-in-out_infinite_0.2s]"></div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
@@ -545,6 +601,7 @@ const ProjectSpecsCTA: React.FC<{ onOpenQuote: (service?: string) => void }> = (
 const ExteriorRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavigate }) => {
     const [heroRef, heroVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.1 });
     const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
+    const { navigateToServices } = useNavigation();
 
     const immersiveItems = [
         {
@@ -612,7 +669,7 @@ const ExteriorRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
 
                 <div className="relative z-10 px-6 lg:px-12">
                     <button
-                        onClick={() => onNavigate('home')}
+                        onClick={() => navigateToServices(onNavigate)}
                         className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase"
                     >
                         <ArrowLeft size={16} />

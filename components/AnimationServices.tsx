@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useNavigation } from '../hooks/useNavigation';
 import {
     ArrowLeft,
     CheckCircle2,
@@ -313,6 +314,7 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
     const [heroRef, heroVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.1 });
     const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
     const [selectedService, setSelectedService] = useState<string | undefined>(undefined);
+    const { navigateToServices } = useNavigation();
 
     const handleOpenQuote = (service?: string) => {
         setSelectedService(service);
@@ -397,7 +399,7 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
 
                 <div className="relative z-10 ">
                     <button
-                        onClick={() => onNavigate('home')}
+                        onClick={() => navigateToServices(onNavigate)}
                         className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase"
                     >
                         <ArrowLeft size={16} />
@@ -515,32 +517,67 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
             </section>
 
             {/* ════════════════════════════════════════════════════════
-                SPECIALIZED ANIMATIONS (Grid Layout like Exterior)
+                SPECIALIZED ANIMATIONS (STICKY SCROLL)
             ════════════════════════════════════════════════════════ */}
-            <section className="py-24 bg-neutral-900/50 border-t border-white/5">
-                <div className="px-6 lg:px-12">
-                    <div className="mb-16">
-                        <div className="flex items-center gap-4 mb-6">
-                            <Film className="w-8 h-8 text-white/60" />
-                            <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest">Technical Visualizations</span>
-                        </div>
-                        <h2 className="font-display text-4xl md:text-6xl mb-6 leading-tight">
-                            Specialized <span className="text-stroke">Animations</span>
-                        </h2>
-                        <p className="text-neutral-500 max-w-xl">
-                            Technical visualizations and social-ready content for every platform and purpose.
-                        </p>
+            <section className="bg-neutral-900/50 border-t border-white/5">
+                {/* Section header — scrolls away normally */}
+                <div className="px-6 lg:px-12 pt-24 pb-16">
+                    <div className="flex items-center gap-4 mb-6">
+                        <Film className="w-8 h-8 text-white/60" />
+                        <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest">Technical Visualizations</span>
                     </div>
+                    <h2 className="font-display text-4xl md:text-6xl mb-6 leading-tight">
+                        Specialized <span className="text-stroke">Animations</span>
+                    </h2>
+                    <p className="text-neutral-500 max-w-xl">
+                        Technical visualizations and social-ready content for every platform and purpose.
+                    </p>
+                </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                        {specializedAnimationsData.map((item, i) => (
-                            <div key={i} className="group cursor-hover">
-                                {/* Video from respective /animation/ subfolder */}
+                {/* Sticky scroll container */}
+                <div
+                    className="relative"
+                    style={{ height: `${specializedAnimationsData.length * 100}vh` }}
+                >
+                    {specializedAnimationsData.map((item, i) => (
+                        <div
+                            key={i}
+                            className="sticky top-0 h-screen flex items-center overflow-hidden"
+                            style={{ zIndex: 10 + i }}
+                        >
+                            {/* Full-bleed card background */}
+                            <div className="absolute inset-0 bg-neutral-900/95 backdrop-blur-sm" />
+
+                            {/* Card content */}
+                            <div className="relative z-10 w-full px-6 lg:px-12 py-16 group">
+                                {/* Step counter */}
+                                <p className="text-xs text-neutral-600 tracking-widest uppercase mb-6 font-medium">
+                                    {String(i + 1).padStart(2, '0')} / {String(specializedAnimationsData.length).padStart(2, '0')}
+                                </p>
+
+                                <h3 className="text-3xl md:text-4xl font-display mb-4 text-white">
+                                    {item.title}
+                                </h3>
+                                <p className="text-neutral-400 text-sm leading-relaxed max-w-xl mb-10">
+                                    {item.desc}
+                                </p>
+
+                                {/* Features List */}
+                                <div className="grid grid-cols-2 gap-3 mb-8">
+                                    {item.features.map((feature, idx) => (
+                                        <div key={idx} className="flex items-center gap-2 text-sm text-neutral-300">
+                                            <CheckCircle2 size={14} className="text-green-500 flex-shrink-0" />
+                                            {feature}
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Video */}
                                 {item.title === "Phasing Animation" && phasingGallery.length > 0 ? (
-                                    <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-800 mb-8 relative">
+                                    <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-neutral-800 relative">
                                         <video
                                             src={phasingGallery[0]}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                            className="w-full h-full object-cover"
                                             autoPlay
                                             muted
                                             loop
@@ -548,10 +585,10 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                                         />
                                     </div>
                                 ) : item.title === "Timelapse Video" && timelapseGallery.length > 0 ? (
-                                    <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-800 mb-8 relative">
+                                    <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-neutral-800 relative">
                                         <video
                                             src={timelapseGallery[0]}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                            className="w-full h-full object-cover"
                                             autoPlay
                                             muted
                                             loop
@@ -559,10 +596,10 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                                         />
                                     </div>
                                 ) : item.title === "Social Media Content" && socialMediaGallery.length > 0 ? (
-                                    <div className="aspect-[9/16] max-h-[500px] overflow-hidden rounded-2xl bg-neutral-800 mb-8 relative mx-auto w-full max-w-sm">
+                                    <div className="aspect-[9/16] max-h-[600px] overflow-hidden rounded-2xl bg-neutral-800 relative mx-auto w-full max-w-md">
                                         <video
                                             src={socialMediaGallery[0]}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                            className="w-full h-full object-cover"
                                             autoPlay
                                             muted
                                             loop
@@ -570,31 +607,16 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                                         />
                                     </div>
                                 ) : (
-                                    <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-800 mb-8 relative flex items-center justify-center">
+                                    <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-neutral-800 relative flex items-center justify-center">
                                         <div className="text-center text-neutral-400">
                                             <item.icon className="w-14 h-14 mx-auto mb-4 opacity-50" />
                                             <p>Video coming soon</p>
                                         </div>
                                     </div>
                                 )}
-                                <h3 className="text-2xl font-display mb-3 text-white">{item.title}</h3>
-                                <p className="text-neutral-400 text-sm leading-relaxed mb-6">{item.desc}</p>
-
-                                {/* Features List */}
-                                <div>
-                                    <h4 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-3">Features</h4>
-                                    <div className="grid grid-cols-2 gap-3">
-                                        {item.features.map((feature, idx) => (
-                                            <div key={idx} className="flex items-center gap-2 text-sm text-neutral-300">
-                                                <CheckCircle2 size={14} className="text-neutral-500 flex-shrink-0" />
-                                                {feature}
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
             </section>
 

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useNavigation } from '../hooks/useNavigation';
 import { ArrowLeft, ChevronDown, Plus, Minus, Trophy, Target, Monitor, Layers, CheckCircle2, Cpu, Globe, Eye, Film, Compass, Sun } from 'lucide-react';
 import { Page } from '../types';
 import QuoteForm from './QuoteForm';
@@ -46,64 +47,103 @@ const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, ans
 };
 
 const solutionsData = [
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "I need to win a competition under deadline pressure"
+    // VALUE: A jury-ready visual package, fast
+    // ═══════════════════════════════════════════════════════════════
     {
         id: 'competition-package',
-        title: 'Competition Submission',
-        description: 'Everything you need to win — assembled under deadline. A hero exterior at dusk, two emotive interior atmospheres, an aerial context view, and a 30-second cinematic teaser animation. We run a dedicated rush pipeline that delivers complete competition packages in 5–7 days, scaling our team to match your deadline without sacrificing quality.',
+        title: 'Win the Competition',
+        description: 'You have three weeks and one shot. From a single model handoff, we deliver the complete visual submission: atmospheric exterior hero shots at golden hour, aerial photomontages composited into real drone photography of the site, key interior moments that sell the spatial experience, technical diagrams — exploded axonometrics, section perspectives, and site plan illustrations — and a 60-second cinematic flythrough tying it all together. Built for deadline pressure: our rush pipeline can deliver full packages in under a week.',
         mediaType: 'image' as const,
-        src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80',
+        src: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1200&q=80',
     },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "My client doesn't understand the design from drawings"
+    // VALUE: Instant comprehension, faster sign-off
+    // ═══════════════════════════════════════════════════════════════
     {
-        id: 'planning-approval',
-        title: 'Planning & Approval Strategy',
-        description: 'A visual case engineered to pass. We produce drone photomontage compositing your building into real site photography, verified aerial shadow studies at critical solar dates, street-level context perspectives showing setbacks and neighbor relationships, and site plan illustrations — every view a planning authority demands, produced to their specification.',
+        id: 'client-comprehension',
+        title: 'Make Clients See What You See',
+        description: 'Your client doesn\'t read plans. We translate your design into their language: photorealistic exterior and interior stills that capture materiality and light, a cinematic first-person walkthrough showing the experience of moving through the building, room-by-room 360° panoramas they can explore on their phone, furnished 3D floor plans that communicate scale, and dollhouse cutaway views that explain spatial hierarchy at a glance. Shareable via a single link with decision-makers who can\'t attend the meeting. The complete package that eliminates "I didn\'t realize it would look like that."',
         mediaType: 'image' as const,
-        src: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=80',
+        src: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80',
     },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "Material and facade decisions stall the project"
+    // VALUE: Objective visual evidence that accelerates decisions
+    // ═══════════════════════════════════════════════════════════════
     {
-        id: 'design-iteration',
-        title: 'Rapid Design Iteration',
-        description: 'Visual feedback at the speed of design. White clay massing renders delivered within 48 hours to test form and proportion. Then, identical exterior viewpoints rendered with different cladding systems — brick, zinc, timber, composite — so you can compare material options side by side before committing to documentation.',
+        id: 'design-decisions',
+        title: 'Resolve Design Decisions Visually',
+        description: 'Before you specify, see it at full scale. We render the same viewpoint with multiple options — brick versus zinc versus timber cladding, warm versus cool lighting temperatures, day versus dusk versus night conditions — creating a systematic visual matrix that transforms subjective taste debates into objective design conversations. Includes digital maquettes (pure white clay renders) for early massing reviews and full photorealistic stills for final material sign-off. Avoid costly post-tender changes with evidence your client can hold in their hands.',
         mediaType: 'slider' as const,
         before: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80',
-        after: 'https://images.unsplash.com/photo-1558230007-427df37c7689?w=1200&q=80',
-        labelBefore: 'Option A',
-        labelAfter: 'Option B',
+        after: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80',
+        labelBefore: 'Brick Option',
+        labelAfter: 'Zinc Option',
     },
-    {
-        id: 'cinematic-film',
-        title: 'Project Film',
-        description: 'A 60–90 second cinematic narrative that no static image can match. The camera sweeps aerially over rooftops, descends to street level through landscaping, enters the lobby, and flows through interior spaces — revealing spatial sequences, material transitions, and the human experience of your architecture. Scored, graded, and branded.',
-        mediaType: 'video' as const,
-        src: 'https://archicgi.com/wp-content/uploads/2023/08/future-interior-animation-web-min.mp4',
-    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "Design reviews are slow and decisions happen in emails"
+    // VALUE: Real-time collaborative exploration, decisions in the room
+    // ═══════════════════════════════════════════════════════════════
     {
         id: 'immersive-review',
-        title: 'Immersive Design Review',
-        description: 'Walk your client through the building in real-time. Powered by Unreal Engine, this interactive 3D experience lets stakeholders freely explore spaces, toggle between day and night lighting, and swap material palettes on the fly. Non-technical decision-makers finally understand scale, proportion, and atmosphere — eliminating "I didn\'t picture it like that" after construction.',
+        title: 'Real-Time Design Review',
+        description: 'Replace pin-up boards with immersive experiences. We deliver interactive real-time 3D environments where your design team and clients orbit the exterior, walk through interiors, toggle between day and night lighting, switch weather conditions, compare cladding options, and test furniture layouts — all live during the meeting at interactive frame rates. Decisions happen in the room, not in follow-up emails. Accessible via web browser, large-format touchscreen, or VR headset.',
         mediaType: 'image' as const,
         src: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1200&q=80',
     },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "Planning submissions need technical visual evidence"
+    // VALUE: Compliant, precise, approval-ready documentation
+    // ═══════════════════════════════════════════════════════════════
     {
-        id: 'masterplan',
-        title: 'Masterplan & Phasing',
-        description: 'Communicate urban strategy at a glance. A single aerial render showing the full development — building use types color-coded, circulation networks mapped, green infrastructure highlighted — followed by an animated phasing sequence showing the project rising from the ground in logical construction order. Essential for investor alignment and council presentations.',
+        id: 'planning-evidence',
+        title: 'Planning & Technical Evidence',
+        description: 'Visual documentation that satisfies planning authorities. Precise aerial shadow studies simulating accurate solar positioning for your latitude at specific dates and times throughout the year. Aerial photomontages composited into verified site photography. Construction phasing animations showing the build sequence from foundations through completion. Exploded axonometrics, section perspectives, and site plan diagrams rendered with technical clarity and visual authority. Everything you need to demonstrate compliance and win approval.',
         mediaType: 'image' as const,
-        src: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80',
+        src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80',
     },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "I need to communicate a large-scale masterplan"
+    // VALUE: Multi-scale narrative from city context to unit detail
+    // ═══════════════════════════════════════════════════════════════
     {
-        id: 'public-consultation',
-        title: 'Public Consultation Kit',
-        description: 'Visuals designed to win community support, not architectural awards. People-centric street perspectives with diverse figures, active public realm, and mature landscaping. Combined with simple 3D site plan diagrams and a short animation showing the "before and after" impact on the neighborhood — the visual language that sways public opinion at town hall.',
-        mediaType: 'image' as const,
-        src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=80',
+        id: 'masterplan-at-scale',
+        title: 'Communicate the Masterplan',
+        description: 'Show the full scope at every scale. We combine aerial context films — cinematic drone-style flythroughs revealing how your buildings integrate with the city fabric — with technical masterplan illustrations including site plans, circulation diagrams, phasing graphics, and construction sequencing animations. The complete visual narrative from urban strategy down to unit detail, essential for investor presentations, stakeholder alignment, and public consultation.',
+        mediaType: 'video' as const,
+        src: 'https://archicgi.com/wp-content/uploads/2022/05/virtual-reality-architecture-presentation.mp4',
     },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "My practice has no consistent public presence"
+    // VALUE: Months of content from existing project models
+    // ═══════════════════════════════════════════════════════════════
     {
-        id: 'technical-diagrams',
-        title: 'Technical Communication',
-        description: 'Architecture explained visually. Exploded axonometric drawings revealing structural assembly and programmatic zoning. Section perspectives showing vertical connectivity and daylight penetration. 3D detail callouts of facade junctions and window reveals. Every diagram rendered with technical precision and enough beauty to belong in the design report.',
+        id: 'practice-visibility',
+        title: 'Build Your Practice\'s Brand',
+        description: 'Build your firm\'s public presence without hiring a film crew. From your existing visualization models, we produce a rolling content pipeline: vertical 9:16 fly-arounds for Instagram Reels, polished portfolio renders of projects still in construction, cinematic 30-second project teasers for LinkedIn, and high-resolution stills for awards submissions and publications — giving you months of content from a single production session.',
+        mediaType: 'video' as const,
+        src: 'https://archicgi.com/wp-content/uploads/2024/01/3d-rendering-for-real-estate-agents-animation-03-web.mp4',
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PROBLEM: "I need one partner from concept through sale"
+    // VALUE: Visual consistency, no ramp-up time, compounding quality
+    // ═══════════════════════════════════════════════════════════════
+    {
+        id: 'concept-to-completion',
+        title: 'Concept to Completion',
+        description: 'A phased visualization program that grows with your project. Digital maquettes at concept stage, photorealistic stills at DA submission, aerial photomontage for planning, cinematic animation for marketing launch, and immersive tours for the sales center. One studio, one visual language, from first sketch to final sale — eliminating ramp-up time, maintaining consistency, and compounding quality with every phase.',
         mediaType: 'image' as const,
-        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+        src: 'https://images.unsplash.com/photo-1460472178825-e5240623afd5?w=1200&q=80',
     },
 ];
 
@@ -112,6 +152,7 @@ const ArchitectSolutions: React.FC<{ onNavigate: (page: Page) => void }> = ({ on
     const [activeSolutionIndex, setActiveSolutionIndex] = useState(0);
     const solutionRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
+    const { navigateToContact } = useNavigation();
 
     useEffect(() => {
         const observers = solutionRefs.current.map((ref, index) => {
@@ -127,7 +168,7 @@ const ArchitectSolutions: React.FC<{ onNavigate: (page: Page) => void }> = ({ on
     }, []);
 
     const activeSolution = solutionsData[activeSolutionIndex];
-    const handleContact = (e: React.MouseEvent) => { e.preventDefault(); onNavigate('home'); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 100); };
+    const handleContact = (e: React.MouseEvent) => { e.preventDefault(); navigateToContact(onNavigate); };
 
     return (
         <div className="bg-neutral-950 min-h-screen pt-20">
@@ -138,7 +179,7 @@ const ArchitectSolutions: React.FC<{ onNavigate: (page: Page) => void }> = ({ on
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-transparent" />
                 </div>
                 <div className="relative z-10 px-6 lg:px-12 text-center lg:text-left">
-                    <button onClick={() => onNavigate('home')} className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-8 transition-colors text-sm tracking-wide uppercase">
+                    <button onClick={() => { onNavigate('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-8 transition-colors text-sm tracking-wide uppercase">
                         <ArrowLeft size={16} /> Back to Home
                     </button>
                     <h1 className={`font-display text-5xl md:text-8xl font-medium mb-8 leading-tight tracking-tighter uppercase transition-all duration-1000 ${heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>

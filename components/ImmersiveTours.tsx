@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useNavigation } from '../hooks/useNavigation';
 import { ArrowLeft, ArrowRight, Monitor, Globe, Glasses, Layers, Box, Code, Cloud, CheckCircle2, Plus, Minus, Play, MousePointer2, ChevronDown } from 'lucide-react';
 import { Page } from '../types';
 import QuoteForm from './QuoteForm';
@@ -277,6 +278,7 @@ const FeatureScrollSection: React.FC = () => {
 const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavigate }) => {
     const [heroRef, heroVisible] = useIntersectionObserver<HTMLElement>();
     const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
+    const { navigateToServices } = useNavigation();
 
     return (
         <div className="bg-neutral-950 min-h-screen pt-20">
@@ -289,8 +291,8 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                 </div>
                 
                 <div className="relative z-10 ">
-                    <button 
-                        onClick={() => onNavigate('home')}
+                    <button
+                        onClick={() => navigateToServices(onNavigate)}
                         className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase cursor-hover"
                     >
                         <ArrowLeft size={16} /> Back to Services

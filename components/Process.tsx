@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useNavigation } from '../hooks/useNavigation';
 import { Page } from '../types';
 
 interface ProcessProps {
@@ -17,17 +18,12 @@ const steps = [
 
 const Process: React.FC<ProcessProps> = ({ onNavigate }) => {
   const [ref, isVisible] = useIntersectionObserver<HTMLElement>();
+  const { navigateToServices } = useNavigation();
 
   const handleServicesClick = (e: React.MouseEvent) => {
       e.preventDefault();
       if (onNavigate) {
-          onNavigate('home');
-          setTimeout(() => {
-              const element = document.querySelector('#services');
-              if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-              }
-          }, 100);
+          navigateToServices(onNavigate);
       }
   };
 

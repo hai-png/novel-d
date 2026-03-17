@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useNavigation } from '../hooks/useNavigation';
 import { ArrowLeft, CheckCircle2, Play, Plus, Minus, ArrowRight, Box, Grid3X3, Rotate3D, Pause, Volume2, VolumeX, Maximize } from 'lucide-react';
 import { Page } from '../types';
 import QuoteForm from './QuoteForm';
@@ -506,6 +507,7 @@ const ProjectSpecsCTA: React.FC<{ onOpenQuote: (service?: string) => void }> = (
 const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavigate }) => {
     const [heroRef, heroVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.1 });
     const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
+    const { navigateToServices } = useNavigation();
 
     const immersiveItems = [
         {
@@ -570,7 +572,7 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
 
                 <div className="relative z-10 px-6 lg:px-12">
                     <button
-                        onClick={() => onNavigate('home')}
+                        onClick={() => navigateToServices(onNavigate)}
                         className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase"
                     >
                         <ArrowLeft size={16} />

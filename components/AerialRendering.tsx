@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useNavigation } from '../hooks/useNavigation';
 import { ArrowLeft, ArrowRight, Camera, Box, Palette, Image as ImageIcon, Layers, Monitor, Film, CheckCircle2, Plus, Minus } from 'lucide-react';
 import { Page } from '../types';
 import QuoteForm from './QuoteForm';
@@ -178,6 +179,7 @@ const ProjectSpecsCTA: React.FC<{ onOpenQuote: (service?: string) => void }> = (
     );
 };
 
+// ── Before/After Comparison Slider Component ─────────────────────────────
 const MediaCompareSlider: React.FC<{
     before: string;
     after: string;
@@ -189,46 +191,55 @@ const MediaCompareSlider: React.FC<{
     const [isDragging, setIsDragging] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const [width, setWidth] = useState(0);
-    const videoBeforeRef = useRef<HTMLVideoElement>(null);
-    const videoAfterRef = useRef<HTMLVideoElement>(null);
+    const [showHint, setShowHint] = useState(true);
+    const hintAnimationRef = useRef<number | null>(null);
 
-    // Sync video playback
+    // For video sync - use refs to directly control both videos
+    const beforeVideoRef = useRef<HTMLVideoElement>(null);
+    const afterVideoRef = useRef<HTMLVideoElement>(null);
+    const [videoKey, setVideoKey] = useState(0); // Force re-render to reset videos
+    const lastSyncTime = useRef<number>(0);
+    const syncRef = useRef<number | null>(null);
+
+    // Auto-animation hint
     useEffect(() => {
-        if (type !== 'video') return;
-        
-        const videoBefore = videoBeforeRef.current;
-        const videoAfter = videoAfterRef.current;
-        
-        if (!videoBefore || !videoAfter) return;
+        if (!isDragging && showHint) {
+            let position = 50;
+            let direction = -1;
+            const minPosition = 40;
+            const maxPosition = 50;
 
-        const syncVideos = () => {
-            if (Math.abs(videoBefore.currentTime - videoAfter.currentTime) > 0.3) {
-                videoAfter.currentTime = videoBefore.currentTime;
-            }
-            if (videoBefore.paused !== videoAfter.paused) {
-                videoAfter.paused ? videoAfter.play() : videoAfter.pause();
-            }
-            requestAnimationFrame(syncVideos);
-        };
+            const animate = () => {
+                position += direction * 0.2;
+                if (position <= minPosition) {
+                    direction = 1;
+                } else if (position >= maxPosition) {
+                    direction = -1;
+                }
+                setSliderPosition(position);
+                hintAnimationRef.current = requestAnimationFrame(animate);
+            };
 
-        const handleSync = () => {
-            videoAfter.currentTime = videoBefore.currentTime;
-            videoAfter.playbackRate = videoBefore.playbackRate;
-        };
+            hintAnimationRef.current = requestAnimationFrame(animate);
 
-        videoBefore.addEventListener('timeupdate', handleSync);
-        videoBefore.addEventListener('play', () => videoAfter.play());
-        videoBefore.addEventListener('pause', () => videoAfter.pause());
-        videoBefore.addEventListener('seeked', handleSync);
+            const stopTimer = setTimeout(() => {
+                if (hintAnimationRef.current) {
+                    cancelAnimationFrame(hintAnimationRef.current);
+                }
+                setSliderPosition(50);
+                setShowHint(false);
+            }, 3000);
 
-        return () => {
-            videoBefore.removeEventListener('timeupdate', handleSync);
-            videoBefore.removeEventListener('play', () => videoAfter.play());
-            videoBefore.removeEventListener('pause', () => videoAfter.pause());
-            videoBefore.removeEventListener('seeked', handleSync);
-        };
-    }, [type]);
+            return () => {
+                if (hintAnimationRef.current) {
+                    cancelAnimationFrame(hintAnimationRef.current);
+                }
+                clearTimeout(stopTimer);
+            };
+        }
+    }, [showHint, isDragging]);
 
+    // Handle container resize
     useEffect(() => {
         if (containerRef.current) {
             setWidth(containerRef.current.offsetWidth);
@@ -266,6 +277,57 @@ const MediaCompareSlider: React.FC<{
         return () => window.removeEventListener('mouseup', handleGlobalMouseUp);
     }, []);
 
+    // Reset videos when component mounts
+    useEffect(() => {
+        if (type === 'video') {
+            setVideoKey(prev => prev + 1);
+        }
+    }, [type]);
+
+    // Sync video playback using direct refs - much more reliable
+    useEffect(() => {
+        if (type !== 'video') return;
+
+        const syncVideos = () => {
+            const beforeVid = beforeVideoRef.current;
+            const afterVid = afterVideoRef.current;
+
+            if (!beforeVid || !afterVid) return;
+
+            const timeDiff = Math.abs(beforeVid.currentTime - afterVid.currentTime);
+
+            // If videos are out of sync by more than 0.05 seconds, sync them
+            if (timeDiff > 0.05) {
+                // Use the leading video as reference
+                const referenceTime = Math.max(beforeVid.currentTime, afterVid.currentTime);
+                beforeVid.currentTime = referenceTime;
+                afterVid.currentTime = referenceTime;
+            }
+
+            // Ensure both videos are playing
+            if (beforeVid.paused && !afterVid.paused) {
+                beforeVid.play().catch(() => {});
+            } else if (afterVid.paused && !beforeVid.paused) {
+                afterVid.play().catch(() => {});
+            }
+
+            // Continue syncing
+            syncRef.current = requestAnimationFrame(syncVideos);
+        };
+
+        // Start syncing after a short delay to let videos load
+        const startTimeout = setTimeout(() => {
+            syncVideos();
+        }, 100);
+
+        return () => {
+            clearTimeout(startTimeout);
+            if (syncRef.current) {
+                cancelAnimationFrame(syncRef.current);
+            }
+        };
+    }, [type, videoKey]);
+
     return (
         <div
             ref={containerRef}
@@ -275,48 +337,61 @@ const MediaCompareSlider: React.FC<{
             onTouchMove={handleTouchMove}
             onTouchStart={handleMouseDown}
         >
-            {/* Background Layer (Right Side / After) */}
             {type === 'image' ? (
-                 <img src={after} alt={labelAfter} className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
+                <>
+                    {/* Background Image (After) */}
+                    <img src={after} alt={labelAfter} className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
+                    
+                    {/* Foreground Image (Before) - Clipped */}
+                    <div
+                        className="absolute inset-0 h-full overflow-hidden border-r-2 border-white/80"
+                        style={{ width: `${sliderPosition}%` }}
+                    >
+                        <img
+                            src={before}
+                            alt={labelBefore}
+                            className="absolute inset-0 max-w-none h-full object-cover pointer-events-none"
+                            style={{ width: width || '100%' }}
+                        />
+                    </div>
+                </>
             ) : (
-                <video 
-                    ref={videoAfterRef}
-                    src={after} 
-                    className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
-                    autoPlay 
-                    muted 
-                    loop 
-                    playsInline 
-                />
+                <>
+                    {/* Background Video (After) - Full width */}
+                    <video
+                        ref={afterVideoRef}
+                        key={`after-${videoKey}`}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        src={after}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="auto"
+                    />
+
+                    {/* Foreground Video (Before) - Clipped */}
+                    <div
+                        className="absolute inset-0 h-full overflow-hidden border-r-2 border-white/80"
+                        style={{ width: `${sliderPosition}%` }}
+                    >
+                        <video
+                            ref={beforeVideoRef}
+                            key={`before-${videoKey}`}
+                            className="absolute inset-0 max-w-none h-full object-cover"
+                            src={before}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            preload="auto"
+                            style={{ width: width || '100%' }}
+                        />
+                    </div>
+                </>
             )}
 
-            {/* Foreground Layer (Left Side / Before) - Clipped */}
-            <div
-                className="absolute inset-0 h-full overflow-hidden border-r-2 border-white/80"
-                style={{ width: `${sliderPosition}%` }}
-            >
-                {type === 'image' ? (
-                     <img
-                        src={before}
-                        alt={labelBefore}
-                        className="absolute inset-0 max-w-none h-full object-cover pointer-events-none"
-                        style={{ width: width || '100%' }}
-                    />
-                ) : (
-                    <video
-                        ref={videoBeforeRef}
-                        src={before}
-                        className="absolute inset-0 max-w-none h-full object-cover pointer-events-none"
-                        style={{ width: width || '100%' }}
-                        autoPlay 
-                        muted 
-                        loop 
-                        playsInline
-                    />
-                )}
-            </div>
-
-             {/* Slider Handle */}
+            {/* Slider Handle */}
             <div
                 className="absolute top-1/2 -translate-y-1/2 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,0,0,0.3)] z-10 hover:scale-110 transition-transform"
                 style={{ left: `calc(${sliderPosition}% - 18px)` }}
@@ -327,13 +402,24 @@ const MediaCompareSlider: React.FC<{
                 </div>
             </div>
 
-             {/* Labels */}
+            {/* Labels */}
             <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-lg translate-y-2 group-hover:translate-y-0">
                 {labelBefore}
             </div>
             <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-lg translate-y-2 group-hover:translate-y-0">
                 {labelAfter}
             </div>
+
+            {/* Hint Animation */}
+            {showHint && (
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-xs font-medium text-white border border-white/10 z-20 flex items-center gap-2 animate-pulse pointer-events-none">
+                    <span>Drag to compare</span>
+                    <div className="flex gap-1">
+                        <div className="w-0.5 h-3 bg-white/80 rounded-full animate-[ping_1s_ease-in-out_infinite]"></div>
+                        <div className="w-0.5 h-3 bg-white/80 rounded-full animate-[ping_1s_ease-in-out_infinite_0.2s]"></div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
@@ -341,6 +427,7 @@ const MediaCompareSlider: React.FC<{
 const AerialRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavigate }) => {
     const [heroRef, heroVisible] = useIntersectionObserver<HTMLElement>();
     const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
+    const { navigateToServices } = useNavigation();
 
     return (
         <div className="bg-neutral-950 min-h-screen pt-20">
@@ -353,8 +440,8 @@ const AerialRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNav
                 </div>
 
                 <div className="relative z-10 ">
-                    <button 
-                        onClick={() => onNavigate('home')}
+                    <button
+                        onClick={() => navigateToServices(onNavigate)}
                         className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase cursor-hover"
                     >
                         <ArrowLeft size={16} /> Back to Services

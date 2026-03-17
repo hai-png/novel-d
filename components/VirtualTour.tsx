@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useNavigation } from '../hooks/useNavigation';
 import {
   ArrowLeft,
   ArrowRight,
@@ -424,6 +425,7 @@ const VirtualTour: React.FC<{ onNavigate: (page: Page) => void }> = ({
   const [heroRef, heroVisible] =
     useIntersectionObserver<HTMLElement>();
   const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
+  const { navigateToServices } = useNavigation();
 
   // Lazy load Interactive VR images with caching
   const interactive1 = useCachedLazyImage(interactiveImagePaths[0]);
@@ -516,7 +518,7 @@ const VirtualTour: React.FC<{ onNavigate: (page: Page) => void }> = ({
 
         <div className="relative z-10 ">
           <button
-            onClick={() => onNavigate('home')}
+            onClick={() => navigateToServices(onNavigate)}
             className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors text-sm tracking-widest uppercase"
           >
             <ArrowLeft size={16} /> Back to Services

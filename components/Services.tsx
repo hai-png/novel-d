@@ -20,7 +20,7 @@ interface ServiceCardProps {
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, onNavigate }) => {
     const [ref, isVisible] = useIntersectionObserver<HTMLAnchorElement>();
-    
+
     const handleClick = (e: React.MouseEvent) => {
         e.preventDefault();
         if (service.id_tag === 'exterior-rendering') {
@@ -36,7 +36,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, onNavigate })
         } else if (service.id_tag === 'animation') {
             onNavigate('animation');
         }
-        window.scrollTo(0, 0);
+        // Scroll to top when navigating to service pages
+        window.scrollTo({ top: 0, behavior: 'instant' });
     };
 
     return (

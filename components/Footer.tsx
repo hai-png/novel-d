@@ -1,16 +1,26 @@
 import React from 'react';
-import { Instagram, Send, ArrowUpRight, Music2 } from 'lucide-react';
+import { Instagram, Send, Music2, Phone, Mail, MapPin, ArrowUpRight } from 'lucide-react';
 import { Page } from '../types';
+import { useNavigation } from '../hooks/useNavigation';
 
 interface FooterProps {
     onNavigate?: (page: Page) => void;
 }
 
 const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const { navigateToHomeWithScroll } = useNavigation();
+
   const handleNavClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
 
-    const executeScroll = () => {
+    if (onNavigate) {
+        if (href === '#') {
+            onNavigate('home');
+            setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
+        } else if (href.startsWith('#')) {
+            navigateToHomeWithScroll(onNavigate, href.substring(1));
+        }
+    } else {
         if (href === '#') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } else if (href.startsWith('#')) {
@@ -19,13 +29,6 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 element.scrollIntoView({ behavior: 'smooth' });
             }
         }
-    };
-
-    if (onNavigate) {
-        onNavigate('home');
-        setTimeout(executeScroll, 100);
-    } else {
-        executeScroll();
     }
   };
 
@@ -56,32 +59,38 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <div>
               <h4 className="text-white font-medium mb-6">Contact</h4>
               <ul className="space-y-4">
-                <li>
-                  <a href="mailto:contact@noveld.com.et" className="text-neutral-400 hover:text-white transition-colors text-sm flex items-center gap-2 group">
+                <li className="flex items-center gap-2 text-neutral-400 text-sm">
+                  <Mail size={14} className="flex-shrink-0" />
+                  <a href="mailto:contact@noveld.com.et" className="hover:text-white transition-colors flex items-center gap-2 group">
                     contact@noveld.com.et
                     <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </li>
-                <li className="text-neutral-400 text-sm">
-                  Addis ababa Ethiopia
+                <li className="flex items-start gap-2 text-neutral-400 text-sm">
+                  <MapPin size={14} className="flex-shrink-0 mt-0.5" />
+                  <span>Addis ababa Ethiopia</span>
                 </li>
-                <li className="text-neutral-400 text-sm mt-4">
-                  +251 906422230
+                <li className="flex items-center gap-2 text-neutral-400 text-sm">
+                  <Phone size={14} className="flex-shrink-0" />
+                  <a href="tel:+251906422230" className="hover:text-white transition-colors">
+                    +251 906422230
+                  </a>
                 </li>
               </ul>
+              
+              <div className="flex gap-4 mt-8 pt-6 border-t border-white/5">
+                {[Instagram, Send, Music2].map((Icon, idx) => (
+                  <a key={idx} href="#" className="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-white hover:text-neutral-900 transition-all duration-300 rounded-full">
+                    <Icon size={18} />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-neutral-600 text-sm">© 2024 Noved-d Studio. All rights reserved.</p>
-          <div className="flex gap-4">
-            {[Instagram, Send, Music2].map((Icon, idx) => (
-              <a key={idx} href="#" className="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-white hover:text-neutral-900 transition-all duration-300 rounded-full">
-                <Icon size={18} />
-              </a>
-            ))}
-          </div>
+        <div className="border-t border-white/5 pt-8">
+          <p className="text-neutral-600 text-sm">© 2024 Novel-D Studio. All rights reserved.</p>
         </div>
       </div>
     </footer>
