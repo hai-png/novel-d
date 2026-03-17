@@ -1,6 +1,10 @@
 import React from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
+// Import images from HOME PAGE/about_us folder
+const aboutImages = import.meta.glob('/src/assets/images-optimized/HOME PAGE/about_us/*.{webp,jpg,jpeg,png}', { eager: true, import: 'default' }) as Record<string, string>;
+const aboutGallery = Object.values(aboutImages);
+
 const Counter = ({ end, duration = 2000 }: { end: number, duration?: number }) => {
     const [ref, isVisible] = useIntersectionObserver<HTMLSpanElement>();
     const [count, setCount] = React.useState(0);
@@ -78,11 +82,7 @@ const About: React.FC = () => {
 
         {/* Scrolling Images Side */}
         <div className="bg-neutral-950 py-32 px-6 lg:px-12 space-y-24">
-            {[
-                'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
-                'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80',
-                'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80'
-            ].map((src, idx) => {
+            {aboutGallery.length > 0 ? aboutGallery.map((src, idx) => {
                 const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2, rootMargin: '0px' });
                 return (
                     <div key={idx} ref={ref} className="relative overflow-hidden group">
@@ -94,7 +94,25 @@ const About: React.FC = () => {
                         />
                     </div>
                 )
-            })}
+            }) : (
+                [
+                    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
+                    'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80',
+                    'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80'
+                ].map((src, idx) => {
+                    const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2, rootMargin: '0px' });
+                    return (
+                        <div key={idx} ref={ref} className="relative overflow-hidden group">
+                             <div className={`absolute inset-0 bg-neutral-950 z-10 transition-transform duration-1000 ease-in-out origin-top ${isVisible ? 'scale-y-0' : 'scale-y-100'}`}></div>
+                             <img
+                                src={src}
+                                alt={`Studio ${idx + 1}`}
+                                className="w-full aspect-[4/3] object-cover transition-transform duration-1000 group-hover:scale-105"
+                            />
+                        </div>
+                    )
+                })
+            )}
         </div>
       </div>
     </section>

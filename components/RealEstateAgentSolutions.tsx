@@ -47,14 +47,12 @@ const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, ans
 };
 
 const solutionsData = [
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "I need to sell something that doesn't exist yet"
-    // VALUE: Revenue before construction
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'sell-the-invisible',
         title: 'Sell Before You Build',
         description: 'Drive deposits before ground is broken. From architectural plans alone, we build your complete pre-sales ecosystem: photorealistic exterior hero shots at golden hour, styled interior lifestyle renders for every unit type, aerial context views showing the development in its neighborhood, a cinematic launch film, furnished 3D floor plans, a multi-room interactive virtual tour with customizable finishes, and a sales center touchscreen app with unit selection and availability filtering. Everything an off-plan buyer needs to commit — delivered months before construction completes.',
+        problem: 'I need to sell something that doesn\'t exist yet',
+        value: 'Revenue before construction',
         mediaType: 'video' as const,
         src: 'https://archicgi.com/wp-content/uploads/2023/08/future-interior-animation-web-min.mp4',
     },
@@ -62,18 +60,17 @@ const solutionsData = [
         id: 'investor-confidence',
         title: 'The Investor Confidence Package',
         description: 'Visuals that speak to ROI, not just aesthetics. We deliver aerial masterplan views showing the development at scale, phasing animations illustrating the construction and delivery timeline, styled interior renders that demonstrate market positioning, construction progress timelapse frameworks, and a branded presentation deck — everything an investor needs to see the return before writing the check. Keep stakeholders engaged and confident from capital raise through handover.',
+        problem: 'I need to secure investor buy-in early',
+        value: 'Confidence and clarity for stakeholders',
         mediaType: 'image' as const,
         src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "My listing isn't getting enough engagement"
-    // VALUE: More clicks, faster sales, higher prices
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'listing-transformation',
         title: 'The Listing Transformation',
         description: 'Turn an empty property into a scroll-stopping listing in 48 hours. We virtually stage every key room in a style matched to your target demographic — Scandi minimalist, Hamptons luxury, industrial chic — at 90% less than physical staging. Convert your daytime exterior into a dramatic twilight hero shot with glowing windows. Deliver a furnished 3D floor plan that communicates layout at a glance, plus dollhouse cutaway views that show the full spatial flow. The complete visual upgrade that makes buyers stop scrolling and start calling.',
+        problem: 'My listing isn\'t getting enough engagement',
+        value: 'More clicks, faster sales, higher prices',
         mediaType: 'slider' as const,
         before: 'https://archicgi.com/wp-content/uploads/2023/07/apartment-photo-without-virtual-staging.jpg',
         after: 'https://archicgi.com/wp-content/uploads/2023/07/real-estate-photo-with-virtual-staging.jpg',
@@ -84,6 +81,8 @@ const solutionsData = [
         id: 'listing-rescue',
         title: 'The Stale Listing Reset',
         description: 'Your property has been sitting on the market too long. The algorithm has buried it, and buyers have scrolled past it. We completely reimagine the visual identity: re-stage rooms targeting a different demographic, add a twilight exterior conversion, produce fresh aerial context imagery highlighting nearby amenities, and deliver a new set of social video clips. A visual reset that makes a stale listing feel brand new — to both the algorithm and the buyer.',
+        problem: 'My listing has gone cold',
+        value: 'Renewed interest and fresh momentum',
         mediaType: 'slider' as const,
         before: 'https://archicgi.com/wp-content/uploads/2023/07/apartment-photo-without-virtual-staging.jpg',
         after: 'https://archicgi.com/wp-content/uploads/2023/07/real-estate-photo-with-virtual-staging.jpg',
@@ -94,57 +93,47 @@ const solutionsData = [
         id: 'twilight-conversion',
         title: 'Twilight & Lighting Magic',
         description: 'The single highest-impact visual upgrade for any listing. We convert daytime exteriors into dramatic dusk hero shots with warmly glowing windows and a cinematic sky — proven to increase click-through rates and time-on-listing across every major portal. One image that makes any property feel premium.',
+        problem: 'My listing looks ordinary in daylight',
+        value: 'Dramatic, premium appeal that stands out',
         mediaType: 'slider' as const,
         before: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
         after: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80',
         labelBefore: 'Day',
         labelAfter: 'Dusk',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "Remote/international buyers can't visit in person"
-    // VALUE: 24/7 global access, no missed opportunities
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'always-open',
         title: 'The 24/7 Open House',
         description: 'Your listing never closes. We give international and out-of-state buyers a complete property experience from their couch: 8K 360° panoramas of every room with hotspot navigation, a cinematic walkthrough film that conveys spatial flow, dollhouse cutaway views showing the full layout, interactive floor plans, and information overlays — all accessible via a single shareable link on any device including VR headsets. Embed directly into your MLS listing, website, or email campaign. No app download, no scheduling, no missed opportunities.',
+        problem: 'Remote/international buyers can\'t visit in person',
+        value: '24/7 global access, no missed opportunities',
         mediaType: 'image' as const,
         src: 'https://images.unsplash.com/photo-1557900455-628858ed0859?w=1200&q=80',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "Buyers don't understand the location value"
-    // VALUE: Sell the lifestyle, not just the unit
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'sell-the-location',
         title: 'Sell the Location',
         description: 'Location is everything — and we make it visible. Aerial renders and drone photomontages highlighting proximity to transit, schools, parks, and amenities. An interactive neighborhood map with key points of interest pinned. Pedestrian-level exterior renders showing streetscape activity and local life. Lot boundary overlays and walking distance indicators. Contextual video content proving lifestyle value to buyers who\'ve never visited the area. Because the best unit in a bad location doesn\'t sell — and a great location poorly communicated sells slowly.',
+        problem: 'Buyers don\'t understand the location value',
+        value: 'Sell the lifestyle, not just the unit',
         mediaType: 'image' as const,
         src: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=80',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "I need content that performs on social media"
-    // VALUE: Weeks of platform-optimized content from one session
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'social-content-engine',
         title: 'Social-First Content Engine',
         description: 'Content designed for the algorithm, not the brochure. One production session delivers weeks of postable content: punchy vertical (9:16) property tours with fast cuts and music for Instagram Reels and TikTok, dramatic before-after staging reveals, aerial fly-arounds that open with scale and descend to detail, room-by-room transition reels, cinematic landscape cuts for YouTube and Facebook, and square crops for feed posts. Every asset optimized for maximum engagement on its target platform — maximizing your reach without multiplying your spend.',
+        problem: 'I need content that performs on social media',
+        value: 'Weeks of platform-optimized content from one session',
         mediaType: 'video' as const,
         src: 'https://archicgi.com/wp-content/uploads/2024/01/3d-rendering-for-real-estate-agents-animation-03-web.mp4',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "I need a unified brand for my development"
-    // VALUE: Premium positioning across every touchpoint
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'brand-ecosystem',
         title: 'The Development Brand Ecosystem',
         description: 'Treat your building like a luxury product. We produce a complete branded visual system: exterior hero shots, interior lifestyle renders, aerial context views, a cinematic teaser film, interactive virtual tours, print-ready 8K images for hoardings and brochures (CMYK-ready with safe zones for text and logo), and a sales center touchscreen application — all unified by your development\'s color palette, typography, and visual identity. One studio, one visual language, every touchpoint covered.',
+        problem: 'I need a unified brand for my development',
+        value: 'Premium positioning across every touchpoint',
         mediaType: 'image' as const,
         src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80',
     },
@@ -238,13 +227,26 @@ const RealEstateAgentSolutions: React.FC<{ onNavigate: (page: Page) => void }> =
                     <div className="lg:flex gap-16 pb-32">
                         <div className="hidden lg:block w-1/2 relative">
                             <div className="sticky top-32 h-[60vh] flex items-center">
-                                <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl">
+                                <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl p-12 flex flex-col justify-center">
                                     {activeSolution && (
-                                        <div key={activeSolution.id} className="absolute inset-0 animate-in fade-in duration-700">
-                                            {activeSolution.mediaType === 'image' && <img src={activeSolution.src} className="w-full h-full object-cover" alt={activeSolution.title} />}
-                                            {activeSolution.mediaType === 'video' && <video src={activeSolution.src} className="w-full h-full object-cover" autoPlay muted loop playsInline />}
-                                            {activeSolution.mediaType === 'slider' && activeSolution.before && activeSolution.after && <BeforeAfterSlider before={activeSolution.before} after={activeSolution.after} labelBefore={activeSolution.labelBefore} labelAfter={activeSolution.labelAfter} />}
-                                            <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+                                        <div key={activeSolution.id} className="animate-in fade-in duration-700 space-y-8">
+                                            <div className="space-y-4">
+                                                <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-full text-red-400 text-xs uppercase tracking-wider">
+                                                    Problem
+                                                </div>
+                                                <p className="text-white text-2xl font-display leading-relaxed">
+                                                    "{activeSolution.problem}"
+                                                </p>
+                                            </div>
+                                            <div className="w-full h-px bg-gradient-to-r from-white/20 to-transparent" />
+                                            <div className="space-y-4">
+                                                <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-xs uppercase tracking-wider">
+                                                    Value
+                                                </div>
+                                                <p className="text-white text-2xl font-display leading-relaxed">
+                                                    {activeSolution.value}
+                                                </p>
+                                            </div>
                                         </div>
                                     )}
                                 </div>
@@ -253,10 +255,26 @@ const RealEstateAgentSolutions: React.FC<{ onNavigate: (page: Page) => void }> =
                         <div className="w-full lg:w-1/2">
                             {solutionsData.map((solution, index) => (
                                 <div key={solution.id} ref={el => { solutionRefs.current[index] = el; }} className="min-h-[80vh] flex flex-col justify-center py-20 border-b border-white/5 last:border-0">
-                                    <div className="lg:hidden w-full aspect-video rounded-2xl overflow-hidden mb-8 border border-white/10 relative">
-                                        {solution.mediaType === 'image' && <img src={solution.src} className="w-full h-full object-cover" alt={solution.title} />}
-                                        {solution.mediaType === 'video' && <video src={solution.src} className="w-full h-full object-cover" autoPlay muted loop playsInline />}
-                                        {solution.mediaType === 'slider' && solution.before && solution.after && <BeforeAfterSlider before={solution.before} after={solution.after} labelBefore={solution.labelBefore} labelAfter={solution.labelAfter} />}
+                                    <div className="lg:hidden w-full aspect-video rounded-2xl overflow-hidden mb-8 border border-white/10 relative p-8 flex flex-col justify-center bg-neutral-900">
+                                        <div className="space-y-6">
+                                            <div className="space-y-3">
+                                                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-400 text-xs uppercase tracking-wider">
+                                                    Problem
+                                                </div>
+                                                <p className="text-white text-lg font-display leading-relaxed">
+                                                    "{solution.problem}"
+                                                </p>
+                                            </div>
+                                            <div className="w-full h-px bg-gradient-to-r from-white/20 to-transparent" />
+                                            <div className="space-y-3">
+                                                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-xs uppercase tracking-wider">
+                                                    Value
+                                                </div>
+                                                <p className="text-white text-lg font-display leading-relaxed">
+                                                    {solution.value}
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <h3 className="font-display text-4xl md:text-5xl text-white mb-6 italic">{solution.title}</h3>
                                     <p className="text-neutral-400 text-lg leading-relaxed mb-8">{solution.description}</p>

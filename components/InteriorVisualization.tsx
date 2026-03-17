@@ -207,7 +207,7 @@ const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, ans
 };
 
 const AnimationVideoPlayer: React.FC = () => {
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(true);
     const [isMuted, setIsMuted] = useState(true);
     const [progress, setProgress] = useState(0);
     const videoRef = React.useRef<HTMLVideoElement>(null);
@@ -271,6 +271,8 @@ const AnimationVideoPlayer: React.FC = () => {
                 onEnded={handleEnded}
                 onClick={togglePlay}
                 playsInline
+                autoPlay
+                loop
             />
 
             {/* Play/Pause overlay indicator */}

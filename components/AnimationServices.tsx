@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { useNavigation } from '../hooks/useNavigation';
 import {
@@ -18,7 +18,11 @@ import {
     ChevronDown,
     Layers,
     Clock,
-    Smartphone
+    Smartphone,
+    Pause,
+    Volume2,
+    VolumeX,
+    Maximize
 } from 'lucide-react';
 import { Page } from '../types';
 import QuoteForm from './QuoteForm';
@@ -75,15 +79,67 @@ const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, ans
 };
 
 // Video Gallery Component for Walkthrough/Flythrough
-const VideoGallery: React.FC<{ videos: string[]; title: string }> = ({ videos, title }) => {
+const VideoGallery: React.FC<{ videos: string[]; title: string; aspectRatio?: 'video' | 'vertical' | 'wide' }> = ({ 
+    videos, 
+    title,
+    aspectRatio = 'video'
+}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(true);
+    const [isMuted, setIsMuted] = useState(true);
+    const [progress, setProgress] = useState(0);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
     const handleNext = () => setCurrentIndex((prev) => (prev + 1) % videos.length);
     const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + videos.length) % videos.length);
 
+    const togglePlay = () => {
+        if (videoRef.current) {
+            if (isPlaying) {
+                videoRef.current.pause();
+            } else {
+                videoRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
+        }
+    };
+
+    const toggleMute = () => {
+        if (videoRef.current) {
+            videoRef.current.muted = !isMuted;
+            setIsMuted(!isMuted);
+        }
+    };
+
+    const handleTimeUpdate = () => {
+        if (videoRef.current) {
+            const progress = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+            setProgress(progress || 0);
+        }
+    };
+
+    const handleEnded = () => {
+        setIsPlaying(false);
+        setProgress(0);
+    };
+
+    const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (videoRef.current) {
+            const seekTime = (parseFloat(e.target.value) / 100) * videoRef.current.duration;
+            videoRef.current.currentTime = seekTime;
+            setProgress(parseFloat(e.target.value));
+        }
+    };
+
+    const aspectClass = aspectRatio === 'vertical' 
+        ? 'aspect-[9/16] max-h-[600px]' 
+        : aspectRatio === 'wide'
+        ? 'aspect-[21/9]'
+        : 'aspect-[4/3]';
+
     if (videos.length === 0) {
         return (
-            <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-800 flex items-center justify-center">
+            <div className={`${aspectClass} overflow-hidden rounded-2xl bg-neutral-800 flex items-center justify-center`}>
                 <div className="text-center text-neutral-400">
                     <Film size={48} className="mx-auto mb-4 opacity-50" />
                     <p>No videos available</p>
@@ -93,29 +149,42 @@ const VideoGallery: React.FC<{ videos: string[]; title: string }> = ({ videos, t
     }
 
     return (
-        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-900 group">
+        <div className={`relative ${aspectClass} rounded-2xl overflow-hidden bg-neutral-900 group`}>
             <video
+                ref={videoRef}
                 src={videos[currentIndex]}
                 className="w-full h-full object-cover"
-                autoPlay
-                muted
-                loop
+                muted={isMuted}
+                onTimeUpdate={handleTimeUpdate}
+                onEnded={handleEnded}
+                onClick={togglePlay}
                 playsInline
+                autoPlay
+                loop
             />
-            
+
+            {/* Play/Pause overlay indicator */}
+            {!isPlaying && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/40 pointer-events-none">
+                    <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20">
+                        <Play fill="white" className="w-10 h-10 text-white translate-x-1" />
+                    </div>
+                </div>
+            )}
+
             {/* Navigation buttons */}
             {videos.length > 1 && (
                 <>
                     <button
                         onClick={handlePrev}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors z-20"
                         aria-label="Previous video"
                     >
                         <ArrowLeft size={24} className="text-white" />
                     </button>
                     <button
                         onClick={handleNext}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors z-20"
                         aria-label="Next video"
                     >
                         <ArrowRight size={24} className="text-white" />
@@ -123,9 +192,56 @@ const VideoGallery: React.FC<{ videos: string[]; title: string }> = ({ videos, t
                 </>
             )}
 
-            {/* Counter */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-sm text-white font-medium">
-                {currentIndex + 1} / {videos.length}
+            {/* Controls overlay - appears on hover */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                {/* Progress bar */}
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={progress}
+                    onChange={handleSeek}
+                    className="w-full h-1 bg-white/20 rounded-full appearance-none cursor-pointer mb-3 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:cursor-pointer"
+                    aria-label="Video progress"
+                />
+
+                {/* Control buttons */}
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={togglePlay}
+                            className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+                            aria-label={isPlaying ? 'Pause' : 'Play'}
+                        >
+                            {isPlaying ? (
+                                <Pause size={20} className="text-white" />
+                            ) : (
+                                <Play fill="white" size={20} className="text-white translate-x-0.5" />
+                            )}
+                        </button>
+
+                        <button
+                            onClick={toggleMute}
+                            className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+                            aria-label={isMuted ? 'Unmute' : 'Mute'}
+                        >
+                            {isMuted ? (
+                                <VolumeX size={20} className="text-white" />
+                            ) : (
+                                <Volume2 size={20} className="text-white" />
+                            )}
+                        </button>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                        {/* Counter */}
+                        {videos.length > 1 && (
+                            <div className="text-sm font-medium">
+                                {currentIndex + 1} / {videos.length}
+                            </div>
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     );
@@ -574,37 +690,12 @@ const AnimationServices: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
 
                                 {/* Video */}
                                 {item.title === "Phasing Animation" && phasingGallery.length > 0 ? (
-                                    <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-neutral-800 relative">
-                                        <video
-                                            src={phasingGallery[0]}
-                                            className="w-full h-full object-cover"
-                                            autoPlay
-                                            muted
-                                            loop
-                                            playsInline
-                                        />
-                                    </div>
+                                    <VideoGallery videos={phasingGallery} title={item.title} aspectRatio="wide" />
                                 ) : item.title === "Timelapse Video" && timelapseGallery.length > 0 ? (
-                                    <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-neutral-800 relative">
-                                        <video
-                                            src={timelapseGallery[0]}
-                                            className="w-full h-full object-cover"
-                                            autoPlay
-                                            muted
-                                            loop
-                                            playsInline
-                                        />
-                                    </div>
+                                    <VideoGallery videos={timelapseGallery} title={item.title} aspectRatio="wide" />
                                 ) : item.title === "Social Media Content" && socialMediaGallery.length > 0 ? (
-                                    <div className="aspect-[9/16] max-h-[600px] overflow-hidden rounded-2xl bg-neutral-800 relative mx-auto w-full max-w-md">
-                                        <video
-                                            src={socialMediaGallery[0]}
-                                            className="w-full h-full object-cover"
-                                            autoPlay
-                                            muted
-                                            loop
-                                            playsInline
-                                        />
+                                    <div className="w-full flex justify-center">
+                                        <VideoGallery videos={socialMediaGallery} title={item.title} aspectRatio="vertical" />
                                     </div>
                                 ) : (
                                     <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-neutral-800 relative flex items-center justify-center">

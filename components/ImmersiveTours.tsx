@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { useNavigation } from '../hooks/useNavigation';
-import { ArrowLeft, ArrowRight, Monitor, Globe, Glasses, Layers, Box, Code, Cloud, CheckCircle2, Plus, Minus, Play, MousePointer2, ChevronDown } from 'lucide-react';
+import { ArrowLeft, ChevronDown, Plus, Minus, Monitor, Globe, Glasses, Layers, Box, Code, Cloud, CheckCircle2, ArrowRight, Play } from 'lucide-react';
 import { Page } from '../types';
 import QuoteForm from './QuoteForm';
+import VideoPlayer from './VideoPlayer';
 
 // FAQ Component
 const FAQItem: React.FC<{ question: string, answer: string }> = ({ question, answer }) => {
@@ -224,20 +225,11 @@ const FeatureScrollSection: React.FC = () => {
                             <div className="grid grid-cols-1 lg:grid-cols-2 h-full min-h-[600px] lg:min-h-[700px]">
                                 {/* Media Side */}
                                 <div className={`relative h-[400px] lg:h-auto ${idx % 2 === 1 ? 'lg:order-2' : 'lg:order-1'}`}>
-                                     <video 
-                                        src={feature.video} 
-                                        autoPlay 
-                                        muted 
-                                        loop 
-                                        playsInline 
-                                        className="w-full h-full object-cover"
-                                     />
-                                     <div className="absolute inset-0 bg-black/10"></div>
-                                     <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 group cursor-pointer hover:scale-110 transition-transform duration-300">
-                                            <Play fill="white" className="w-8 h-8 text-white translate-x-1" />
-                                        </div>
-                                     </div>
+                                    <VideoPlayer 
+                                        src={feature.video}
+                                        aspectRatio="video"
+                                        className="w-full h-full"
+                                    />
                                 </div>
 
                                 {/* Text Side */}
@@ -343,34 +335,22 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         {/* Exterior Interactive */}
                         <div className="group cursor-hover">
-                            <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-800 mb-8">
-                                <video
-                                    autoPlay
-                                    muted
-                                    loop
-                                    playsInline
-                                    className="w-full h-full object-cover"
-                                >
-                                    <source src="../src/assets/images-optimized/interactive/exterior/TemerProperties - Unreal Editor 2026-02-22 15-35-43 (online-video-cutter.com).mp4" type="video/mp4" />
-                                </video>
-                            </div>
+                            <VideoPlayer 
+                                src="../src/assets/images-optimized/interactive/exterior/TemerProperties - Unreal Editor 2026-02-22 15-35-43 (online-video-cutter.com).mp4"
+                                aspectRatio="video"
+                                className="mb-8"
+                            />
                             <h3 className="text-2xl font-display mb-3">Exterior Interactive Tours</h3>
                             <p className="text-neutral-400 text-sm leading-relaxed">Let clients fly around the development, explore amenities, and understand the project's scale within its environment. Perfect for masterplans and multi-building complexes.</p>
                         </div>
 
                          {/* Interior Interactive */}
                         <div className="group cursor-hover">
-                            <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-800 mb-8">
-                                <video
-                                    autoPlay
-                                    muted
-                                    loop
-                                    playsInline
-                                    className="w-full h-full object-cover"
-                                >
-                                    <source src="../src/assets/images-optimized/interactive/interior/Twinmotion 2026-02-20 15-36-55-clip.mp4" type="video/mp4" />
-                                </video>
-                            </div>
+                            <VideoPlayer 
+                                src="../src/assets/images-optimized/interactive/interior/Twinmotion 2026-02-20 15-36-55-clip.mp4"
+                                aspectRatio="video"
+                                className="mb-8"
+                            />
                             <h3 className="text-2xl font-display mb-3">Interior Interactive Tours</h3>
                             <p className="text-neutral-400 text-sm leading-relaxed">Walk through every room, open doors, and interact with the space. High-fidelity textures and lighting make it feel like the property is already built.</p>
                         </div>

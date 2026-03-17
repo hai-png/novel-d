@@ -47,101 +47,78 @@ const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, ans
 };
 
 const solutionsData = [
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "I need to win a competition under deadline pressure"
-    // VALUE: A jury-ready visual package, fast
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'competition-package',
         title: 'Win the Competition',
         description: 'You have three weeks and one shot. From a single model handoff, we deliver the complete visual submission: atmospheric exterior hero shots at golden hour, aerial photomontages composited into real drone photography of the site, key interior moments that sell the spatial experience, technical diagrams — exploded axonometrics, section perspectives, and site plan illustrations — and a 60-second cinematic flythrough tying it all together. Built for deadline pressure: our rush pipeline can deliver full packages in under a week.',
+        problem: 'I need to win a competition under deadline pressure',
+        value: 'A jury-ready visual package, fast',
         mediaType: 'image' as const,
         src: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1200&q=80',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "My client doesn't understand the design from drawings"
-    // VALUE: Instant comprehension, faster sign-off
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'client-comprehension',
         title: 'Make Clients See What You See',
         description: 'Your client doesn\'t read plans. We translate your design into their language: photorealistic exterior and interior stills that capture materiality and light, a cinematic first-person walkthrough showing the experience of moving through the building, room-by-room 360° panoramas they can explore on their phone, furnished 3D floor plans that communicate scale, and dollhouse cutaway views that explain spatial hierarchy at a glance. Shareable via a single link with decision-makers who can\'t attend the meeting. The complete package that eliminates "I didn\'t realize it would look like that."',
+        problem: 'My client doesn\'t understand the design from drawings',
+        value: 'Instant comprehension, faster sign-off',
         mediaType: 'image' as const,
         src: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "Material and facade decisions stall the project"
-    // VALUE: Objective visual evidence that accelerates decisions
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'design-decisions',
         title: 'Resolve Design Decisions Visually',
         description: 'Before you specify, see it at full scale. We render the same viewpoint with multiple options — brick versus zinc versus timber cladding, warm versus cool lighting temperatures, day versus dusk versus night conditions — creating a systematic visual matrix that transforms subjective taste debates into objective design conversations. Includes digital maquettes (pure white clay renders) for early massing reviews and full photorealistic stills for final material sign-off. Avoid costly post-tender changes with evidence your client can hold in their hands.',
+        problem: 'Material and facade decisions stall the project',
+        value: 'Objective visual evidence that accelerates decisions',
         mediaType: 'slider' as const,
         before: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80',
         after: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80',
         labelBefore: 'Brick Option',
         labelAfter: 'Zinc Option',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "Design reviews are slow and decisions happen in emails"
-    // VALUE: Real-time collaborative exploration, decisions in the room
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'immersive-review',
         title: 'Real-Time Design Review',
         description: 'Replace pin-up boards with immersive experiences. We deliver interactive real-time 3D environments where your design team and clients orbit the exterior, walk through interiors, toggle between day and night lighting, switch weather conditions, compare cladding options, and test furniture layouts — all live during the meeting at interactive frame rates. Decisions happen in the room, not in follow-up emails. Accessible via web browser, large-format touchscreen, or VR headset.',
+        problem: 'Design reviews are slow and decisions happen in emails',
+        value: 'Real-time collaborative exploration, decisions in the room',
         mediaType: 'image' as const,
         src: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1200&q=80',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "Planning submissions need technical visual evidence"
-    // VALUE: Compliant, precise, approval-ready documentation
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'planning-evidence',
         title: 'Planning & Technical Evidence',
         description: 'Visual documentation that satisfies planning authorities. Precise aerial shadow studies simulating accurate solar positioning for your latitude at specific dates and times throughout the year. Aerial photomontages composited into verified site photography. Construction phasing animations showing the build sequence from foundations through completion. Exploded axonometrics, section perspectives, and site plan diagrams rendered with technical clarity and visual authority. Everything you need to demonstrate compliance and win approval.',
+        problem: 'Planning submissions need technical visual evidence',
+        value: 'Compliant, precise, approval-ready documentation',
         mediaType: 'image' as const,
         src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "I need to communicate a large-scale masterplan"
-    // VALUE: Multi-scale narrative from city context to unit detail
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'masterplan-at-scale',
         title: 'Communicate the Masterplan',
         description: 'Show the full scope at every scale. We combine aerial context films — cinematic drone-style flythroughs revealing how your buildings integrate with the city fabric — with technical masterplan illustrations including site plans, circulation diagrams, phasing graphics, and construction sequencing animations. The complete visual narrative from urban strategy down to unit detail, essential for investor presentations, stakeholder alignment, and public consultation.',
+        problem: 'I need to communicate a large-scale masterplan',
+        value: 'Multi-scale narrative from city context to unit detail',
         mediaType: 'video' as const,
         src: 'https://archicgi.com/wp-content/uploads/2022/05/virtual-reality-architecture-presentation.mp4',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "My practice has no consistent public presence"
-    // VALUE: Months of content from existing project models
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'practice-visibility',
         title: 'Build Your Practice\'s Brand',
         description: 'Build your firm\'s public presence without hiring a film crew. From your existing visualization models, we produce a rolling content pipeline: vertical 9:16 fly-arounds for Instagram Reels, polished portfolio renders of projects still in construction, cinematic 30-second project teasers for LinkedIn, and high-resolution stills for awards submissions and publications — giving you months of content from a single production session.',
+        problem: 'My practice has no consistent public presence',
+        value: 'Months of content from existing project models',
         mediaType: 'video' as const,
         src: 'https://archicgi.com/wp-content/uploads/2024/01/3d-rendering-for-real-estate-agents-animation-03-web.mp4',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "I need one partner from concept through sale"
-    // VALUE: Visual consistency, no ramp-up time, compounding quality
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'concept-to-completion',
         title: 'Concept to Completion',
         description: 'A phased visualization program that grows with your project. Digital maquettes at concept stage, photorealistic stills at DA submission, aerial photomontage for planning, cinematic animation for marketing launch, and immersive tours for the sales center. One studio, one visual language, from first sketch to final sale — eliminating ramp-up time, maintaining consistency, and compounding quality with every phase.',
+        problem: 'I need one partner from concept through sale',
+        value: 'Visual consistency, no ramp-up time, compounding quality',
         mediaType: 'image' as const,
         src: 'https://images.unsplash.com/photo-1460472178825-e5240623afd5?w=1200&q=80',
     },
@@ -235,13 +212,26 @@ const ArchitectSolutions: React.FC<{ onNavigate: (page: Page) => void }> = ({ on
                     <div className="lg:flex gap-16 pb-32">
                         <div className="hidden lg:block w-1/2 relative">
                             <div className="sticky top-32 h-[60vh] flex items-center">
-                                <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl">
+                                <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl p-12 flex flex-col justify-center">
                                     {activeSolution && (
-                                        <div key={activeSolution.id} className="absolute inset-0 animate-in fade-in duration-700">
-                                            {activeSolution.mediaType === 'image' && <img src={activeSolution.src} className="w-full h-full object-cover" alt={activeSolution.title} />}
-                                            {activeSolution.mediaType === 'video' && <video src={activeSolution.src} className="w-full h-full object-cover" autoPlay muted loop playsInline />}
-                                            {activeSolution.mediaType === 'slider' && activeSolution.before && activeSolution.after && <BeforeAfterSlider before={activeSolution.before} after={activeSolution.after} labelBefore={activeSolution.labelBefore} labelAfter={activeSolution.labelAfter} />}
-                                            <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+                                        <div key={activeSolution.id} className="animate-in fade-in duration-700 space-y-8">
+                                            <div className="space-y-4">
+                                                <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-full text-red-400 text-xs uppercase tracking-wider">
+                                                    Problem
+                                                </div>
+                                                <p className="text-white text-2xl font-display leading-relaxed">
+                                                    "{activeSolution.problem}"
+                                                </p>
+                                            </div>
+                                            <div className="w-full h-px bg-gradient-to-r from-white/20 to-transparent" />
+                                            <div className="space-y-4">
+                                                <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-xs uppercase tracking-wider">
+                                                    Value
+                                                </div>
+                                                <p className="text-white text-2xl font-display leading-relaxed">
+                                                    {activeSolution.value}
+                                                </p>
+                                            </div>
                                         </div>
                                     )}
                                 </div>
@@ -250,10 +240,26 @@ const ArchitectSolutions: React.FC<{ onNavigate: (page: Page) => void }> = ({ on
                         <div className="w-full lg:w-1/2">
                             {solutionsData.map((solution, index) => (
                                 <div key={solution.id} ref={el => { solutionRefs.current[index] = el; }} className="min-h-[80vh] flex flex-col justify-center py-20 border-b border-white/5 last:border-0">
-                                    <div className="lg:hidden w-full aspect-video rounded-2xl overflow-hidden mb-8 border border-white/10 relative">
-                                        {solution.mediaType === 'image' && <img src={solution.src} className="w-full h-full object-cover" alt={solution.title} />}
-                                        {solution.mediaType === 'video' && <video src={solution.src} className="w-full h-full object-cover" autoPlay muted loop playsInline />}
-                                        {solution.mediaType === 'slider' && solution.before && solution.after && <BeforeAfterSlider before={solution.before} after={solution.after} labelBefore={solution.labelBefore} labelAfter={solution.labelAfter} />}
+                                    <div className="lg:hidden w-full aspect-video rounded-2xl overflow-hidden mb-8 border border-white/10 relative p-8 flex flex-col justify-center bg-neutral-900">
+                                        <div className="space-y-6">
+                                            <div className="space-y-3">
+                                                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-400 text-xs uppercase tracking-wider">
+                                                    Problem
+                                                </div>
+                                                <p className="text-white text-lg font-display leading-relaxed">
+                                                    "{solution.problem}"
+                                                </p>
+                                            </div>
+                                            <div className="w-full h-px bg-gradient-to-r from-white/20 to-transparent" />
+                                            <div className="space-y-3">
+                                                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-xs uppercase tracking-wider">
+                                                    Value
+                                                </div>
+                                                <p className="text-white text-lg font-display leading-relaxed">
+                                                    {solution.value}
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <h3 className="font-display text-4xl md:text-5xl text-white mb-6 italic">{solution.title}</h3>
                                     <p className="text-neutral-400 text-lg leading-relaxed mb-8">{solution.description}</p>

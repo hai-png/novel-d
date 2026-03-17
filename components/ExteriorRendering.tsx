@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { useNavigation } from '../hooks/useNavigation';
-import { ArrowLeft, CheckCircle2, Play, Plus, Minus, ArrowRight, Box, Grid3X3, Sun, Layers } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Play, Plus, Minus, ArrowRight, Box, Grid3X3, Sun, Layers, Film, Pause, Volume2, VolumeX } from 'lucide-react';
 import { Page } from '../types';
 import QuoteForm from './QuoteForm';
 
@@ -403,6 +403,165 @@ const StillRenderCarousel: React.FC<{ images: string[] }> = ({ images }) => {
     );
 };
 
+const VideoCarousel: React.FC<{ videos: string[]; title?: string }> = ({ videos, title }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(true);
+    const [isMuted, setIsMuted] = useState(true);
+    const [progress, setProgress] = useState(0);
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    const handleNext = () => setCurrentIndex((prev) => (prev + 1) % videos.length);
+    const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + videos.length) % videos.length);
+
+    const togglePlay = () => {
+        if (videoRef.current) {
+            if (isPlaying) {
+                videoRef.current.pause();
+            } else {
+                videoRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
+        }
+    };
+
+    const toggleMute = () => {
+        if (videoRef.current) {
+            videoRef.current.muted = !isMuted;
+            setIsMuted(!isMuted);
+        }
+    };
+
+    const handleTimeUpdate = () => {
+        if (videoRef.current) {
+            const progress = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+            setProgress(progress || 0);
+        }
+    };
+
+    const handleEnded = () => {
+        setIsPlaying(false);
+        setProgress(0);
+    };
+
+    const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (videoRef.current) {
+            const seekTime = (parseFloat(e.target.value) / 100) * videoRef.current.duration;
+            videoRef.current.currentTime = seekTime;
+            setProgress(parseFloat(e.target.value));
+        }
+    };
+
+    if (videos.length === 0) {
+        return (
+            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-800 flex items-center justify-center">
+                <div className="text-center text-neutral-400">
+                    <Film size={48} className="mx-auto mb-4 opacity-50" />
+                    <p>No videos available</p>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 group">
+            <video
+                ref={videoRef}
+                src={videos[currentIndex]}
+                className="w-full h-full object-cover"
+                muted={isMuted}
+                onTimeUpdate={handleTimeUpdate}
+                onEnded={handleEnded}
+                onClick={togglePlay}
+                playsInline
+                autoPlay
+                loop
+            />
+
+            {/* Play/Pause overlay indicator */}
+            {!isPlaying && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/40 pointer-events-none">
+                    <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20">
+                        <Play fill="white" className="w-10 h-10 text-white translate-x-1" />
+                    </div>
+                </div>
+            )}
+
+            {/* Navigation buttons */}
+            {videos.length > 1 && (
+                <>
+                    <button
+                        onClick={handlePrev}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors z-20"
+                        aria-label="Previous video"
+                    >
+                        <ArrowLeft size={24} className="text-white" />
+                    </button>
+                    <button
+                        onClick={handleNext}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors z-20"
+                        aria-label="Next video"
+                    >
+                        <ArrowRight size={24} className="text-white" />
+                    </button>
+                </>
+            )}
+
+            {/* Controls overlay - appears on hover */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                {/* Progress bar */}
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={progress}
+                    onChange={handleSeek}
+                    className="w-full h-1 bg-white/20 rounded-full appearance-none cursor-pointer mb-3 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:cursor-pointer"
+                    aria-label="Video progress"
+                />
+
+                {/* Control buttons */}
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={togglePlay}
+                            className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+                            aria-label={isPlaying ? 'Pause' : 'Play'}
+                        >
+                            {isPlaying ? (
+                                <Pause size={20} className="text-white" />
+                            ) : (
+                                <Play fill="white" size={20} className="text-white translate-x-0.5" />
+                            )}
+                        </button>
+
+                        <button
+                            onClick={toggleMute}
+                            className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+                            aria-label={isMuted ? 'Unmute' : 'Mute'}
+                        >
+                            {isMuted ? (
+                                <VolumeX size={20} className="text-white" />
+                            ) : (
+                                <Volume2 size={20} className="text-white" />
+                            )}
+                        </button>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                        {/* Counter */}
+                        {videos.length > 1 && (
+                            <div className="text-sm font-medium text-white flex items-center gap-2">
+                                <Film size={14} className="text-green-400" />
+                                <span>{currentIndex + 1} / {videos.length}</span>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, answer }) => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -635,13 +794,13 @@ const ExteriorRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
             useCarousel: true
         },
         {
-            videoSrc: animationGallery.length > 0 ? animationGallery[0] : 'https://archicgi.com/wp-content/uploads/2022/07/3d-animation-for-real-estate-project-new-york.jpg',
             imgAlt: '3D Animation',
             hasPlay: true,
             title: '3D Exterior Animation',
             desc: 'The 3D animated video will show every benefit of your design — in movement, with all the special effects you want, and with cinematic impact.',
             features: ['4K video output', '30fps smooth playback', 'Cinematic camera moves', 'Licensed music included'],
-            useVideo: true
+            useVideo: true,
+            useVideoCarousel: true
         },
     ];
 
@@ -727,18 +886,8 @@ const ExteriorRendering: React.FC<{ onNavigate: (page: Page) => void }> = ({ onN
                             <div key={i} className="group">
                                 {card.useCarousel ? (
                                     <StillRenderCarousel images={carouselGallery} />
-                                ) : card.useVideo ? (
-                                    <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-800 mb-8 relative">
-                                        <video
-                                            autoPlay
-                                            muted
-                                            loop
-                                            playsInline
-                                            className="w-full h-full object-cover"
-                                        >
-                                            <source src={card.videoSrc} type="video/mp4" />
-                                        </video>
-                                    </div>
+                                ) : card.useVideoCarousel ? (
+                                    <VideoCarousel videos={animationGallery} title="Animation" />
                                 ) : (
                                     <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-800 mb-8 relative">
                                         <img

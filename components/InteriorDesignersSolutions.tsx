@@ -47,83 +47,66 @@ const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, ans
 };
 
 const solutionsData = [
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "Clients can't visualize the finished space from samples"
-    // VALUE: Visceral emotional preview that drives approval
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'see-before-you-build',
         title: 'See It Before It\'s Built',
         description: 'Turn your mood board into a photorealistic 4K environment your client can feel. We focus on the intangibles that swatches can\'t convey — soft linen draping over an armchair, warm pools of light falling across a stone floor, the way morning sun hits a marble backsplash. Every key room rendered with the exact emotional atmosphere you intended, so clients experience the finished space viscerally — not intellectually. Approvals happen in the room, not three revisions later.',
+        problem: 'Clients can\'t visualize the finished space from samples',
+        value: 'Visceral emotional preview that drives approval',
         mediaType: 'image' as const,
         src: 'https://archicgi.com/wp-content/uploads/2023/08/3d-visualization-interior-living-room.jpeg',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "Material and finish decisions take too many rounds"
-    // VALUE: Objective side-by-side comparisons that end debates
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'eliminate-guesswork',
         title: 'Eliminate Material Guesswork',
         description: 'End "I didn\'t think it would look like that" forever. We render the same view with different material options side by side — oak vs walnut flooring, warm vs cool marble veining, matte vs gloss cabinetry — plus day-to-night lighting studies that prove your lighting scheme works at every hour, comparing Kelvin temperatures in context. A systematic visual decision-making tool that protects against expensive on-site changes, reassures hesitant clients, and turns subjective taste debates into confident, documented choices.',
+        problem: 'Material and finish decisions take too many rounds',
+        value: 'Objective side-by-side comparisons that end debates',
         mediaType: 'slider' as const,
         before: 'https://archicgi.com/wp-content/uploads/2025/09/living-room-interior-3d-rendering-MU5SFJXV-4000x2250.jpg',
         after: 'https://archicgi.com/wp-content/uploads/2025/09/interior-render-drawing-room.webp',
         labelBefore: 'Option A',
         labelAfter: 'Option B',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "Lighting design is hard to validate before install"
-    // VALUE: Test every fixture and condition in advance
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'lighting-validation',
         title: 'Validate Lighting Before Installation',
         description: 'Test your entire lighting plan before a single fixture is ordered. We render the same space across natural daylight, warm evening ambiance, and full artificial illumination — showing precisely how your downlights, pendants, sconces, and accent strips interact with surfaces and transform the atmosphere through the day. Compare warm vs cool Kelvin temperatures, adjust fixture placement, and lock in the perfect mood with photographic evidence — not guesswork.',
+        problem: 'Lighting design is hard to validate before install',
+        value: 'Test every fixture and condition in advance',
         mediaType: 'slider' as const,
         before: 'https://archicgi.com/wp-content/uploads/2024/09/3d-visualization-large-hotel-malta-befor.jpg',
         after: 'https://archicgi.com/wp-content/uploads/2024/09/exterior-render-commercial-real-estate-malta-after.jpg',
         labelBefore: 'Natural Light',
         labelAfter: 'Evening Ambiance',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "Client meetings end without decisions"
-    // VALUE: Real-time co-design that locks in choices on the spot
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'decide-in-the-room',
         title: 'Decide in the Room',
         description: 'Stop losing weeks to post-meeting revision cycles. Our real-time interactive environment lets you and your client co-design during the meeting: swap kitchen cabinets, toggle between two sofa options, change wall colors, switch flooring materials — every combination updates instantly on screen. Clients see the impact of their choices in context, gain confidence immediately, and sign off before they leave the room. The most powerful design approval tool available.',
+        problem: 'Client meetings end without decisions',
+        value: 'Real-time co-design that locks in choices on the spot',
         mediaType: 'slider' as const,
         before: 'https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80',
         after: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80',
         labelBefore: 'Scheme A',
         labelAfter: 'Scheme B',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "High-value clients are overseas and can't visit"
-    // VALUE: Full design experience delivered remotely
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'present-anywhere',
         title: 'Present to Clients Anywhere',
         description: 'Your best clients are in Dubai, London, or New York. We deliver the complete design experience remotely: every room rendered in 4K with consistent material accuracy, connected by a full 8K 360° virtual tour with intuitive room-to-room navigation, real-time material customization controls they can interact with themselves, and a cinematic walkthrough film for the initial "wow" moment. All accessible via a single shareable link on any device or VR headset. Your design presentation becomes an immersive experience, not a PDF attachment.',
+        problem: 'High-value clients are overseas and can\'t visit',
+        value: 'Full design experience delivered remotely',
         mediaType: 'video' as const,
         src: 'https://archicgi.com/wp-content/uploads/2023/08/future-interior-animation-web-min.mp4',
     },
-
-    // ═══════════════════════════════════════════════════════════════
-    // PROBLEM: "I have no time or budget for content creation"
-    // VALUE: Portfolio and social content from project models
-    // ═══════════════════════════════════════════════════════════════
     {
         id: 'grow-your-brand',
         title: 'Grow Your Practice\'s Brand',
         description: 'Build a compelling public presence without a separate production budget. From every project\'s 3D model, we extract a full content pipeline: vertical slow-pan video loops (9:16) for Instagram Reels and TikTok, square crops for feed posts, cinematic landscape clips for YouTube, and high-resolution portfolio stills for your website and publications. One project delivers weeks of scroll-stopping content that showcases your design talent and attracts the next client.',
+        problem: 'I have no time or budget for content creation',
+        value: 'Portfolio and social content from project models',
         mediaType: 'image' as const,
         src: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&q=80',
     },
@@ -217,13 +200,26 @@ const InteriorDesignersSolutions: React.FC<{ onNavigate: (page: Page) => void }>
                     <div className="lg:flex gap-16 pb-32">
                         <div className="hidden lg:block w-1/2 relative">
                             <div className="sticky top-32 h-[60vh] flex items-center">
-                                <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl">
+                                <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl p-12 flex flex-col justify-center">
                                     {activeSolution && (
-                                        <div key={activeSolution.id} className="absolute inset-0 animate-in fade-in duration-700">
-                                            {activeSolution.mediaType === 'image' && <img src={activeSolution.src} className="w-full h-full object-cover" alt={activeSolution.title} />}
-                                            {activeSolution.mediaType === 'video' && <video src={activeSolution.src} className="w-full h-full object-cover" autoPlay muted loop playsInline />}
-                                            {activeSolution.mediaType === 'slider' && activeSolution.before && activeSolution.after && <BeforeAfterSlider before={activeSolution.before} after={activeSolution.after} labelBefore={activeSolution.labelBefore} labelAfter={activeSolution.labelAfter} />}
-                                            <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+                                        <div key={activeSolution.id} className="animate-in fade-in duration-700 space-y-8">
+                                            <div className="space-y-4">
+                                                <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-full text-red-400 text-xs uppercase tracking-wider">
+                                                    Problem
+                                                </div>
+                                                <p className="text-white text-2xl font-display leading-relaxed">
+                                                    "{activeSolution.problem}"
+                                                </p>
+                                            </div>
+                                            <div className="w-full h-px bg-gradient-to-r from-white/20 to-transparent" />
+                                            <div className="space-y-4">
+                                                <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-xs uppercase tracking-wider">
+                                                    Value
+                                                </div>
+                                                <p className="text-white text-2xl font-display leading-relaxed">
+                                                    {activeSolution.value}
+                                                </p>
+                                            </div>
                                         </div>
                                     )}
                                 </div>
@@ -232,10 +228,26 @@ const InteriorDesignersSolutions: React.FC<{ onNavigate: (page: Page) => void }>
                         <div className="w-full lg:w-1/2">
                             {solutionsData.map((solution, index) => (
                                 <div key={solution.id} ref={el => { solutionRefs.current[index] = el; }} className="min-h-[80vh] flex flex-col justify-center py-20 border-b border-white/5 last:border-0">
-                                    <div className="lg:hidden w-full aspect-video rounded-2xl overflow-hidden mb-8 border border-white/10 relative">
-                                        {solution.mediaType === 'image' && <img src={solution.src} className="w-full h-full object-cover" alt={solution.title} />}
-                                        {solution.mediaType === 'video' && <video src={solution.src} className="w-full h-full object-cover" autoPlay muted loop playsInline />}
-                                        {solution.mediaType === 'slider' && solution.before && solution.after && <BeforeAfterSlider before={solution.before} after={solution.after} labelBefore={solution.labelBefore} labelAfter={solution.labelAfter} />}
+                                    <div className="lg:hidden w-full aspect-video rounded-2xl overflow-hidden mb-8 border border-white/10 relative p-8 flex flex-col justify-center bg-neutral-900">
+                                        <div className="space-y-6">
+                                            <div className="space-y-3">
+                                                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-400 text-xs uppercase tracking-wider">
+                                                    Problem
+                                                </div>
+                                                <p className="text-white text-lg font-display leading-relaxed">
+                                                    "{solution.problem}"
+                                                </p>
+                                            </div>
+                                            <div className="w-full h-px bg-gradient-to-r from-white/20 to-transparent" />
+                                            <div className="space-y-3">
+                                                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-xs uppercase tracking-wider">
+                                                    Value
+                                                </div>
+                                                <p className="text-white text-lg font-display leading-relaxed">
+                                                    {solution.value}
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <h3 className="font-display text-4xl md:text-5xl text-white mb-6 italic">{solution.title}</h3>
                                     <p className="text-neutral-400 text-lg leading-relaxed mb-8">{solution.description}</p>
