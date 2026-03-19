@@ -6,11 +6,11 @@ import { Page } from '../types';
 import QuoteForm from './QuoteForm';
 
 // Dynamically import all featured works images (all formats)
-const featuredImages = import.meta.glob('/src/assets/images-optimized/exterior/featured-works/*.{webp,jpg,jpeg,png}', { eager: true, import: 'default' }) as Record<string, string>;
+const featuredImages = import.meta.glob('/public/assets/images/exterior/featured-works/*.{webp,jpg,jpeg,png}', { eager: true, import: 'default' }) as Record<string, string>;
 const galleryImages = Object.values(featuredImages);
 
 // Import all lighting scenario images
-const lightingImages = import.meta.glob('/src/assets/images-optimized/exterior/lighting/*.{webp,jpg,jpeg,png}', { eager: true, import: 'default' }) as Record<string, string>;
+const lightingImages = import.meta.glob('/public/assets/images/exterior/lighting/*.{webp,jpg,jpeg,png}', { eager: true, import: 'default' }) as Record<string, string>;
 const lightingGallery = Object.values(lightingImages);
 // Create pairs for before/after comparison (assumes images are ordered: before1, after1, before2, after2, etc.)
 const lightingPairs = lightingGallery.reduce((pairs, img, idx) => {
@@ -21,7 +21,7 @@ const lightingPairs = lightingGallery.reduce((pairs, img, idx) => {
 }, [] as { before: string; after: string }[]);
 
 // Import landscape illustration images
-const landscapeImages = import.meta.glob('/src/assets/images-optimized/exterior/landsacpe/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' }) as Record<string, string>;
+const landscapeImages = import.meta.glob('/public/assets/images/exterior/landsacpe/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' }) as Record<string, string>;
 const landscapeGallery = Object.values(landscapeImages).filter((_, i) => i < 10); // Limit to first 10 images
 // Create pairs for hover effect (swap order: hover first, then default)
 const landscapePairs = landscapeGallery.reduce((pairs, img, idx) => {
@@ -32,11 +32,11 @@ const landscapePairs = landscapeGallery.reduce((pairs, img, idx) => {
 }, [] as { default: string; hover: string }[]);
 
 // Import animation videos
-const animationVideos = import.meta.glob('/src/assets/images-optimized/exterior/animation/*.mp4', { eager: true, import: 'default' }) as Record<string, string>;
+const animationVideos = import.meta.glob('/public/assets/images/exterior/animation/*.mp4', { eager: true, import: 'default' }) as Record<string, string>;
 const animationGallery = Object.values(animationVideos);
 
 // Import carousel images for Still Renderings
-const carouselImages = import.meta.glob('/src/assets/images-optimized/exterior/carousel/*.{webp,jpg,jpeg,png}', { eager: true, import: 'default' }) as Record<string, string>;
+const carouselImages = import.meta.glob('/public/assets/images/exterior/carousel/*.{webp,jpg,jpeg,png}', { eager: true, import: 'default' }) as Record<string, string>;
 const carouselGallery = Object.values(carouselImages);
 
 const LightingCarousel: React.FC<{ pairs: { before: string; after: string }[] }> = ({ pairs }) => {

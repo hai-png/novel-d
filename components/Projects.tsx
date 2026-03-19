@@ -20,7 +20,7 @@ const projectTypes = [
 ];
 
 // Dynamically import all media from works folder
-const allMediaFiles = import.meta.glob('/src/assets/images-optimized/works/**/*.{webp,jpg,jpeg,png,mp4,mov}', { eager: true, import: 'default' }) as Record<string, string>;
+const allMediaFiles = import.meta.glob('/public/assets/images/works/**/*.{webp,jpg,jpeg,png,mp4,mov}', { eager: true, import: 'default' }) as Record<string, string>;
 
 // Helper function to organize media by project type and project name
 interface ProjectMedia {
@@ -41,7 +41,7 @@ const organizeProjects = (): ProjectType[] => {
 
     Object.entries(allMediaFiles).forEach(([path, media]) => {
         // Extract type and project from path
-        // Path format: /src/assets/images-optimized/works/TYPE/PROJECT/...
+        // Path format: /public/assets/images/works/TYPE/PROJECT/...
         const worksIndex = path.indexOf('/works/');
         if (worksIndex === -1) return;
         
@@ -68,12 +68,11 @@ const organizeProjects = (): ProjectType[] => {
 
             const projectType = projectsMap.get(typeId)!;
             
-            // Find or create project
             let project = projectType.projects.find(p => p.name === projectName);
             if (!project) {
                 project = {
                     name: projectName,
-                    path: `/src/assets/images-optimized/works/${typeId}/${projectName}`,
+                    path: `/public/assets/images/works/${typeId}/${projectName}`,
                     type: typeId,
                     media: []
                 };

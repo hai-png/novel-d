@@ -27,9 +27,9 @@ import {
 import { Page } from '../types';
 import QuoteForm from './QuoteForm';
 
-// Import animation videos from specific subfolders under /src/assets/images-optimized/animation/
-const allAnimationVideosMp4 = import.meta.glob('/src/assets/images-optimized/animation/**/*.mp4', { eager: true, import: 'default' }) as Record<string, string>;
-const allAnimationVideosMov = import.meta.glob('/src/assets/images-optimized/animation/**/*.mov', { eager: true, import: 'default' }) as Record<string, string>;
+// Import animation videos from specific subfolders under /public/assets/images/animation/
+const allAnimationVideosMp4 = import.meta.glob('/public/assets/images/animation/**/*.mp4', { eager: true, import: 'default' }) as Record<string, string>;
+const allAnimationVideosMov = import.meta.glob('/public/assets/images/animation/**/*.mov', { eager: true, import: 'default' }) as Record<string, string>;
 const allAnimationVideos = { ...allAnimationVideosMp4, ...allAnimationVideosMov };
 
 // Organize videos by exact folder paths

@@ -29,4 +29,14 @@ dist-ssr
 
 # Optimized media (keep originals, generate optimized locally)
 src/assets/images-optimized/
+src/assets/images/
 dist/
+public/
+*.mp4
+*.mov
+*.avi
+*.webm
+*.webp
+*.png
+*.jpg
+*.jpeg

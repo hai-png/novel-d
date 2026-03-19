@@ -2,7 +2,7 @@ import React from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 // Import images from HOME PAGE/about_us folder
-const aboutImages = import.meta.glob('/src/assets/images-optimized/HOME PAGE/about_us/*.{webp,jpg,jpeg,png}', { eager: true, import: 'default' }) as Record<string, string>;
+const aboutImages = import.meta.glob('/public/assets/images/HOME PAGE/about_us/*.{webp,jpg,jpeg,png}', { eager: true, import: 'default' }) as Record<string, string>;
 const aboutGallery = Object.values(aboutImages);
 
 const Counter = ({ end, duration = 2000 }: { end: number, duration?: number }) => {

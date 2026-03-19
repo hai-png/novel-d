@@ -5,11 +5,12 @@ import { ArrowLeft, ArrowRight, Camera, Box, Palette, Image as ImageIcon, Layers
 import { Page } from '../types';
 import QuoteForm from './QuoteForm';
 
-// Import aerial assets from /aerial/ folder (optimized WebP for images, MP4 for videos)
-import AerialStaticBefore from '../src/assets/images-optimized/aerial/static/aerialstaticbefore.webp';
-import AerialStaticAfter from '../src/assets/images-optimized/aerial/static/aerialstaticafter.webp';
-import AerialAnimBefore from '../src/assets/images-optimized/aerial/animation/aerialanimatiobefore.mp4';
-import AerialAnimAfter from '../src/assets/images-optimized/aerial/animation/aeriaanimationlafter.mp4';
+// Import aerial assets from public /assets/images/ folder (optimized WebP for images, MP4 for videos)
+const ASSET_BASE = './assets/images';
+const AerialStaticBefore = `${ASSET_BASE}/aerial/static/aerialstaticbefore.webp`;
+const AerialStaticAfter = `${ASSET_BASE}/aerial/static/aerialstaticafter.webp`;
+const AerialAnimBefore = `${ASSET_BASE}/aerial/animation/aerialanimatiobefore.mp4`;
+const AerialAnimAfter = `${ASSET_BASE}/aerial/animation/aeriaanimationlafter.mp4`;
 
 // ── FAQ Component ─────────────────────────────────────────────────────
 const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, answer }) => {

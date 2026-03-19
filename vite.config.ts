@@ -17,9 +17,13 @@ export default defineConfig(({ mode }) => {
       },
       resolve: {
         alias: {
-          '@': path.resolve(__dirname, '.'),
-          '@resources': path.resolve(__dirname, 'resources'),
+          '@': path.resolve(__dirname, 'src'),
+          '@components': path.resolve(__dirname, 'components'),
+          '@hooks': path.resolve(__dirname, 'hooks'),
+          '@utils': path.resolve(__dirname, 'utils'),
+          '@types': path.resolve(__dirname, 'types'),
         }
-      }
+      },
+      publicDir: 'public'
     };
 });
