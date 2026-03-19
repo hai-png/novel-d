@@ -27,11 +27,14 @@ dist-ssr
 *.sln
 *.sw?
 
-# Optimized media (keep originals, generate optimized locally)
+# Build output (generated on deploy, not committed)
+dist/
+
+# Optimized media (source files committed, optimized generated locally)
 src/assets/images-optimized/
 src/assets/images/
-dist/
-public/
+
+# Media files (commit originals to public/, ignore working copies)
 *.mp4
 *.mov
 *.avi
@@ -40,3 +43,6 @@ public/
 *.png
 *.jpg
 *.jpeg
+
+# Public assets working directory (source files for optimization)
+public/assets/

@@ -20,7 +20,7 @@ const projectTypes = [
 ];
 
 // Dynamically import all media from works folder
-const allMediaFiles = import.meta.glob('/public/assets/images/works/**/*.{webp,jpg,jpeg,png,mp4,mov}', { eager: true, import: 'default' }) as Record<string, string>;
+const allMediaFiles = import.meta.glob('/public/assets/images/works/**/*.{webp,jpg,jpeg,png,mp4,mov}', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 
 // Helper function to organize media by project type and project name
 interface ProjectMedia {
