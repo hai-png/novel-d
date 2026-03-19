@@ -29,3 +29,4 @@ dist-ssr
 
 # Optimized media (keep originals, generate optimized locally)
 src/assets/images-optimized/
+dist/
