@@ -30,7 +30,7 @@ const interactiveImagePaths = [
 const contextualImagePath = `${ASSET_BASE}/360/contextual/Panorama.webp`;
 
 // Import all normal panorama images from /360/normal/ folder
-const normalPanoramaModules = import.meta.glob('../public/assets/images/360/normal/*.{webp,jpg,png}', { eager: true, import: 'default' }) as Record<string, string>;
+const normalPanoramaModules = import.meta.glob('../assets/images/360/normal/*.{webp,jpg,png}', { eager: true, import: 'default' }) as Record<string, string>;
 const normalPanoramaImages = Object.values(normalPanoramaModules) as string[];
 
 // Lazy image loader hook with loading state and caching

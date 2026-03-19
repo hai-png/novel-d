@@ -3,15 +3,15 @@ import { ArrowRight } from 'lucide-react';
 import { Page } from '../types';
 
 // Import featured works images from HOME PAGE/featured_works folder
-const featuredImages = import.meta.glob('/public/assets/images/HOME PAGE/featured_works/*.{webp,jpg,jpeg,png}', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+const featuredImages = import.meta.glob('/assets/images/HOME PAGE/featured_works/*.{webp,jpg,jpeg,png}', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 const featuredGallery = Object.values(featuredImages);
 
 // Import all interior images as fallback
-const interiorImages = import.meta.glob('/public/assets/images/interior/**/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+const interiorImages = import.meta.glob('/assets/images/interior/**/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 const interiorGallery = Object.values(interiorImages);
 
 // Import all exterior images as fallback
-const exteriorImages = import.meta.glob('/public/assets/images/exterior/**/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+const exteriorImages = import.meta.glob('/assets/images/exterior/**/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 const exteriorGallery = Object.values(exteriorImages);
 
 // Use featured gallery if available, otherwise combine all images for the portfolio

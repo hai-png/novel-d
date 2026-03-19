@@ -188,19 +188,19 @@ const features = [
     {
         title: "Interior Customization",
         desc: "An in-built configurator lets users swap floor finishes, kitchen cabinets, and furniture styles instantly, helping them visualize their dream home.",
-        video: "/public/assets/images/interactive/interior/Twinmotion 2026-02-20 15-36-55-edited-final.mp4",
+        video: "/assets/images/interactive/interior/Twinmotion 2026-02-20 15-36-55-edited-final.mp4",
         tags: ["Real-time Configurator", "Material Swapping", "Instant Visuals"]
     },
     {
         title: "Time & Weather Control",
         desc: "Viewers can toggle between sunny mornings, golden hours, or cozy rainy evenings to experience the property's atmosphere in any condition.",
-        video: "/public/assets/images/interactive/weather/MetropolitanReal - Unreal Editor 2026-01-11 17-34-35 (online-video-cutter.com).mp4",
+        video: "/assets/images/interactive/weather/MetropolitanReal - Unreal Editor 2026-01-11 17-34-35 (online-video-cutter.com).mp4",
         tags: ["Day/Night Cycle", "Weather Systems", "Atmospheric Lighting"]
     },
     {
         title: "Unit Selector",
         desc: "A seamless interface to filter and select available units from a 3D building model, instantly transporting the user inside the specific apartment.",
-        video: "/public/assets/images/interactive/unitselector/TemerProperties - Unreal Editor 2026-02-22 15-35-43 (online-video-cutter.com).mp4",
+        video: "/assets/images/interactive/unitselector/TemerProperties - Unreal Editor 2026-02-22 15-35-43 (online-video-cutter.com).mp4",
         tags: ["3D Filtering", "Inventory System", "Instant Teleport"]
     }
 ];
@@ -336,7 +336,7 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                         {/* Exterior Interactive */}
                         <div className="group cursor-hover">
                             <VideoPlayer
-                                src="../public/assets/images/interactive/exterior/TemerProperties - Unreal Editor 2026-02-22 15-35-43 (online-video-cutter.com).mp4"
+                                src="../assets/images/interactive/exterior/TemerProperties - Unreal Editor 2026-02-22 15-35-43 (online-video-cutter.com).mp4"
                                 aspectRatio="video"
                                 className="mb-8"
                             />
@@ -347,7 +347,7 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                          {/* Interior Interactive */}
                         <div className="group cursor-hover">
                             <VideoPlayer
-                                src="../public/assets/images/interactive/interior/Twinmotion 2026-02-20 15-36-55-clip.mp4"
+                                src="../assets/images/interactive/interior/Twinmotion 2026-02-20 15-36-55-clip.mp4"
                                 aspectRatio="video"
                                 className="mb-8"
                             />

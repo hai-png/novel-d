@@ -7,23 +7,23 @@ import QuoteForm from './QuoteForm';
 import PanoramaViewer from './PanoramaViewer';
 
 // Import 3D floor plan images
-const floorPlanImages = import.meta.glob('/public/assets/images/interior/3d-floor-plans-and-dollhouse-gallery/*.{webp,jpg,jpeg,png}', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+const floorPlanImages = import.meta.glob('/assets/images/interior/3d-floor-plans-and-dollhouse-gallery/*.{webp,jpg,jpeg,png}', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 const floorPlanGallery = Object.values(floorPlanImages);
 
 // Import carousel images for Still Renderings
-const carouselImages = import.meta.glob('/public/assets/images/interior/carousel/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+const carouselImages = import.meta.glob('/assets/images/interior/carousel/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 const carouselGallery = Object.values(carouselImages);
 
 // Import panoramic images for 360° Virtual Tours (from panoramas-gallery only)
-const panoramaImagesGallery = import.meta.glob('/public/assets/images/interior/panoramas-gallery/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+const panoramaImagesGallery = import.meta.glob('/assets/images/interior/panoramas-gallery/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 const panoramaGallery = Object.values(panoramaImagesGallery);
 
 // Import featured works images for Visual Excellence gallery (all formats)
-const featuredWorksImages = import.meta.glob('/public/assets/images/interior/featured-works/*.{webp,jpg,jpeg,png}', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+const featuredWorksImages = import.meta.glob('/assets/images/interior/featured-works/*.{webp,jpg,jpeg,png}', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 const featuredWorksGallery = Object.values(featuredWorksImages);
 
 // Import 3D Animation video
-const animationVideoImport = import.meta.glob('/public/assets/images/interior/animation/*.mp4', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+const animationVideoImport = import.meta.glob('/assets/images/interior/animation/*.mp4', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 const animationVideo = Object.values(animationVideoImport)[0] || '';
 
 const FloorPlanGallery: React.FC<{ images: string[] }> = ({ images }) => {
