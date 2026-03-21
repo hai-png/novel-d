@@ -1,0 +1,796 @@
+{
+  "totalFiles": 295,
+  "uniqueAssets": 138,
+  "duplicateGroups": 138,
+  "totalDuplicates": 157,
+  "spaceToSave": 425764080,
+  "actions": [
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/Panorama(3).webp",
+      "target": "src/assets/images-optimized/360/interactive/Panorama(3).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/Panorama(2).webp",
+      "target": "src/assets/images-optimized/360/interactive/Panorama(2).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/Panorama(1).webp",
+      "target": "src/assets/images-optimized/360/interactive/Panorama(1).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/GROUND-FLOOR-DINING-02.webp",
+      "target": "src/assets/images-optimized/360/normal/GROUND-FLOOR-DINING-02.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/HUGO/bath.webp",
+      "target": "src/assets/images-optimized/interior/featured-works/bath.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/HUGO/OVER ALL4(1)_upscale_1.webp",
+      "target": "src/assets/images-optimized/interior/featured-works/OVER ALL4(1)_upscale_1.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/HUGO/Living room8_1.webp",
+      "target": "src/assets/images-optimized/interior/featured-works/Living room8_1.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/HUGO/Living room3_1.webp",
+      "target": "src/assets/images-optimized/interior/featured-works/Living room3_1.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/YAHHAR REAL ESTATE/D5_Scene 5 1_20231221_125609.webp",
+      "target": "src/assets/images-optimized/interior/featured-works/D5_Scene 5 1_20231221_125609.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/ESKNDER APT/01 (5).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (5).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/ESKNDER APT/01 (4).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (4).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (34).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (34).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (32).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (32).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (31).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (31).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (30).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (30).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (27).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (27).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (26).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (26).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (24).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (24).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/YAHHAR REAL ESTATE/01 (23).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (23).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (22).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (22).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (21).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (21).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (20).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (20).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (19).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (19).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (18).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (18).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (17).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (17).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/01 (16).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (16).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/YAHHAR REAL ESTATE/01 (15).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (15).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/05_MALL/YEKA/01 (14).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (14).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/YAHHAR REAL ESTATE/01 (13).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (13).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/YAHHAR REAL ESTATE/01 (12).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (12).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/01 (1).webp",
+      "target": "src/assets/images-optimized/interior/featured-works/01 (1).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/photo_6003679379009422639_y.webp",
+      "target": "src/assets/images-optimized/interior/carousel/photo_6003679379009422639_y.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ADIYA/Scene 36.webp",
+      "target": "src/assets/images-optimized/interior/carousel/Scene 36.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ADIYA/Scene 34.webp",
+      "target": "src/assets/images-optimized/interior/carousel/Scene 34.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/Scene 90.webp",
+      "target": "src/assets/images-optimized/exterior/lighting/Scene 90.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ROZINA/Scene 89.webp",
+      "target": "src/assets/images-optimized/exterior/lighting/Scene 89.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ASTER/Scene 52.webp",
+      "target": "src/assets/images-optimized/exterior/lighting/Scene 52.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/07_RESDENCE/ASTER/Scene 51.webp",
+      "target": "src/assets/images-optimized/exterior/lighting/Scene 51.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/New folder/42.webp",
+      "target": "src/assets/images-optimized/exterior/landsacpe/42.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/New folder/41.webp",
+      "target": "src/assets/images-optimized/exterior/landsacpe/41.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/exterior/landsacpe/31.webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (29).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/01 (29).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (29).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/New folder/22.webp",
+      "target": "src/assets/images-optimized/exterior/landsacpe/22.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/exterior/landsacpe/21.webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (26).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/HOME PAGE/featured_works/01 (26).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (26).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/01 (26).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (26).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/New folder/21.webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (26).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/New folder/12.webp",
+      "target": "src/assets/images-optimized/exterior/landsacpe/12.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/exterior/landsacpe/11.webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (32).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/01 (32).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (32).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/New folder/11.webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (32).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/JAMBO/D5_Image_20240301_171459.webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/D5_Image_20240301_171459.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/HUGO/01 (9).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (9).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/09_PROPOSAL/YEKA PARK/01 (8).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (8).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/HUGO/01 (6).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (6).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/exterior/featured-works/01 (5).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (28).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/01 (28).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (28).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/HOME PAGE/featured_works/03.2.webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (46).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/YAHHAR REAL ESTATE/01 (46).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (46).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/HOME PAGE/featured_works/03.1.webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (45).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/YAHHAR REAL ESTATE/01 (45).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (45).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/YAHHAR REAL ESTATE/01 (44).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (44).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/HOME PAGE/featured_works/06.1.webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (40).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/03_COMPETITION/SYNERGY/01 (40).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (40).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/HUGO/01 (4).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (4).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/YAHHAR REAL ESTATE/01 (38).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (38).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/01 (36).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (36).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/01 (35).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (35).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/01 (34).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (34).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/01 (33).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (33).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/01 (31).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (31).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/01 (30).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (30).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/ATAKLTI/01 (3).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (3).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/01 (27).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (27).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/01 (25).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (25).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/New folder/01 (20).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (20).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/09_PROPOSAL/HOSPITAL/01 (2).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (2).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/New folder/01 (19).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (19).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/New folder/01 (18).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (18).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/New folder/01 (17).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (17).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/New folder/01 (16).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (16).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/New folder/01 (15).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (15).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/HOME PAGE/featured_works/05.webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (14).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/01 (14).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (14).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/01 (13).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (13).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/09_PROPOSAL/HOSPITAL/01 (12).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (12).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/HUGO/01 (11).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (11).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/HOME PAGE/featured_works/00.webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (10).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/ATAKLTI/01 (10).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (10).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/MULE APT/01 (1).webp",
+      "target": "src/assets/images-optimized/exterior/featured-works/01 (1).webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/image27.webp",
+      "target": "src/assets/images-optimized/exterior/carousel/image27.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/image26.webp",
+      "target": "src/assets/images-optimized/exterior/carousel/image26.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/HOME PAGE/about_us/06.webp",
+      "target": "src/assets/images-optimized/exterior/carousel/Shot 27_00000000.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/03_COMPETITION/SYNERGY/Shot 27_00000000.webp",
+      "target": "src/assets/images-optimized/exterior/carousel/Shot 27_00000000.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/exterior/animation/Shot 4.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/02.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/HOME PAGE/featured_works/Shot 4.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/02.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/ESKNDER APT/Shot 4.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/02.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/WALK_07.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /WALK_07.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/WALK 02.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /WALK 02.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/TOUR TO GROUND_2.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /TOUR TO GROUND_2.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/Shot 5 (2).mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /Shot 5.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/06_OFFICE/MNRC OFFICE/Shot 5.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /Shot 5.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/04_HOTEL RESORT/AKE HOTEL RESORT/Shot 4.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /Shot 4.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/Shot 3 (2).mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /Shot 3.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/06_OFFICE/MNRC OFFICE/Shot 3.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /Shot 3.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/04_HOTEL RESORT/AKE HOTEL RESORT/Shot 13.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /Shot 13.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/MNRC POOL.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /MNRC POOL.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/11_CAFE ANDRESTAURANT/BILOS/D5_Shot 41_20231224_172006.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /D5_Shot 41_20231224_172006.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/11_CAFE ANDRESTAURANT/BILOS/D5_Shot 40_20231224_180357.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /D5_Shot 40_20231224_180357.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/11_CAFE ANDRESTAURANT/BILOS/D5_Shot 38_20231224_173624.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /D5_Shot 38_20231224_173624.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/05_MALL/YEKA/D5_Shot 2_20240405_134333.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /D5_Shot 2_20240405_134333.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/05_MALL/YEKA/D5_Shot 1_20240405_133217.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /D5_Shot 1_20240405_133217.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/Clip 3_1.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /Clip 3_1.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/Clip 2.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /Clip 2.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/Shot 35.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /06.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/Shot 33.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /04.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/Shot 37.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /03.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/04_HOTEL RESORT/AKE HOTEL RESORT/01.mp4",
+      "target": "src/assets/images-optimized/animation/walkthrough /01.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/food court.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/food court.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/05_MALL/MNRC MALL/food court.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/food court.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/WALK_05.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/WALK_05.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/WALK_04.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/WALK_04.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/Shot 9_3.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/Shot 9_3.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/Shot 9_2.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/Shot 9_2.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/Shot 5.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/Shot 5.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/Shot 3.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/Shot 3.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/05_MALL/MNRC MALL/Shot 3.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/Shot 3.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/Shot 2(2).mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/Shot 2(2).mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/Shot 1_1.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/Shot 1_1.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/04_HOTEL RESORT/AKE HOTEL RESORT/Shot 15.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/Shot 15.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/04_HOTEL RESORT/AKE HOTEL RESORT/Shot 14.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/Shot 14.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/Shot 10_1.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/Shot 10_1.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/Shot 10.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/Shot 10.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/Shot 1.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/Shot 1.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/Shot 1(1).mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/Shot 1(1).mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/FLY_11.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/FLY_11.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/08_LANDSCAPE/LEGETAFO LANDSCAPE/FLY_10.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/FLY_10.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/FLY_09.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/FLY_09.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/FLY_08.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/FLY_08.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/FLY_07.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/FLY_07.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/FLY_06.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/FLY_06.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/FLY_05.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/FLY_05.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/FLY_04.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/FLY_04.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/FLY_03.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/FLY_03.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/FLY_01.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/FLY_01.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/04_HOTEL RESORT/AKE HOTEL RESORT/D5 Render 2026-01-30 14-43-43.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/D5 Render 2026-01-30 14-43-43.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/YAHHAR REAL ESTATE/03.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/3.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/YAHHAR REAL ESTATE/2.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/2.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/Shot 30.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/05.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/OMAR/Shot 57.mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/04.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/Shot 1(5).mp4",
+      "target": "src/assets/images-optimized/animation/flythroughs/03.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/MULE APT/BEFORE AFTER/aerialstaticbefore.webp",
+      "target": "src/assets/images-optimized/aerial/static/aerialstaticbefore.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/MULE APT/BEFORE AFTER/aerialstaticafter.webp",
+      "target": "src/assets/images-optimized/aerial/static/aerialstaticafter.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/DSL BOLE/aerialanimatiobefore.mp4",
+      "target": "src/assets/images-optimized/aerial/animation/aerialanimatiobefore.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/DSL BOLE/aeriaanimationlafter.mp4",
+      "target": "src/assets/images-optimized/aerial/animation/aeriaanimationlafter.mp4"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/01_APARTMENT/ESKNDER APT/Scene 100.webp",
+      "target": "src/assets/images-optimized/HOME PAGE/featured_works/01.webp"
+    },
+    {
+      "action": "symlink",
+      "source": "src/assets/images-optimized/works/05_MALL/MNRC MALL/OUT_0.1.mp4",
+      "target": "src/assets/images-optimized/works/02_MIXED_USE/MNRC/OUT_0.1.mp4"
+    }
+  ],
+  "warnings": [],
+  "errors": []
+}

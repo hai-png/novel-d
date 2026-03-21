@@ -182,25 +182,25 @@ const features = [
     {
         title: "Amenities Showcase",
         desc: "Allow potential clients to stroll through common areas, pools, and gyms. Interactive pop-ups provide detailed specifications about equipment and finishes.",
-        video: "https://archicgi.com/wp-content/uploads/2025/10/Unlock-the-Full-Potential-of-Your-Property-with-3D-Amenity-Showcases.mp4",
+        video: "src/assets/images-optimized/interactive/amenities/AMUNITY.mp4",
         tags: ["Interactive Popups", "Free Roam", "Detailed Specs"]
     },
     {
         title: "Interior Customization",
         desc: "An in-built configurator lets users swap floor finishes, kitchen cabinets, and furniture styles instantly, helping them visualize their dream home.",
-        video: "/src/assets/images-optimized/interactive/interior/Twinmotion 2026-02-20 15-36-55-edited-final.mp4",
+        video: "src/assets/images-optimized/interactive/interior/Twinmotion 2026-02-20 15-36-55.mp4",
         tags: ["Real-time Configurator", "Material Swapping", "Instant Visuals"]
     },
     {
         title: "Time & Weather Control",
         desc: "Viewers can toggle between sunny mornings, golden hours, or cozy rainy evenings to experience the property's atmosphere in any condition.",
-        video: "/src/assets/images-optimized/interactive/weather/MetropolitanReal - Unreal Editor 2026-01-11 17-34-35 (online-video-cutter.com).mp4",
+        video: "src/assets/images-optimized/interactive/weather/MetropolitanReal - Unreal Editor 2026-01-11 17-34-.mp4",
         tags: ["Day/Night Cycle", "Weather Systems", "Atmospheric Lighting"]
     },
     {
         title: "Unit Selector",
         desc: "A seamless interface to filter and select available units from a 3D building model, instantly transporting the user inside the specific apartment.",
-        video: "/src/assets/images-optimized/interactive/unitselector/TemerProperties - Unreal Editor 2026-02-22 15-35-43 (online-video-cutter.com).mp4",
+        video: "src/assets/images-optimized/interactive/unitselector/TemerProperties - Unreal Editor 2026-02-22 15-35-43 (online-video-cutter.com).mp4",
         tags: ["3D Filtering", "Inventory System", "Instant Teleport"]
     }
 ];
@@ -335,8 +335,8 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         {/* Exterior Interactive */}
                         <div className="group cursor-hover">
-                            <VideoPlayer 
-                                src="../src/assets/images-optimized/interactive/exterior/TemerProperties - Unreal Editor 2026-02-22 15-35-43 (online-video-cutter.com).mp4"
+                            <VideoPlayer
+                                src="src/assets/images-optimized/interactive/exterior/TemerProperties - Unreal Editor 2026-02-22 15-35-4.mp4"
                                 aspectRatio="video"
                                 className="mb-8"
                             />
@@ -346,8 +346,8 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
 
                          {/* Interior Interactive */}
                         <div className="group cursor-hover">
-                            <VideoPlayer 
-                                src="../src/assets/images-optimized/interactive/interior/Twinmotion 2026-02-20 15-36-55-clip.mp4"
+                            <VideoPlayer
+                                src="src/assets/images-optimized/interactive/interior/Twinmotion 2026-02-20 15-36-55.mp4"
                                 aspectRatio="video"
                                 className="mb-8"
                             />
