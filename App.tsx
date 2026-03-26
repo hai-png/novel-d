@@ -79,7 +79,7 @@ const App: React.FC = () => {
 
           <Navbar onNavigate={handleNavigate} />
 
-          <main>
+          <main className="pt-20">
             {currentPage === 'home' && (
                 <>
                     <Hero />

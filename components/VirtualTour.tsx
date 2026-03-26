@@ -14,22 +14,22 @@ import QuoteForm from './QuoteForm';
 import PanoramaViewer from './PanoramaViewer';
 
 // Import images from assets (optimized WebP)
-import Phase2 from '../src/assets/images-optimized/Phase2.webp';
-import GroundFloorDining from '../src/assets/images-optimized/GROUND-FLOOR-DINING-02.webp';
+import Phase2 from '/src/assets/images-optimized/Phase2.webp';
+import GroundFloorDining from '/src/assets/images-optimized/GROUND-FLOOR-DINING-02.webp';
 
 // Import Interactive VR Fusion images from /360/interactive/ folder (lazy-loaded)
 // These are loaded dynamically to improve initial page load performance
 const interactiveImagePaths = [
-  '../src/assets/images-optimized/360/interactive/Panorama(1).webp',
-  '../src/assets/images-optimized/360/interactive/Panorama(2).webp',
-  '../src/assets/images-optimized/360/interactive/Panorama(3).webp',
+  '/src/assets/images-optimized/360/interactive/Panorama(1).webp',
+  '/src/assets/images-optimized/360/interactive/Panorama(2).webp',
+  '/src/assets/images-optimized/360/interactive/Panorama(3).webp',
 ];
 
 // Import Contextual Maps image from /360/contextual/ folder (lazy-loaded)
-const contextualImagePath = '../src/assets/images-optimized/360/contextual/Panorama.webp';
+const contextualImagePath = '/src/assets/images-optimized/360/contextual/Panorama.webp';
 
 // Import all normal panorama images from /360/normal/ folder
-const normalPanoramaModules = import.meta.glob('../src/assets/images-optimized/360/normal/*.{webp,jpg,png}', { eager: true, import: 'default' }) as Record<string, string>;
+const normalPanoramaModules = import.meta.glob('/src/assets/images-optimized/360/normal/*.{webp,jpg,png}', { eager: true, import: 'default' }) as Record<string, string>;
 const normalPanoramaImages = Object.values(normalPanoramaModules) as string[];
 
 // Lazy image loader hook with loading state and caching

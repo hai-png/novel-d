@@ -73,7 +73,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <li className="flex items-center gap-2 text-neutral-400 text-sm">
                   <Phone size={14} className="flex-shrink-0" />
                   <a href="tel:+251906422230" className="hover:text-white transition-colors">
-                    +251 906422230
+                    +251 943205555
                   </a>
                 </li>
               </ul>

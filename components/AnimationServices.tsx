@@ -35,12 +35,17 @@ const allAnimationVideos = { ...allAnimationVideosMp4, ...allAnimationVideosMov 
 // Organize videos by exact folder paths
 const getVideosFromFolder = (folderName: string): string[] => {
     return Object.entries(allAnimationVideos)
-        .filter(([path]) => path.includes(`/animation/${folderName}/`))
+        .filter(([path]) => {
+            // Use regex to match exact folder name in path
+            // This ensures we match /animation/folderName/ and not /animation/something-folderName/
+            const pattern = new RegExp(`/animation/${folderName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}/[^/]+$`);
+            return pattern.test(path);
+        })
         .map(([, src]) => src as string);
 };
 
 const showreelGallery = getVideosFromFolder('main showreel');
-const walkthroughGallery = getVideosFromFolder('walkthrough ');
+const walkthroughGallery = getVideosFromFolder('walkthrough');
 const flythroughGallery = getVideosFromFolder('flythroughs');
 const phasingGallery = getVideosFromFolder('phasing');
 const timelapseGallery = getVideosFromFolder('timelapse');

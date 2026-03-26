@@ -10,7 +10,11 @@
     "optimize": "node scripts/optimize-inplace.js",
     "generate-manifest": "tsx scripts/generate-manifest.ts",
     "migrate-assets": "tsx scripts/migrate-assets.ts",
-    "verify-assets": "tsx scripts/verify-assets.ts"
+    "verify-assets": "tsx scripts/verify-assets.ts",
+    "pages:dev": "wrangler pages dev dist",
+    "pages:build": "npm run build && wrangler pages deploy dist --project-name=novel-d",
+    "pages:deploy": "npm run build && wrangler pages deploy dist --project-name=novel-d",
+    "test:telegram": "node test-telegram.js"
   },
   "dependencies": {
     "lucide-react": "^0.562.0",
@@ -19,6 +23,7 @@
     "three": "^0.182.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240117.0",
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
     "glob": "^13.0.6",
@@ -27,6 +32,7 @@
     "typescript": "~5.8.2",
     "vite": "^6.2.0",
     "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-remove-console": "^2.2.0"
+    "vite-plugin-remove-console": "^2.2.0",
+    "wrangler": "^3.28.0"
   }
 }

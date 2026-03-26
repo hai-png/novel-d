@@ -6,10 +6,10 @@ import { Page } from '../types';
 import QuoteForm from './QuoteForm';
 
 // Import aerial assets from /aerial/ folder (optimized WebP for images, MP4 for videos)
-import AerialStaticBefore from '../src/assets/images-optimized/aerial/static/aerialstaticbefore.webp';
-import AerialStaticAfter from '../src/assets/images-optimized/aerial/static/aerialstaticafter.webp';
-import AerialAnimBefore from '../src/assets/images-optimized/aerial/animation/aerialanimatiobefore.mp4';
-import AerialAnimAfter from '../src/assets/images-optimized/aerial/animation/aeriaanimationlafter.mp4';
+import AerialStaticBefore from '/src/assets/images-optimized/aerial/static/aerialstaticbefore.webp';
+import AerialStaticAfter from '/src/assets/images-optimized/aerial/static/aerialstaticafter.webp';
+import AerialAnimBefore from '/src/assets/images-optimized/aerial/animation/aerialanimatiobefore.mp4';
+import AerialAnimAfter from '/src/assets/images-optimized/aerial/animation/aeriaanimationlafter.mp4';
 
 // ── FAQ Component ─────────────────────────────────────────────────────
 const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, answer }) => {

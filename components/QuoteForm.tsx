@@ -10,9 +10,13 @@ interface QuoteFormProps {
 }
 
 // Telegram configuration (add these to your .env.local file)
+// For Cloudflare Pages, use environment variables in Cloudflare dashboard
 const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN || '';
 const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID || '';
 const SEND_TO_EMAIL = import.meta.env.VITE_SEND_TO_EMAIL || '';
+
+// Check if running on Cloudflare Pages
+const IS_CLOUDFLARE_PAGES = typeof window !== 'undefined' && window.location.hostname.includes('pages.dev');
 
 const projectTypes = [
     { id: 'residential', label: 'Residential', icon: Building2, description: 'Homes, apartments, housing developments' },
@@ -527,6 +531,37 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen = true, onClose = () => {}
     };
 
     const sendToTelegram = async (): Promise<boolean> => {
+        // Use Cloudflare Pages Function if available
+        if (IS_CLOUDFLARE_PAGES) {
+            try {
+                const response = await fetch('/api/quote', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        formData,
+                        // Don't send credentials from client - they're in Cloudflare env vars
+                    }),
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    console.error('Cloudflare Function Error:', data);
+                    alert(`Failed to send: ${data.error || 'Unknown error'}`);
+                    return false;
+                }
+
+                return true;
+            } catch (error) {
+                console.error('Error calling Cloudflare Function:', error);
+                alert('Error connecting to server. Please check your internet connection.');
+                return false;
+            }
+        }
+
+        // Fallback to direct Telegram API (for local development with npm run dev)
         if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
             console.error('Telegram credentials not configured. Please update .env.local with VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID');
             alert('Telegram not configured. Please contact the administrator.');

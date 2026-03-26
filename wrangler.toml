@@ -1,0 +1,16 @@
+# Cloudflare Pages local development configuration
+# https://developers.cloudflare.com/pages/functions/local-development/
+
+name = "novel-d"
+compatibility_date = "2024-01-01"
+
+# Pages specific configuration
+pages_build_output_dir = "dist"
+
+# Environment variables are loaded from .dev.vars automatically
+# See: https://developers.cloudflare.com/pages/functions/local-development/#set-environment-variables
+
+# Development server settings
+[dev]
+port = 8788
+local_protocol = "http"

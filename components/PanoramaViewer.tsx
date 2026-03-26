@@ -111,17 +111,25 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
     const container = containerRef.current;
     if (!container) return;
 
+    // Check if container has dimensions
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    
+    // If container has no height, we'll initialize with a fallback and let ResizeObserver fix it
+    const initWidth = width > 0 ? width : 800;
+    const initHeight = height > 0 ? height : 600;
+
     // ── Renderer ──
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setSize(initWidth, initHeight);
     container.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
     // ── Camera ──
     const camera = new THREE.PerspectiveCamera(
       75,
-      container.clientWidth / container.clientHeight,
+      initWidth / initHeight,
       0.1,
       1000
     );
@@ -242,15 +250,33 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
       if (!container) return;
       const w = container.clientWidth;
       const h = container.clientHeight;
+      
+      // Skip if container has no dimensions
+      if (w === 0 || h === 0) return;
+      
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     };
     window.addEventListener('resize', onResize);
+    
+    // ── ResizeObserver for detecting container size changes ──
+    // This handles the case where the container has zero height on initial mount
+    const resizeObserver = new ResizeObserver(() => {
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      
+      // Only update if we have valid dimensions
+      if (w > 0 && h > 0) {
+        onResize();
+      }
+    });
+    resizeObserver.observe(container);
 
     // ── Cleanup ──
     return () => {
       window.removeEventListener('resize', onResize);
+      resizeObserver.disconnect();
       cancelAnimationFrame(rafRef.current);
       controls.dispose();
 

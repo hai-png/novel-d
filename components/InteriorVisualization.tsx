@@ -15,7 +15,7 @@ const carouselImages = import.meta.glob('/src/assets/images-optimized/interior/c
 const carouselGallery = Object.values(carouselImages);
 
 // Import panoramic images for 360° Virtual Tours (from panoramas-gallery only)
-const panoramaImagesGallery = import.meta.glob('/src/assets/images-optimized/interior/panoramas-gallery/*.webp', { eager: true, import: 'default' }) as Record<string, string>;
+const panoramaImagesGallery = import.meta.glob('/src/assets/images-optimized/interior/panoramas-gallery/*.{webp,jpg,jpeg,png}', { eager: true, import: 'default' }) as Record<string, string>;
 const panoramaGallery = Object.values(panoramaImagesGallery);
 
 // Import featured works images for Visual Excellence gallery (all formats)

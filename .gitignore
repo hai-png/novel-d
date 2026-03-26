@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Wrangler configuration (local overrides)
+wrangler-local.toml
+.dev.vars
+
+# Environment variables (NEVER commit these!)
+.env
+.env.local
+.env.*.local

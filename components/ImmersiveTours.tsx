@@ -336,7 +336,7 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                         {/* Exterior Interactive */}
                         <div className="group cursor-hover">
                             <VideoPlayer
-                                src="src/assets/images-optimized/interactive/exterior/TemerProperties - Unreal Editor 2026-02-22 15-35-4.mp4"
+                                src="/src/assets/images-optimized/interactive/exterior/TemerProperties - Unreal Editor 2026-02-22 15-35-4.mp4"
                                 aspectRatio="video"
                                 className="mb-8"
                             />
@@ -347,7 +347,7 @@ const ImmersiveTours: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavi
                          {/* Interior Interactive */}
                         <div className="group cursor-hover">
                             <VideoPlayer
-                                src="src/assets/images-optimized/interactive/interior/Twinmotion 2026-02-20 15-36-55.mp4"
+                                src="/src/assets/images-optimized/interactive/interior/Twinmotion 2026-02-20 15-36-55.mp4"
                                 aspectRatio="video"
                                 className="mb-8"
                             />
