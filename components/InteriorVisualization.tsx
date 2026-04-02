@@ -33,32 +33,39 @@ const FloorPlanGallery: React.FC<{ images: string[] }> = ({ images }) => {
     const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
 
     return (
-        <div className="relative w-full h-[80vh] rounded-2xl overflow-hidden bg-neutral-800">
-            <img
-                src={images[currentIndex]}
-                alt={`3D Floor Plan ${currentIndex + 1}`}
-                className="w-full h-full object-contain"
-            />
+        <div className="relative w-full h-[45vh] lg:h-full rounded-2xl overflow-hidden bg-neutral-800 flex flex-col">
+            {/* Title */}
+            <div className="px-4 py-3 bg-neutral-900/80 backdrop-blur-sm border-b border-white/10 flex-shrink-0">
+                <h4 className="text-sm font-medium text-white">3D Floor Plan Gallery</h4>
+            </div>
             
-            {/* Navigation buttons */}
-            <button
-                onClick={handlePrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors"
-                aria-label="Previous image"
-            >
-                <ArrowLeft size={24} className="text-white" />
-            </button>
-            <button
-                onClick={handleNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors"
-                aria-label="Next image"
-            >
-                <ArrowRight size={24} className="text-white" />
-            </button>
+            <div className="flex-1 relative">
+                <img
+                    src={images[currentIndex]}
+                    alt={`3D Floor Plan ${currentIndex + 1}`}
+                    className="w-full h-full object-contain"
+                />
 
-            {/* Counter */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-4 py-2 rounded-full text-sm text-white font-medium">
-                {currentIndex + 1} / {images.length}
+                {/* Navigation buttons */}
+                <button
+                    onClick={handlePrev}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors"
+                    aria-label="Previous image"
+                >
+                    <ArrowLeft size={24} className="text-white" />
+                </button>
+                <button
+                    onClick={handleNext}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors"
+                    aria-label="Next image"
+                >
+                    <ArrowRight size={24} className="text-white" />
+                </button>
+
+                {/* Counter */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-4 py-2 rounded-full text-sm text-white font-medium">
+                    {currentIndex + 1} / {images.length}
+                </div>
             </div>
         </div>
     );
@@ -110,7 +117,7 @@ const PanoramaGallery: React.FC<{ images: string[] }> = ({ images }) => {
 
     if (images.length === 0) {
         return (
-            <div className="relative w-full h-[60vh] rounded-2xl overflow-hidden bg-neutral-800 flex items-center justify-center">
+            <div className="relative w-full h-[60vh] lg:h-full rounded-2xl overflow-hidden bg-neutral-800 flex items-center justify-center">
                 <div className="text-center text-neutral-400">
                     <Rotate3D size={48} className="mx-auto mb-4 opacity-50" />
                     <p>No panoramic images available</p>
@@ -120,56 +127,66 @@ const PanoramaGallery: React.FC<{ images: string[] }> = ({ images }) => {
     }
 
     return (
-        <div className="relative w-full h-[70vh] rounded-2xl overflow-hidden bg-neutral-900 border border-white/10">
-            {/* 360° Panorama Viewer */}
-            <PanoramaViewer 
-                mode="normal" 
-                imageSrc={images[currentIndex]} 
-            />
-
-            {/* Navigation buttons */}
-            <button
-                onClick={handlePrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors z-40"
-                aria-label="Previous panorama"
-            >
-                <ArrowLeft size={24} className="text-white" />
-            </button>
-            <button
-                onClick={handleNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors z-40"
-                aria-label="Next panorama"
-            >
-                <ArrowRight size={24} className="text-white" />
-            </button>
-
-            {/* Counter & Info */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-sm text-white font-medium flex items-center gap-3 z-40">
-                <Rotate3D size={14} className="text-green-400" />
-                <span>{currentIndex + 1} / {images.length}</span>
-                <span className="text-neutral-400 text-xs">360° View</span>
+        <div className="relative w-full h-[45vh] lg:h-full rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 flex flex-col">
+            {/* Title */}
+            <div className="px-4 py-3 bg-neutral-900/80 backdrop-blur-sm border-b border-white/10 flex-shrink-0 flex items-center justify-between">
+                <h4 className="text-sm font-medium text-white">360° Panorama Gallery</h4>
+                <div className="flex items-center gap-2 text-xs text-neutral-400">
+                    <Rotate3D size={14} className="text-green-400" />
+                    <span>360° View</span>
+                </div>
             </div>
+            
+            {/* Panorama Viewer */}
+            <div className="flex-1 relative">
+                <PanoramaViewer
+                    mode="normal"
+                    imageSrc={images[currentIndex]}
+                />
 
-            {/* Thumbnail strip */}
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 flex gap-2 bg-black/60 backdrop-blur-md p-2 rounded-xl border border-white/10 z-40 max-w-[80%] overflow-x-auto">
-                {images.slice(0, 6).map((img, idx) => (
-                    <button
-                        key={idx}
-                        onClick={() => setCurrentIndex(idx)}
-                        className={`w-12 h-12 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
-                            currentIndex === idx 
-                                ? 'border-white scale-110' 
-                                : 'border-white/20 hover:border-white/50 opacity-60 hover:opacity-100'
-                        }`}
-                    >
-                        <img src={img} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover" />
-                    </button>
-                ))}
-                {images.length > 6 && (
-                    <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center text-white text-xs font-medium border border-white/20">
-                        +{images.length - 6}
-                    </div>
-                )}
+                {/* Navigation buttons */}
+                <button
+                    onClick={handlePrev}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors z-40"
+                    aria-label="Previous panorama"
+                >
+                    <ArrowLeft size={24} className="text-white" />
+                </button>
+                <button
+                    onClick={handleNext}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors z-40"
+                    aria-label="Next panorama"
+                >
+                    <ArrowRight size={24} className="text-white" />
+                </button>
+
+                {/* Counter & Info */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-sm text-white font-medium flex items-center gap-3 z-40">
+                    <Rotate3D size={14} className="text-green-400" />
+                    <span>{currentIndex + 1} / {images.length}</span>
+                </div>
+
+                {/* Thumbnail strip */}
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 flex gap-2 bg-black/60 backdrop-blur-md p-2 rounded-xl border border-white/10 z-40 max-w-[80%] overflow-x-auto">
+                    {images.slice(0, 6).map((img, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => setCurrentIndex(idx)}
+                            className={`w-12 h-12 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
+                                currentIndex === idx
+                                    ? 'border-white scale-110'
+                                    : 'border-white/20 hover:border-white/50 opacity-60 hover:opacity-100'
+                            }`}
+                        >
+                            <img src={img} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover" />
+                        </button>
+                    ))}
+                    {images.length > 6 && (
+                        <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center text-white text-xs font-medium border border-white/20 flex-shrink-0">
+                            +{images.length - 6}
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
@@ -350,56 +367,56 @@ const ProjectSpecsCTA: React.FC<{ onOpenQuote: (service?: string) => void }> = (
             title: "Still Renderings",
             subtitle: "Photorealistic images",
             desc: "Photorealistic images that showcase colors, textures, and lighting with exceptional accuracy. Perfect for presentations, catalogs, and high-end portfolios.",
-            features: ["4K resolution (3840x2160)", "Photorealistic lighting", "Material accuracy", "Print-ready files"],
+            features: ["4K resolution (3840x2160)", "Photorealistic lighting", "Multiple viewpoints", "Print-ready files"],
             deliverables: ["4K resolution (3840x2160)", "PNG/JPG format", "Print-ready 300 DPI", "Web-optimized versions"],
             requirements: ["Floor Plans", "Material References", "Lighting Plan", "Key Viewpoints"],
             process: [
-                { id: "01", title: "3D Modeling", desc: "Creating accurate 3D geometry from architectural drawings and specifications." },
-                { id: "02", title: "Materials", desc: "Applying photorealistic textures and materials based on references provided." },
-                { id: "03", title: "Lighting", desc: "Setting up realistic lighting scenarios to match the desired mood and time of day." },
-                { id: "04", title: "Rendering", desc: "High-quality final output with post-processing for perfect color and contrast." }
+                { id: "01", title: "Submit Drawings", desc: "Share your floor plans, sketches, or 3D models with material references and desired viewpoints." },
+                { id: "02", title: "3D Modeling & Texturing", desc: "We construct accurate 3D geometry from your drawings and apply photorealistic materials matching your references—capturing surface details, colors, and finishes precisely." },
+                { id: "03", title: "Lighting & Rendering", desc: "Realistic lighting is set up to match your desired mood and time of day. We render high-quality drafts for your review and feedback." },
+                { id: "04", title: "Post-Production & Delivery", desc: "Final renders are color-corrected and enhanced. You receive print-ready and web-optimized files for immediate use." }
             ]
         },
         {
             title: "3D Animation",
             subtitle: "Cinematic videos",
             desc: "Cinematic videos that demonstrate spatial relationships and movement flow. Create emotional connections through dynamic storytelling.",
-            features: ["4K video output", "30fps smooth playback", "Cinematic camera moves", "Licensed music included"],
-            deliverables: ["4K resolution video", "30fps or 60fps frame rates", "H.264/H.265 codec", "Licensed background music"],
-            requirements: ["3D Model or Floor Plans", "Camera Path Preferences", "Material References", "Lighting Preferences"],
+            features: ["4K video (MP4)", "30fps or 60fps", "Color graded", "Web and presentation ready"],
+            deliverables: ["4K video (MP4)", "30fps or 60fps", "Color graded", "Web and presentation ready"],
+            requirements: ["3D model or floor plans", "Camera path preferences", "Material references", "Target duration"],
             process: [
-                { id: "01", title: "Storyboard", desc: "Planning the camera path and narrative flow to showcase the space effectively." },
-                { id: "02", title: "Animation Setup", desc: "Creating smooth camera movements and setting up the scene for rendering." },
-                { id: "03", title: "Rendering", desc: "Frame-by-frame high-quality rendering using our render farm for 4K output." },
-                { id: "04", title: "Post-Production", desc: "Color grading, sound design, and final editing for a polished cinematic result." }
+                { id: "01", title: "Plan Camera Path", desc: "Discuss the route and key moments you want to highlight in the walkthrough." },
+                { id: "02", title: "Create Animation", desc: "We animate smooth camera movements and render frame-by-frame at 4K quality." },
+                { id: "03", title: "Review & Revise", desc: "Watch the draft video and request adjustments to timing, path, or visuals." },
+                { id: "04", title: "Receive Final Video", desc: "Get your polished video in all required formats, ready to present or publish." }
             ]
         },
         {
             title: "3D Floor Plans",
             subtitle: "Spatial layouts",
-            desc: "Detailed overhead views that showcase spatial layouts and furniture arrangements. Perfect for marketing materials, property listings, and client presentations.",
-            features: ["Furniture layout included", "Dimension annotations", "Multiple floor levels", "Export to PDF/Image"],
-            deliverables: ["High-resolution PNG/JPG", "PDF with dimensions", "Transparent background option", "Multiple floor levels"],
-            requirements: ["CAD Floor Plans", "Furniture Specifications", "Dimension Requirements", "Preferred View Angle"],
+            desc: "Clear overhead views that show spatial layout and furniture arrangement at a glance. Essential for real estate listings, lease presentations, and quick client approvals.",
+            features: ["High-res PNG/JPG", "PDF with dimensions", "Multiple floor levels", "Transparent background option"],
+            deliverables: ["High-res PNG/JPG", "PDF with dimensions", "Multiple floor levels", "Transparent background option"],
+            requirements: ["CAD floor plans", "Furniture specs", "Dimension requirements", "View angle preference"],
             process: [
-                { id: "01", title: "Plan Setup", desc: "Importing and cleaning up CAD drawings for 3D conversion." },
-                { id: "02", title: "3D Conversion", desc: "Building walls, floors, and architectural elements in 3D space." },
-                { id: "03", title: "Furnishing", desc: "Adding furniture, fixtures, and decor to showcase the space functionality." },
-                { id: "04", title: "Final Output", desc: "Rendering with annotations and exporting in required formats." }
+                { id: "01", title: "Share Plans", desc: "Send your CAD drawings with furniture requirements and dimension specifications." },
+                { id: "02", title: "We Model in 3D", desc: "Convert your 2D plans into 3D with walls, floors, and furniture accurately placed." },
+                { id: "03", title: "Review Layout", desc: "Check the 3D floor plan and request any adjustments to furniture or annotations." },
+                { id: "04", title: "Get Final Files", desc: "Receive annotated floor plans in PDF and image formats, ready to use." }
             ]
         },
         {
             title: "3D Virtual Tours",
             subtitle: "Interactive experiences",
             desc: "Interactive experiences that allow viewers to navigate spaces freely. Detailed panoramic views compatible with web, mobile, and VR headsets.",
-            features: ["360° panoramic views", "VR headset compatible", "Web & mobile ready", "Interactive hotspots"],
-            deliverables: ["360° panoramic renders", "Web embeddable player", "VR headset compatibility", "Interactive navigation"],
-            requirements: ["Complete 3D Model", "Navigation Points", "Hotspot Requirements", "Platform Preferences"],
+            features: ["360° panoramic renders", "Web player (HTML5)", "VR headset support", "Mobile responsive"],
+            deliverables: ["360° panoramic renders", "Web player (HTML5)", "VR headset support", "Mobile responsive"],
+            requirements: ["3D model or floor plans", "Navigation points", "Platform preference", "Branding assets"],
             process: [
-                { id: "01", title: "Camera Placement", desc: "Strategically positioning 360° camera points throughout the space." },
-                { id: "02", title: "Panoramic Rendering", desc: "Creating full spherical renders from each camera position." },
-                { id: "03", title: "Tour Assembly", desc: "Connecting viewpoints with navigation hotspots and transitions." },
-                { id: "04", title: "Platform Integration", desc: "Publishing to web, mobile, or VR platforms as required." }
+                { id: "01", title: "Define Viewpoints", desc: "Identify key locations throughout the space for 360° camera placement." },
+                { id: "02", title: "Render Panoramas", desc: "We create full spherical renders from each viewpoint with accurate lighting." },
+                { id: "03", title: "Build Tour", desc: "Connect viewpoints with navigation hotspots. You review the interactive experience." },
+                { id: "04", title: "Launch Tour", desc: "Publish to your website or share via link. Works on all devices and VR headsets." }
             ]
         }
     ];
@@ -514,7 +531,7 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
     const immersiveItems = [
         {
             title: '3D Floor Plans',
-            description: 'Detailed overhead views that showcase spatial layouts and furniture arrangements. Perfect for marketing materials, property listings, and client presentations.',
+            description: 'Clear overhead views that show spatial layout and furniture arrangement at a glance. Essential for real estate listings, lease presentations, and quick client approvals.',
             imgSrc: floorPlanGallery.length > 0 ? floorPlanGallery[0] : '/interior/3d-floor-plans-and-dollhouse-gallery/fallback.png',
             imgAlt: '3D Floor Plans',
             label: 'View Floor Plan',
@@ -522,11 +539,11 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
         },
         {
             title: '360° Panoramas',
-            description: 'Immersive panoramic views that let you explore spaces in full 360 degrees. Navigate through rooms, examine details, and experience the space as if you were there.',
+            description: 'Full spherical views that let clients explore every angle. Perfect for virtual open houses, remote presentations, and interactive web experiences.',
             imgSrc: panoramaGallery.length > 0 ? panoramaGallery[0] : 'https://archicgi.com/wp-content/uploads/2025/03/living-room-interior-3d-rendering-MU5SFJXV-4000x2250.jpg',
             imgAlt: '360° Panoramas',
             label: 'Explore 360° View',
-            features: ['Full 360° panoramic views', 'Interactive navigation', 'VR headset compatible', 'Web & mobile ready']
+            features: ['Full 360° panoramic views', 'Interactive navigation', 'VR headset compatible', 'Web & mobile ready', 'Custom branding options']
         }
     ];
 
@@ -537,7 +554,7 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
             hasPlay: false,
             title: 'Still Renderings',
             desc: 'Photorealistic images that showcase colors, textures, and lighting with exceptional accuracy. Perfect for presentations, catalogs, and high-end portfolios.',
-            features: ['4K resolution (3840x2160)', 'Photorealistic lighting', 'Material accuracy', 'Print-ready 300 DPI']
+            features: ['4K resolution (3840x2160)', 'Photorealistic lighting', 'Multiple viewpoints', 'Print-ready 300 DPI']
         },
         {
             imgSrc: 'https://archicgi.com/wp-content/uploads/2025/09/interior-3D-animation-cover-frame-png.webp',
@@ -545,16 +562,17 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
             hasPlay: true,
             title: '3D Animation',
             desc: 'Cinematic videos that demonstrate spatial relationships and movement flow. Create emotional connections through dynamic storytelling.',
-            features: ['4K video output', '30fps smooth playback', 'Cinematic camera moves', 'Licensed music included']
+            features: ['4K video output', '30fps smooth playback', 'Cinematic camera moves', 'Color graded']
         },
     ];
 
     const faqs = [
-        { q: 'How to Order 3D interior visualization services?', a: 'You can start your 3D visualization project by booking a video call, writing to us in chat, or emailing contact@noveld.com.et.' },
-        { q: 'What is interior 3D rendering?',                   a: 'It is the technology of creating realistic images of planned interiors using software like 3ds Max, Corona, and V-Ray.' },
-        { q: 'How much does an interior 3D render cost?',        a: 'The price depends on project complexity, number of images, and resolution. Contact us for a custom quote.' },
-        { q: 'How long does the interior rendering process take?', a: 'Generally, rendering one room takes about 48 hours excluding corrections, but complex projects may take longer.' },
-        { q: 'What software is used?',                           a: 'We use industry standards including 3ds Max, VRay, Corona Renderer, and Unreal Engine 5.' },
+        { q: 'How do I start a project?', a: 'Email us at contact@noveld.com.et, book a call, or message us on chat. Share your floor plans and requirements. We respond within 24 hours with a quote.' },
+        { q: 'What is 3D interior rendering?', a: 'Creating photorealistic images of interior spaces using 3D software. It lets you see and approve designs before construction begins.' },
+        { q: 'How much does it cost?', a: 'Depends on room complexity, resolution, and deliverable type. Contact us with your project details for a custom quote.' },
+        { q: 'How long does it take?', a: '3-5 days per room for still images. Animations and virtual tours take 1-2 weeks. Rush delivery available.' },
+        { q: 'What software do you use?', a: '3ds Max, Corona Renderer, V-Ray for rendering. Unreal Engine 5 for virtual tours. Adobe Suite for post-production.' },
+        { q: 'What files will I receive?', a: 'High-resolution PNG/JPG for print and web. MP4 for videos. HTML5 player for virtual tours. Other formats on request.' },
     ];
 
     return (
@@ -587,7 +605,7 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
                     </h1>
 
                     <p className={`text-neutral-400 text-lg md:text-xl max-w-2xl leading-relaxed transition-all duration-1000 delay-200 ${heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        500+ CGI Artists ready to turn your interior design ideas into visual masterpieces. Same-day start, 1-week delivery.
+                        Photorealistic renders and animations for architecture firms, interior designers, and real estate developers. Win more projects with visuals that sell.Transform your interior concepts into stunning, lifelike visuals. From residential spaces to commercial environments
                     </p>
                 </div>
             </section>
@@ -615,7 +633,7 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
                         <h2 className="font-display text-4xl md:text-6xl mb-6 leading-tight">
                             Versatile <span className="text-stroke">Interior Assets</span>
                         </h2>
-                        <p className="text-neutral-500 max-w-xl">Use these solutions to make your interior concepts the center of attention.</p>
+                        <p className="text-neutral-500 max-w-xl"> Still renders, animations, floor plans, and virtual tours—everything you need to present and sell your designs </p>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -661,7 +679,7 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
                         3D Floor Plan & <span className="text-stroke">360° Panoramas</span>
                     </h2>
                     <p className="text-neutral-500 max-w-xl">
-                        Explore spaces like never before with interactive 3D technology.
+                        Let clients explore spaces at their own pace. Works on web, mobile, and VR headsets.
                     </p>
                 </div>
 
@@ -683,37 +701,42 @@ const InteriorVisualization: React.FC<{ onNavigate: (page: Page) => void }> = ({
                             {/* Full-bleed card background */}
                             <div className="absolute inset-0 bg-neutral-900/95 backdrop-blur-sm" />
 
-                            {/* Card content */}
-                            <div className="relative z-10 w-full px-6 lg:px-12 py-16 group">
+                            {/* Card content - fits within viewport on mobile, original on desktop */}
+                            <div className="relative z-10 w-full px-6 lg:px-12 py-8 lg:py-16 group h-full flex flex-col">
                                 {/* Step counter */}
-                                <p className="text-xs text-neutral-600 tracking-widest uppercase mb-6 font-medium">
+                                <p className="text-xs text-neutral-600 tracking-widest uppercase mb-4 lg:mb-6 font-medium flex-shrink-0">
                                     {String(i + 1).padStart(2, '0')} / {String(immersiveItems.length).padStart(2, '0')}
                                 </p>
 
-                                <h3 className="text-3xl md:text-4xl font-display mb-4 text-white">
-                                    {item.title}
-                                </h3>
-                                <p className="text-neutral-400 text-sm leading-relaxed max-w-xl mb-10">
-                                    {item.description}
-                                </p>
+                                {/* Header content - flexible but limited */}
+                                <div className="flex-shrink-0 mb-4 lg:mb-6">
+                                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-display mb-3 lg:mb-4 text-white">
+                                        {item.title}
+                                    </h3>
+                                    <p className="text-neutral-400 text-sm leading-relaxed max-w-xl mb-4 lg:mb-6">
+                                        {item.description}
+                                    </p>
 
-                                {/* Features List */}
-                                <div className="grid grid-cols-2 gap-3 mb-8">
-                                    {item.features.map((feature, idx) => (
-                                        <div key={idx} className="flex items-center gap-2 text-sm text-neutral-300">
-                                            <CheckCircle2 size={14} className="text-green-500 flex-shrink-0" />
-                                            {feature}
-                                        </div>
-                                    ))}
+                                    {/* Features List - compact on mobile, original on desktop */}
+                                    <div className="grid grid-cols-2 gap-2 lg:gap-3 mb-4 lg:mb-6">
+                                        {item.features.map((feature, idx) => (
+                                            <div key={idx} className="flex items-center gap-2 text-xs lg:text-sm text-neutral-300">
+                                                <CheckCircle2 size={12} className="text-green-500 flex-shrink-0" />
+                                                {feature}
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
 
-                                {/* 3D Floor Plans - Full Viewport Gallery */}
-                                {i === 0 ? (
-                                    <FloorPlanGallery images={floorPlanGallery} />
-                                ) : (
-                                    /* Virtual Tours - 360° Panorama Gallery */
-                                    <PanoramaGallery images={panoramaGallery} />
-                                )}
+                                {/* Gallery - takes remaining space on mobile, original height on desktop */}
+                                <div className="flex-1 min-h-0 mb-4 lg:mb-0 lg:h-auto">
+                                    {i === 0 ? (
+                                        <FloorPlanGallery images={floorPlanGallery} />
+                                    ) : (
+                                        /* Virtual Tours - 360° Panorama Gallery */
+                                        <PanoramaGallery images={panoramaGallery} />
+                                    )}
+                                </div>
                             </div>
                         </div>
                     ))}

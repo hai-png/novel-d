@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Logo from '/src/assets/images-optimized/branding/logo-nobg.png';
+import Logo from '/src/assets/images-optimized/branding/logo-nobg.webp';
 
 const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const [percent, setPercent] = useState(0);
@@ -32,7 +32,7 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
       />
       
       {/* Animated NOVEL-D Text */}
-      <div className="flex space-x-4 text-6xl font-display font-bold text-white overflow-hidden mb-8">
+      <div className="flex space-x-4 text-6xl font-sarpanch font-bold text-white overflow-hidden mb-8">
         {['N','O','V','E','L','-','D'].map((char, i) => (
           <span
             key={i}

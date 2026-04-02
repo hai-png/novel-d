@@ -91,7 +91,7 @@ const organizeProjects = (): ProjectType[] => {
 const projectsByType = organizeProjects();
 
 // Video Player Component with controls
-const VideoPlayer: React.FC<{ src: string }> = ({ src }) => {
+const VideoPlayer: React.FC<{ src: string; onEnded?: () => void }> = ({ src, onEnded }) => {
     const [isPlaying, setIsPlaying] = useState(true);
     const [isMuted, setIsMuted] = useState(true);
     const [progress, setProgress] = useState(0);
@@ -151,10 +151,10 @@ const VideoPlayer: React.FC<{ src: string }> = ({ src }) => {
                 className="w-full h-full object-cover"
                 muted={isMuted}
                 onTimeUpdate={handleTimeUpdate}
+                onEnded={onEnded}
                 onClick={togglePlay}
                 playsInline
                 autoPlay
-                loop
             />
             
             {!isPlaying && (
@@ -215,16 +215,23 @@ const VideoPlayer: React.FC<{ src: string }> = ({ src }) => {
 // Project Carousel Component
 const ProjectCarousel: React.FC<{ media: string[] }> = ({ media }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
 
     const handleNext = () => setCurrentIndex((prev) => (prev + 1) % media.length);
     const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + media.length) % media.length);
 
+    const handleVideoEnded = () => {
+        if (!isHovered && media.length > 1) {
+            handleNext();
+        }
+    };
+
     if (media.length === 0) return null;
 
     return (
-        <div className="relative w-full h-full group">
+        <div className="relative w-full h-full group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
             <div className="absolute inset-0">
-                <VideoPlayer src={media[currentIndex]} />
+                <VideoPlayer src={media[currentIndex]} onEnded={handleVideoEnded} />
             </div>
 
             {media.length > 1 && (
@@ -334,7 +341,26 @@ const ProjectCard: React.FC<{ project: ProjectMedia; layout: 'full' | 'half' | '
 const Projects: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavigate }) => {
     const [heroRef, heroVisible] = useIntersectionObserver<HTMLElement>();
     const [activeFilter, setActiveFilter] = useState('all');
+    const [showFilters, setShowFilters] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
     const { navigateToHomeWithScroll } = useNavigation();
+
+    React.useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // Scrolling down - hide filters
+                setShowFilters(false);
+            } else {
+                // Scrolling up - show filters
+                setShowFilters(true);
+            }
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollY]);
 
     const handleBackToHome = () => {
         navigateToHomeWithScroll(onNavigate, 'work');
@@ -402,21 +428,23 @@ const Projects: React.FC<{ onNavigate: (page: Page) => void }> = ({ onNavigate }
             </section>
 
             {/* Filter Section */}
-            <section className="py-12 px-6 lg:px-12 border-t border-white/5 sticky top-20 z-30 bg-neutral-950/95 backdrop-blur-xl">
+            <section className={`py-6 md:py-12 px-6 lg:px-12 border-t border-white/5 sticky top-20 z-30 bg-neutral-950/95 backdrop-blur-xl transition-transform duration-300 ${
+                showFilters ? 'translate-y-0' : '-translate-y-full'
+            }`}>
                 <div className="">
-                    <div className="flex flex-wrap gap-3 justify-center">
+                    <div className="flex flex-wrap gap-2 md:gap-3 justify-center">
                         {projectTypes.map((filter) => (
                             <button
                                 key={filter.id}
                                 onClick={() => setActiveFilter(filter.id)}
-                                className={`flex items-center gap-2 px-6 py-3 rounded-full border transition-all duration-300 ${
+                                className={`flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full border transition-all duration-300 ${
                                     activeFilter === filter.id
                                         ? 'bg-white text-neutral-950 border-white'
                                         : 'bg-transparent text-neutral-400 border-white/10 hover:border-white/30 hover:text-white'
                                 }`}
                             >
-                                <filter.icon size={16} />
-                                <span className="text-sm font-medium">{filter.label}</span>
+                                <filter.icon size={14} className="md:w-4 md:h-4" />
+                                <span className="text-xs md:text-sm font-medium whitespace-nowrap">{filter.label}</span>
                             </button>
                         ))}
                     </div>

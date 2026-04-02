@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
 import { Page } from '../types';
 import { useNavigation } from '../hooks/useNavigation';
-import Logo from '/src/assets/images-optimized/branding/logo-nobg.png';
+import Logo from '/src/assets/images-optimized/branding/logo-nobg.webp';
 
 interface NavbarProps {
   onNavigate: (page: Page) => void;

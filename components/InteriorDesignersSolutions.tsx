@@ -164,10 +164,10 @@ const InteriorDesignersSolutions: React.FC<{ onNavigate: (page: Page) => void }>
             <section className="py-24 px-6 lg:px-12 bg-neutral-950 border-y border-white/5">
                 <div className="px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center lg:text-left">
                     {[
-                        { title: 'Material Truth', desc: 'Physically simulated fabrics, stone, metal, and timber. Your specification rendered with texture and light accuracy that matches reality.', icon: Palette },
-                        { title: 'Faster Approval', desc: 'Clients see exactly what they\'re getting. Stills, tours, and live configurators eliminate revision cycles and miscommunication.', icon: UserCheck },
-                        { title: 'Portfolio Ready', desc: 'Publish high-end imagery for projects still under construction — or designs that were never built. No photographer needed.', icon: ImageIcon },
-                        { title: 'Risk Reduction', desc: 'Test bold choices in photorealistic context before ordering. Prevent costly on-site changes and protect your design intent.', icon: Lightbulb },
+                        { title: 'Photorealistic Quality', desc: 'Images so realistic your clients will mistake them for photographs. Accurate lighting, materials, and proportions that build trust and close deals faster.', icon: Palette },
+                        { title: 'Fast Turnaround', desc: 'Same-day project start. Standard delivery in 3-5 days. Rush options available. We respect your deadlines and keep your projects on schedule.', icon: UserCheck },
+                        { title: 'All Services in One Place', desc: 'Still renders, animations, floor plans, and virtual tours. Consistent quality across every format, simplified project management.', icon: ImageIcon },
+                        { title: 'Clear Communication', desc: 'Single point of contact. Regular progress updates. No surprises, no delays.', icon: Lightbulb },
                     ].map((item, i) => (
                         <div key={i} className="space-y-6 group">
                             <div className="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center text-white border border-white/10 group-hover:bg-white group-hover:text-black transition-all mx-auto lg:mx-0"><item.icon size={24} /></div>
