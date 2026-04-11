@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import FeaturedProject from './components/FeaturedProject';
 import Portfolio from './components/Portfolio';
 import About from './components/About';
+import WhyUs from './components/WhyUs';
 import Services from './components/Services';
 import Process from './components/Process';
 import Contact from './components/Contact';
@@ -24,16 +25,63 @@ import ArchitectSolutions from './components/ArchitectSolutions';
 import Projects from './components/Projects';
 import { Page } from './types';
 
+// Map URL hash fragments to Page values
+const PAGE_FROM_HASH: Record<string, Page> = {
+  '/exterior': 'exterior',
+  '/interior': 'interior',
+  '/virtual-tour': 'virtual-tour',
+  '/aerial': 'aerial',
+  '/immersive': 'immersive',
+  '/animation': 'animation',
+  '/real-estate': 'real-estate',
+  '/interior-designers': 'interior-designers',
+  '/architects': 'architects',
+  '/projects': 'projects',
+};
+
+const HASH_FROM_PAGE: Record<Page, string> = {
+  'home': '#/',
+  'exterior': '#/exterior',
+  'interior': '#/interior',
+  'virtual-tour': '#/virtual-tour',
+  'aerial': '#/aerial',
+  'immersive': '#/immersive',
+  'animation': '#/animation',
+  'real-estate': '#/real-estate',
+  'interior-designers': '#/interior-designers',
+  'architects': '#/architects',
+  'projects': '#/projects',
+};
+
+const resolvePageFromHash = (hash: string): Page => {
+  const key = hash.replace(/^#/, '') || '/';
+  if (key === '/' || key === '' || key === 'home') return 'home';
+  return PAGE_FROM_HASH[key] || 'home';
+};
+
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState<Page>('home');
+  const [currentPage, setCurrentPage] = useState<Page>(() => resolvePageFromHash(window.location.hash));
   const hasScrolledRef = useRef(false);
 
-  const handleNavigate = (page: Page) => {
+  const handleNavigate = useCallback((page: Page) => {
     setCurrentPage(page);
-    // Don't scroll here - let the navigation handler control scrolling
-    // This prevents double-scrolling when navigating to sections
-  };
+    // Sync URL hash with current page
+    const newHash = HASH_FROM_PAGE[page];
+    if (newHash && window.location.hash !== newHash) {
+      window.history.pushState(null, '', newHash);
+    }
+  }, []);
+
+  // Listen for browser back/forward navigation
+  useEffect(() => {
+    const onHashChange = () => {
+      const page = resolvePageFromHash(window.location.hash);
+      setCurrentPage(page);
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
 
   // Listen for navigation scroll events to prevent double-scrolling
   useEffect(() => {
@@ -94,6 +142,7 @@ const App: React.FC = () => {
                       reverse={true}
                     />
                     <Services onNavigate={handleNavigate} />
+                    <WhyUs />
                     <Process onNavigate={handleNavigate} />
                     <Contact />
                 </>
